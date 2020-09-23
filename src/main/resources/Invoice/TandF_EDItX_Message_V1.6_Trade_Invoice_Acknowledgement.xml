@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EDItXMessageAcknowledgement version="1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="EDItX_Message_V1.6.xsd">
+  <InterchangeReference>InterchangeReference</InterchangeReference>
+  <MessageNumber>952283764</MessageNumber> <!-- This is the Credit Note Number  -->
+  <DocumentType>Invoice</DocumentType>
+  <VersionNumber>1.0</VersionNumber>
+  <NumberOfDocuments>1</NumberOfDocuments>
+  <Sender>
+    <PartyID>
+      <PartyIDType>GLN</PartyIDType>
+      <Identifier>Identifier</Identifier><!-- TandF -->
+    </PartyID>
+  </Sender>
+  <Receiver>
+    <PartyID>
+      <PartyIDType>GLN</PartyIDType>
+      <Identifier>1208965</Identifier>
+    </PartyID>
+  </Receiver>
+  <PurposeCode>Original</PurposeCode>
+  <ReceivedDateTime>20200627</ReceivedDateTime>
+  <AcknowledgedDateTime>20200628</AcknowledgedDateTime>
+  <AcknowledgementStatusCode>Accepted</AcknowledgementStatusCode>
+</EDItXMessageAcknowledgement>

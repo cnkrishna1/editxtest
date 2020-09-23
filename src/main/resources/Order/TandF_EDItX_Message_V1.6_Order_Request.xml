@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EDItXMessage version="1.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="EDItX_Message_V1.6.xsd">
+  <EDItXMessageHeader>
+    <InterchangeReference>InterchangeReference</InterchangeReference>
+    <MessageNumber>ZXCV678</MessageNumber>
+    <DocumentType>Order</DocumentType>
+    <VersionNumber>1.0</VersionNumber>
+    <NumberOfDocuments>2</NumberOfDocuments>
+    <Manifest>
+      <DocumentNumber>DOC-00001</DocumentNumber>
+    </Manifest>
+    <Sender>
+      <PartyID>
+        <PartyIDType>GLN</PartyIDType>   
+        <!-- here the request sender is the seller eg: consider as Amazon 
+        or we consider the one who will be  the product owner means simply a publisher/supplier eg: t&F-->
+        <Identifier>Amazon Identifier number</Identifier>
+      </PartyID>
+    </Sender>
+    <Receiver>
+      <PartyID>
+        <PartyIDType>SellersAccountNumber</PartyIDType>  <!-- publishers details   -->
+        <Identifier>HDFC0000243678</Identifier>     
+         <!-- amazon requests publisher eg: T&F in our case   -->
+      </PartyID>
+    </Receiver>
+    <PurposeCode>Original</PurposeCode>
+    <SentDateTime>20200407</SentDateTime>
+    
+    <!-- signature is commented, digital signatue should be there below.. -->
+   <Signature>
+            <Signature xmlns="http://www.w3.org/2000/09/xmldsig#" xsi:schemaLocation="http://www.w3.org/2000/09/xmldsig# http://www.w3c.org/2000/09/xmldsig">
+                <SignedInfo>
+                    <CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+                    <SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#dsa-sha1"/>
+                    <Reference URI="http://www.w3.org/TR/xml-stylesheet">
+                        <DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+                        <DigestValue>60NvZvtdTB+7UnlLp/H24p7h4bs=</DigestValue>
+                    </Reference>
+                </SignedInfo>
+                <SignatureValue>qUADDMHZkyebvRdLs+6Dv7RvgMLRlUaDB4Q9yn9XoJA79a2882ffTg==</SignatureValue>
+                <KeyInfo>
+                    <KeyValue>
+                        <DSAKeyValue>
+                            <P>2iY3w062sDB3/DIlLWOeG9+4UpmDZ0dyqRk9dLlNQ6qaXI7tOrjdIhm6n/eOw45AQtuYSp6spCt9cQcNBAj22KvygvfJIIXX9sSQrugfGqifeSvY3VX5Sd1j+z0MSZ/n5jNt88uh2C11SAqX6nrXTY/1RwkoWRN23SYhOlaG0hU=</P>
+                            <Q>9B5ypLY9pMOmtxCeTDHgwdNFeGs=</Q>
+                            <G>MuGAlqeB1ax+vyO2+Osubjhl7pHxLu47RIH+/M52DjESA9KMSrwzsYx8yNR2WooByrE0t6fu0VncK7UK8olO4t7wpv2z4AFQPRVCKFwo0qgn5aKIkICGMlrRy81avb27wGcWothx3iPPMtFXtoDqK0JItaI9R8zc1msFhM1GKMY=</G>
+                            <Y>ctA8YGxrtngg/zKVvqEOefnwmViFztcnPBYPlJsvh6yKI4iDm68fnp4Mi3RrJ6bZAygFrUIQLxLjV+OJtgJAEto0xAs+Mehuq1DkSFEpP3oDzCTOsrOiS1DwQe4oIb7zVk/9l7aPtJMHW0LVlMdwZNFNNJoqMcT2ZfCPrfvYvQ0=</Y>
+                        </DSAKeyValue>
+                    </KeyValue>
+                    <X509Data>
+                        <X509SubjectName>CN=Merlin Hughes,O=Baltimore Technologies\, Ltd.,ST=Dublin,C=IE</X509SubjectName>
+                        <X509IssuerSerial>
+                            <X509IssuerName>CN=Test DSA CA,O=Baltimore Technologies\, Ltd.,ST=Dublin,C=IE</X509IssuerName>
+                            <X509SerialNumber>970849936</X509SerialNumber>
+                        </X509IssuerSerial>
+                        <X509Certificate>MIIDNzCCAvWgAwIBAgIEOd3+kDAJBgcqhkjOOAQDMFsxCzAJBgNVBAYTAklFMQ8wDQYDVQQIEwZEdWJsaW4xJTAjBgNVBAoTHEJhbHRpbW9yZSBUZWNobm9sb2dpZXMsIEx0ZC4xFDASBgNVBAMTC1Rlc3QgRFNBIENBMB4XDTAwMTAwNjE2MzIxNVoXDTAxMTAwNjE2MzIxNFowXTELMAkGA1UEBhMCSUUxDzANBgNVBAgTBkR1YmxpbjElMCMGA1UEChMcQmFsdGltb3JlIFRlY2hub2xvZ2llcywgTHRkLjEWMBQGA1UEAxMNTWVybGluIEh1Z2hlczCCAbYwggErBgcqhkjOOAQBMIIBHgKBgQDaJjfDTrawMHf8MiUtY54b37hSmYNnR3KpGT10uU1Dqppcju06uN0iGbqf947DjkBC25hKnqykK31xBw0ECPbYq/KC98kghdf2xJCu6B8aqJ95K9jdVflJ3WP7PQxJn+fmM23zy6HYLXVICpfqetdNj/VHCShZE3bdJiE6VobSFQIVAPQecqS2PaTDprcQnkwx4MHTRXhrAoGAMuGAlqeB1ax+vyO2+Osubjhl7pHxLu47RIH+/M52DjESA9KMSrwzsYx8yNR2WooByrE0t6fu0VncK7UK8olO4t7wpv2z4AFQPRVCKFwo0qgn5aKIkICGMlrRy81avb27wGcWothx3iPPMtFXtoDqK0JItaI9R8zc1msFhM1GKMYDgYQAAoGActA8YGxrtngg/zKVvqEOefnwmViFztcnPBYPlJsvh6yKI4iDm68fnp4Mi3RrJ6bZAygFrUIQLxLjV+OJtgJAEto0xAs+Mehuq1DkSFEpP3oDzCTOsrOiS1DwQe4oIb7zVk/9l7aPtJMHW0LVlMdwZNFNNJoqMcT2ZfCPrfvYvQ2jRzBFMB4GA1UdEQQXMBWBE21lcmxpbkBiYWx0aW1vcmUuaWUwDgYDVR0PAQH/BAQDAgeAMBMGA1UdIwQMMAqACEJZQG0KwRbPMAkGByqGSM44BAMDMQAwLgIVAK4skWEFYgrggaJA8vYAwSjg12+KAhUAwHTo7wd4tENw9LAKPklQ/74fH18=</X509Certificate>
+                    </X509Data>
+                </KeyInfo>
+            </Signature>
+      </Signature>
+</EDItXMessageHeader>
+  <EDItXMessagePayload>
+    <Order version="1.3">
+      <Header>
+        <OrderNumber>ORD00001</OrderNumber>
+        <IssueDateTime>20200417T0254Z</IssueDateTime>
+        <PurposeCode>Original</PurposeCode>
+        <BuyerParty>      <!-- buyerParty can be a amazon aggregator ot its subsidiary who will accept on behalf of amazon -->
+          <PartyID>   
+            <PartyIDType>SellersAccountNumber</PartyIDType>
+            <Identifier>HB-FancyStore-London or Amazon Identifier</Identifier>  <!-- who received the product on behalf of amazon since amazon
+             is the distributor to this particular.. If not ,default it cna be a amazon detials-->
+          </PartyID>
+        </BuyerParty>
+      </Header>
+      <ItemDetail>
+        <LineNumber>1</LineNumber>
+        <ProductID>
+          <ProductIDType>Proprietary</ProductIDType>
+          <Identifier>QW0987Q</Identifier>    
+        </ProductID>
+        <OrderQuantity>10</OrderQuantity>
+      </ItemDetail>
+       <ItemDetail>
+        <LineNumber>2</LineNumber>
+        <ProductID>
+          <ProductIDType>ISBN</ProductIDType>
+          <Identifier>98438549857</Identifier>    
+        </ProductID>
+        <OrderQuantity>5</OrderQuantity>
+      </ItemDetail>
+      
+      <Summary>
+        <NumberOfLines>2</NumberOfLines>
+        <UnitsOrdered>15</UnitsOrdered>
+      </Summary>
+    </Order>
+  </EDItXMessagePayload>
+</EDItXMessage>

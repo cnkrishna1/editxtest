@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SalesReport version="1.1"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
+	xs:noNamespaceSchemaLocation="TandFSalesReport_EDItX.xsd">
+	<Header>
+		<SalesReportNumber>0123456</SalesReportNumber>
+		<IssueDateTime>20020924</IssueDateTime> <!-- Assuming this is report generation date particular to the reseller which will have no relevance here-->
+		<ReferenceCoded>
+			<ReferenceTypeCode>InvoiceReference</ReferenceTypeCode> <!-- In case of negative order, CreditNoteReference will be used (considering Ingram negative invoices) -->
+			<ReferenceNumber>123456789</ReferenceNumber>
+		</ReferenceCoded>
+		<PurposeCode>Original</PurposeCode> <!--  -->
+		<SalesReportTypeCode>ByProduct</SalesReportTypeCode>
+		<ReportPriceType>SRPExcludingTax</ReportPriceType> <!-- The amount is excluding tax as we are calculating tax using SAP when applicable -->
+		<DateCoded> <!-- This is order date sent by the aggregator, applies to whole request. -->
+			<Date>20020924</Date>
+			<DateQualifierCode>SalesDate</DateQualifierCode>
+		</DateCoded>
+		<ClassOfSaleCode>03</ClassOfSaleCode>
+		<Territory>
+			<CountriesIncluded>US</CountriesIncluded>
+			<RegionsIncluded>US-AK US-HI</RegionsIncluded>
+		</Territory>
+		<SellerParty>
+			<PartyIdentifier>
+				<PartyIDType>Proprietary</PartyIDType>
+				<IDTypeName>Amazon</IDTypeName>
+				<IDValue>4021428</IDValue> <!-- This is partyID for the retailer ex: amazon -->
+			</PartyIdentifier>
+		</SellerParty>
+	</Header>
+	<ItemDetail>
+		<LineNumber>1</LineNumber>
+		<ProductIdentifier>
+			<ProductIDType>ISBN</ProductIDType>
+			<IDTypeName>Digital ISBN</IDTypeName>
+			<IDValue>9781568812618</IDValue> <!-- This is digital isbn -->
+		</ProductIdentifier>
+		<ProductIdentifier>
+			<ProductIDType>ISBN</ProductIDType>
+			<IDTypeName>Physical ISBN</IDTypeName>
+			<IDValue>9781568812618</IDValue> <!-- This is physical isbn -->
+		</ProductIdentifier>
+		<FormatCode>OpenEbook</FormatCode> <!-- format of the book which is sold-->
+		<Quantity>44</Quantity>
+		<PricingDetail>
+			<Price>
+				<PriceType>01</PriceType><!-- Indicates a RRP -->
+				<PriceAmount>39.00</PriceAmount>
+				<CurrencyCode>USD</CurrencyCode>
+				<CountryCode>US</CountryCode><!-- Can be used if currency is legal tender in more than one country -->
+			</Price>
+			<UnitAmountDueToPublisher>
+				<MonetaryAmount>27.30</MonetaryAmount>
+				<CurrencyCode>USD</CurrencyCode>
+				<CountryCode>US</CountryCode>
+			</UnitAmountDueToPublisher>
+		</PricingDetail>
+		<LineSalesAmount><!-- Shows the totals for this line -->
+			<NetSalesAmount>1716.00</NetSalesAmount>
+			<LineAmountDueToPublisher>
+				<MonetaryAmount>1201.20</MonetaryAmount>
+				<CurrencyCode>USD</CurrencyCode>
+			</LineAmountDueToPublisher>
+		</LineSalesAmount>
+		<DateCoded> <!-- Since order date is sent at header level, not required and since single invoice can only be additional information -->
+			<Date>20020924</Date>
+			<DateQualifierCode>TransactionDate</DateQualifierCode>
+		</DateCoded>
+	</ItemDetail>
+	<ItemDetail>
+		<LineNumber>2</LineNumber>
+		<ProductIdentifier>
+			<ProductIDType>ISBN</ProductIDType>
+			<IDTypeName>Digital ISBN</IDTypeName>
+			<IDValue>9781568812618</IDValue> <!-- This is digital isbn -->
+		</ProductIdentifier>
+		<ProductIdentifier>
+			<ProductIDType>ISBN</ProductIDType>
+			<IDTypeName>Physical ISBN</IDTypeName>
+			<IDValue>9781568812618</IDValue> <!-- This is physical isbn -->
+		</ProductIdentifier>
+		<FormatCode>OpenEbook</FormatCode> <!-- format of the book which is sold-->
+		<Quantity>6</Quantity>
+		<PricingDetail>
+			<Price>
+				<PriceType>01</PriceType><!-- Indicates a RRP -->
+				<PriceAmount>56.00</PriceAmount>
+				<CurrencyCode>USD</CurrencyCode>
+				<CountryCode>US</CountryCode><!-- Can be used if currency is legal tender in more than one country -->
+			</Price>
+			<UnitAmountDueToPublisher>
+				<MonetaryAmount>39.20</MonetaryAmount> <!-- No negatives are required for wholesale model as returns are only valid in the standard for agency model sales -->
+				<CurrencyCode>USD</CurrencyCode>
+				<CountryCode>US</CountryCode>
+			</UnitAmountDueToPublisher>
+		</PricingDetail>
+		<LineSalesAmount><!-- Shows the totals for this line -->
+			<NetSalesAmount>336.00</NetSalesAmount>
+			<LineAmountDueToPublisher>
+				<MonetaryAmount>235.20</MonetaryAmount>
+				<CurrencyCode>USD</CurrencyCode>
+			</LineAmountDueToPublisher>
+		</LineSalesAmount>
+		<DateCoded>
+			<Date>20020924</Date>
+			<DateQualifierCode>TransactionDate</DateQualifierCode>
+		</DateCoded>
+	</ItemDetail>
+	<ItemDetail>
+		<LineNumber>3</LineNumber>
+		<ProductIdentifier>
+			<ProductIDType>ISBN</ProductIDType>
+			<IDTypeName>Digital ISBN</IDTypeName>
+			<IDValue>9781568812618</IDValue> <!-- This is digital isbn -->
+		</ProductIdentifier>
+		<ProductIdentifier>
+			<ProductIDType>ISBN</ProductIDType>
+			<IDTypeName>Physical ISBN</IDTypeName>
+			<IDValue>9781568812618</IDValue> <!-- This is physical isbn -->
+		</ProductIdentifier>
+		<FormatCode>OpenEbook</FormatCode> <!-- format of the book which is sold-->
+		<Quantity>50</Quantity>
+		<PricingDetail>
+			<Price>
+				<PriceType>01</PriceType><!-- Indicates a RRP -->
+				<PriceAmount>88.40</PriceAmount>
+				<CurrencyCode>USD</CurrencyCode>
+				<CountryCode>US</CountryCode><!-- Can be used if currency is legal tender in more than one country -->
+			</Price>
+			<UnitAmountDueToPublisher><!-- Indicates the publisher share-->
+				<MonetaryAmount>61.88</MonetaryAmount>
+				<CurrencyCode>USD</CurrencyCode>
+				<CountryCode>US</CountryCode>
+			</UnitAmountDueToPublisher>
+		</PricingDetail>
+		<LineSalesAmount><!-- Shows the totals for this line -->
+			<NetSalesAmount>4420.00</NetSalesAmount>
+			<LineAmountDueToPublisher>
+				<MonetaryAmount>3094.00</MonetaryAmount>
+				<CurrencyCode>USD</CurrencyCode>
+			</LineAmountDueToPublisher>
+		</LineSalesAmount>
+		<DateCoded>
+			<Date>20020924</Date>
+			<DateQualifierCode>TransactionDate</DateQualifierCode>
+		</DateCoded>
+	</ItemDetail>
+	<Summary>
+		<NumberOfLines>3</NumberOfLines>
+		<NumberOfUnits>100</NumberOfUnits> <!-- Gross, refunded, and net units are supported in the standard but are only allowed for the agency sales model -->
+		<TotalSalesAmounts> <!-- Gross, refunded and net are supported, but only allowed for the agency model.-->
+			<TotalNetSalesAmount>6472.00</TotalNetSalesAmount>
+			<TotalSellerChargeAmount>0.0</TotalSellerChargeAmount>
+			<CurrencyCode>USD</CurrencyCode>
+			<CountryCode>US</CountryCode>
+		</TotalSalesAmounts>
+		<TotalDueToPublisher>
+			<MonetaryAmount>4530.20</MonetaryAmount>
+			<CurrencyCode>USD</CurrencyCode>
+			<CountryCode>US</CountryCode>
+		</TotalDueToPublisher>
+	</Summary>
+</SalesReport>

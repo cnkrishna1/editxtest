@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EDItXMessage version="1.6"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="EDItX_Message_V1.6.xsd">
+	<EDItXMessageHeader>
+		<InterchangeReference>InterchangeReference</InterchangeReference>
+		<MessageNumber>952283764</MessageNumber> <!-- This is the Credit Note Number -->
+		<DocumentType>CreditNote</DocumentType>
+		<VersionNumber>1.0</VersionNumber>
+		<NumberOfDocuments>1</NumberOfDocuments>
+		<Sender>
+			<PartyID>
+				<PartyIDType>GLN</PartyIDType>
+				<Identifier>Identifier</Identifier> <!-- TandF -->
+			</PartyID>
+		</Sender>
+		<Receiver>
+			<PartyID>
+				<PartyIDType>GLN</PartyIDType>
+				<Identifier>1208965</Identifier><!-- Identifier who cancelled -->
+			</PartyID>
+		</Receiver>
+		<PurposeCode>Original</PurposeCode>
+		<SentDateTime>20200627</SentDateTime>
+	</EDItXMessageHeader>
+	<EDItXMessagePayload>
+		<CreditNote version="1.0"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:noNamespaceSchemaLocation="EDItX_TradeCreditNote_V1.0.xsd">
+			<Header>
+				<CreditNoteNumber>952283764</CreditNoteNumber>
+				<IssueDateTime>20200225</IssueDateTime>
+				<DocumentType>CreditNote</DocumentType>
+				<ReferenceCoded>
+					<ReferenceTypeCode>InvoiceReference</ReferenceTypeCode>
+					<ReferenceNumber>952273770</ReferenceNumber>
+				</ReferenceCoded>
+				<PurposeCode>Original</PurposeCode>
+				<CurrencyCode>USD</CurrencyCode>
+				<CountryCode>US</CountryCode>
+				<DateCoded>
+					<Date>20200225</Date>
+					<DateQualifierCode>MeterDate</DateQualifierCode> <!-- you can mention here - TaxPointDate as well based on the need -->
+				</DateCoded>
+				<BuyerParty>
+					<PartyID>
+						<PartyIDType>GLN</PartyIDType>
+						<!-- here the request sender is the seller eg: consider as Amazon or 
+							we consider the one who will be the product owner means simply a publisher/supplier 
+							eg: t&F -->
+						<Identifier>1208965</Identifier> <!-- I am mentioning the customer number here. -->
+					</PartyID>
+					<PostalAddress>
+						<AddressLine>999 Maple Street</AddressLine>
+						<PostalTownCity>CONTOOCOOK</PostalTownCity>
+						<PostalCode>03229-3374</PostalCode>
+						<CountrySubdivision>NH</CountrySubdivision>
+						<CountrySubdivisionCode>NH</CountrySubdivisionCode>
+						<Country>UNITED STATES OF AMERICA</Country>
+						<CountryCode>US</CountryCode>
+					</PostalAddress>
+					<CommunicationDetails>
+						<CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+						<CommunicationLocator>CommunicationLocator</CommunicationLocator>
+					</CommunicationDetails>
+					<ContactPerson>
+						<ContactRoleCode>ContactRoleCode</ContactRoleCode>
+						<NameLine>NameLine</NameLine>
+						<CommunicationDetails>
+							<CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+							<CommunicationLocator>CommunicationLocator</CommunicationLocator>
+						</CommunicationDetails>
+					</ContactPerson>
+					<CountryCode>US</CountryCode>
+				</BuyerParty>
+				<SellerParty>
+					<PartyID>
+						<PartyIDType>GLN</PartyIDType>
+						<Identifier>TandF Customer Services</Identifier>
+					</PartyID>
+					<AdditionalPartyID>
+						<PartyIDType>TaxRegistrationNumber</PartyIDType>
+						<Identifier>Identifier</Identifier>
+					</AdditionalPartyID>
+					<PartyName>
+						<NameLine>TAndF Customer Services</NameLine>
+					</PartyName>
+					<PostalAddress>
+						<AddressLine>TAndF Customer Services</AddressLine>
+						<PostalTownCity>Sheepen Place</PostalTownCity>
+						<PostalCode>3LP</PostalCode>
+						<CountrySubdivision>Colchester</CountrySubdivision>
+						<CountrySubdivisionCode>CO3</CountrySubdivisionCode>
+						<Country>United Kingdom</Country>
+						<CountryCode>GB</CountryCode>
+					</PostalAddress>
+					<CommunicationDetails>
+						<CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+						<CommunicationLocator>+1 215 625 8900</CommunicationLocator>
+					</CommunicationDetails>
+					<ContactPerson>
+						<ContactRoleCode>ContactRoleCode</ContactRoleCode>
+						<PersonName>PersonName</PersonName>
+						<CommunicationDetails>
+							<CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+							<CommunicationLocator>+1 215 625 8900</CommunicationLocator>
+						</CommunicationDetails>
+					</ContactPerson>
+					<CountryCode>GB</CountryCode>
+				</SellerParty>
+				<ShipToParty>
+					<PartyID>
+						<PartyIDType>GLN</PartyIDType>
+						<!-- here the request sender is the seller eg: consider as Amazon or 
+							we consider the one who will be the product owner means simply a publisher/supplier 
+							eg: t&F -->
+						<Identifier>1208965</Identifier> <!-- I am mentioning the customer number here. -->
+					</PartyID>
+					<PostalAddress>
+						<AddressLine>Kennesaw State University</AddressLine>
+						<AddressLine>Sturgis Library</AddressLine>
+						<AddressLine>1000 Chastain Road</AddressLine>
+						<PostalTownCity>KENNESAW</PostalTownCity>
+						<PostalCode>30144</PostalCode>
+						<CountrySubdivision>CountrySubdivision</CountrySubdivision>
+						<CountrySubdivisionCode>GA</CountrySubdivisionCode>
+						<Country>United States of America</Country>
+						<CountryCode>US</CountryCode>
+					</PostalAddress>
+					<CommunicationDetails>
+						<CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+						<CommunicationLocator>CommunicationLocator</CommunicationLocator>
+					</CommunicationDetails>
+					<ContactPerson>
+						<ContactRoleCode>ContactRoleCode</ContactRoleCode>
+						<NameLine>NameLine</NameLine>
+						<CommunicationDetails>
+							<CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+							<CommunicationLocator>CommunicationLocator</CommunicationLocator>
+						</CommunicationDetails>
+					</ContactPerson>
+					<CountryCode>US</CountryCode>
+				</ShipToParty>
+				<BillToParty>
+					<PartyID>
+						<PartyIDType>GLN</PartyIDType>
+						<!-- here the request sender is the seller eg: consider as Amazon or 
+							we consider the one who will be the product owner means simply a publisher/supplier 
+							eg: t&F -->
+						<Identifier>1208965</Identifier> <!-- I am mentioning the customer number here. -->
+					</PartyID>
+					<PostalAddress>
+						<AddressLine>999 Maple Street</AddressLine>
+						<PostalTownCity>CONTOOCOOK</PostalTownCity>
+						<PostalCode>03229-3374</PostalCode>
+						<CountrySubdivision>NH</CountrySubdivision>
+						<CountrySubdivisionCode>NH</CountrySubdivisionCode>
+						<Country>UNITED STATES OF AMERICA</Country>
+						<CountryCode>US</CountryCode>
+					</PostalAddress>
+					<CommunicationDetails>
+						<CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+						<CommunicationLocator>CommunicationLocator</CommunicationLocator>
+					</CommunicationDetails>
+					<ContactPerson>
+						<ContactRoleCode>ContactRoleCode</ContactRoleCode>
+						<NameLine>NameLine</NameLine>
+						<CommunicationDetails>
+							<CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+							<CommunicationLocator>CommunicationLocator</CommunicationLocator>
+						</CommunicationDetails>
+					</ContactPerson>
+					<CountryCode>US</CountryCode>
+				</BillToParty>
+				<PaymentTerms>
+					<NetDaysDue>0</NetDaysDue>
+				</PaymentTerms>
+			</Header>
+			<ItemDetail>
+				<LineNumber>1</LineNumber>
+				<ProductID>
+					<ProductIDType>ISBN</ProductIDType>
+					<IDTypeName>TF Books eBook sale</IDTypeName>
+					<Identifier>9781351034982</Identifier> <!-- ISBN Number -->
+				</ProductID>
+				<ItemDescription>
+					<TitleDetail>Operations Management, Lewis</TitleDetail>
+				</ItemDescription>
+				<ItemRelatedParty>
+					<PartyRole>Library Services</PartyRole> <!-- I believe we need to have standard list here for types of party roles 
+						here -->
+					<PartyID>
+						<PartyIDType>GLN</PartyIDType>
+						<!-- here the request sender is the seller eg: consider as Amazon or 
+							we consider the one who will be the product owner means simply a publisher/supplier 
+							eg: t&F -->
+						<Identifier>1208965</Identifier> <!-- I am mentioning the customer number here. -->
+					</PartyID>
+					<AdditionalPartyID>
+						<PartyIDType>TaxRegistrationNumber</PartyIDType>
+						<Identifier>Identifier</Identifier>
+					</AdditionalPartyID>
+					<PartyName>
+						<NameLine>YBP Library Services</NameLine>
+					</PartyName>
+					<PostalAddress>
+						<AddressLine>999 Maple Street</AddressLine>
+						<PostalTownCity>CONTOOCOOK</PostalTownCity>
+						<PostalCode>03229-3374</PostalCode>
+						<CountrySubdivision>NH</CountrySubdivision>
+						<CountrySubdivisionCode>NH</CountrySubdivisionCode>
+						<Country>UNITED STATES OF AMERICA</Country>
+						<CountryCode>US</CountryCode>
+					</PostalAddress>
+					<CommunicationDetails>
+						<CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+						<CommunicationLocator>CommunicationLocator</CommunicationLocator>
+					</CommunicationDetails>
+					<ContactPerson>
+						<ContactRoleCode>ContactRoleCode</ContactRoleCode>
+						<PersonName>PersonName</PersonName>
+						<CommunicationDetails>
+							<CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+							<CommunicationLocator>CommunicationLocator</CommunicationLocator>
+						</CommunicationDetails>
+					</ContactPerson>
+					<CountryCode>US</CountryCode>
+				</ItemRelatedParty>
+				<CreditedQuantity>1</CreditedQuantity>
+				<ReferenceCoded>
+					<ReferenceTypeCode>InvoiceReference</ReferenceTypeCode>
+					<ReferenceNumber>952273770</ReferenceNumber>
+				</ReferenceCoded>
+				<CreditDetail>
+					<MonetaryAmount>54.78</MonetaryAmount>
+					<CurrencyCode>USD</CurrencyCode>
+					<CountryCode>US</CountryCode>
+					<Tax>
+						<TaxTypeCode>VAT</TaxTypeCode>
+						<TaxRateCode>GB365462636</TaxRateCode>
+						<Percent>0.0</Percent>
+						<AmountTaxable>0.0</AmountTaxable>
+						<TaxAmount>0.0</TaxAmount>
+					</Tax>
+				</CreditDetail>
+				<AdditionalCharge>
+					<ChargeTypeCode>Shipping</ChargeTypeCode>
+					<ChargeTypeDescription>ChargeTypeDescription</ChargeTypeDescription>
+					<ReferenceCoded>
+						<ReferenceTypeCode>InvoiceReference</ReferenceTypeCode>
+						<ReferenceNumber>952273770</ReferenceNumber>
+					</ReferenceCoded>
+					<ChargeAmountExcludingTax>0.0</ChargeAmountExcludingTax>
+					<Tax>
+						<TaxTypeCode>VAT</TaxTypeCode>
+						<TaxRateCode>GB365462636</TaxRateCode>
+						<Percent>0.0</Percent>
+						<AmountTaxable>0.0</AmountTaxable>
+						<TaxAmount>0.0</TaxAmount>
+					</Tax>
+					<ChargeAmount>0.0</ChargeAmount>
+					<CurrencyCode>USD</CurrencyCode>
+					<CountryCode>US</CountryCode>
+				</AdditionalCharge>
+				<AdditionalAllowance>
+					<AllowanceTypeCode>GiftCertificate</AllowanceTypeCode>
+					<AllowanceTypeDescription>AllowanceTypeDescription</AllowanceTypeDescription>
+					<ReferenceCoded>
+						<ReferenceTypeCode>InvoiceReference</ReferenceTypeCode>
+						<ReferenceNumber>952273770</ReferenceNumber>
+					</ReferenceCoded>
+					<AllowanceAmountExcludingTax>0.0</AllowanceAmountExcludingTax>
+					<Tax>
+						<TaxTypeCode>VAT</TaxTypeCode>
+						<TaxRateCode>GB365462636</TaxRateCode>
+						<Percent>0.0</Percent>
+						<AmountTaxable>0.0</AmountTaxable>
+						<TaxAmount>0.0</TaxAmount>
+					</Tax>
+					<AllowanceAmount>0.0</AllowanceAmount>
+					<CurrencyCode>USD</CurrencyCode>
+					<CountryCode>US</CountryCode>
+				</AdditionalAllowance>
+				<CreditReason>OrderDuplicatedByBuyer</CreditReason>
+				<LineTotalExcludingTax>0.0</LineTotalExcludingTax>
+				<Message>
+					<MessageType>MessageType</MessageType>
+					<MessageLine>MessageLine</MessageLine>
+				</Message>
+			</ItemDetail>
+			<Summary>
+				<NumberOfLines>1</NumberOfLines>
+				<UnitsCredited>1</UnitsCredited>
+				<TotalExcludingTax>54.78</TotalExcludingTax>
+				<TotalTax>0.0</TotalTax>
+				<TotalCredited>0.0</TotalCredited>
+				<Tax>
+					<TaxTypeCode>VAT</TaxTypeCode>
+					<TaxRateCode>GB365462636</TaxRateCode>
+					<Percent>0.0</Percent>
+					<AmountTaxable>0.0</AmountTaxable>
+					<TaxAmount>0.0</TaxAmount>
+				</Tax>
+			</Summary>
+		</CreditNote>
+	</EDItXMessagePayload>
+</EDItXMessage>

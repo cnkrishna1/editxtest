@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SalesReport version="1.1"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
+	xs:noNamespaceSchemaLocation="TandFSalesReport_EDItX_Discount.xsd">
+	<Header>
+		<SalesReportNumber>0123456</SalesReportNumber>   <!-- if ano comes form report,
+		 its needs to be genearted automatically from either of the systems , which should be a unique value -->
+		<IssueDateTime>20191004</IssueDateTime>  <!-- 1.. how to know what will be the issue date time here for the scenario 
+		SalesPeriodEnd and in other cases too -->
+		<!-- 2...if they send issuedatetime we will take the same otherwise middleware should provide sys date  -->
+		<!-- before comment  ::  Assuming this is report generation date particular to the reseller which will have no relevance here-->
+		<ReferenceCoded>
+			<ReferenceTypeCode>InvoiceLineReference</ReferenceTypeCode>  
+			<!-- since it has number of line items , changed to InvoiceLineReference type-->
+			<!--  before comment ::  In case of negative order, 
+			CreditNoteReference will be used (considering Ingram negative invoices) -->
+			<ReferenceNumber>1234567890</ReferenceNumber>  <!-- as of now no important. open for discussion so that to fit at best-->
+		</ReferenceCoded>
+		<PurposeCode>Original</PurposeCode> <!-- put the same as  amazon one  -->
+		<SalesReportTypeCode>ByTransaction</SalesReportTypeCode>  
+		<!-- since different transactions involved , changed to  "ByTransaction" type -->
+		<!--  so by default it will be ByTransaction only..-->
+		<ReportPriceType>SRPExcludingTax</ReportPriceType> <!-- The amount is excluding tax as we are calculating tax using SAP when applicable -->
+		<DateCoded> <!-- This is order date sent by the aggregator, applies to whole request. -->
+			<Date>20200101</Date>      
+<!--  since all transactions happend in 2019 , made Date to 2020 Jan 1st, and also with relevance to qualifiercode :: SalesPeriodEnd  -->
+			<DateQualifierCode>SalesPeriodEnd</DateQualifierCode>
+		</DateCoded>
+		<ClassOfSaleCode>03</ClassOfSaleCode>  <!--  need to understand better on this-->
+		<Territory>
+			<CountriesIncluded>GB</CountriesIncluded>
+			<RegionsIncluded>GB-ENG </RegionsIncluded>
+		</Territory>
+		<SellerParty>
+			<PartyIdentifier>
+				<PartyIDType>Proprietary</PartyIDType>   <!-- need to know significance of this -->
+				<IDTypeName>HigginBothams</IDTypeName>  <!-- party name eg: amazon -->
+				<IDValue>123455</IDValue> <!-- we need to get this from props file and based on this 
+				will get shiptTo and billTo details from customer APi.-->
+			</PartyIdentifier>
+		</SellerParty>
+	</Header>
+	<ItemDetail>
+		<LineNumber>1</LineNumber>
+		<ProductIdentifier>
+			<ProductIDType>ISBN</ProductIDType>
+			<IDTypeName>Digital ISBN</IDTypeName>
+			<IDValue>9781000681635</IDValue> <!-- This is digital isbn -refering to EbookIsbn from PQ Central XLS-->
+		</ProductIdentifier>
+		<ProductIdentifier>
+			<ProductIDType>ISBN</ProductIDType>
+			<IDTypeName>Physical ISBN</IDTypeName>
+			<IDValue>9781138777675</IDValue> <!-- This is physical isbn - refering to printIsbn from PQ Central XLS -->
+		</ProductIdentifier>
+		<FormatCode>softBook</FormatCode> <!-- format of the book which is sold, change to softBook from openEbook-->
+		<Quantity>1</Quantity>	
+		<PricingDetail>
+			<CurrencyConversionRate>1.0</CurrencyConversionRate>
+			<UnitAmountDueToPublisher>
+				<MonetaryAmount>50.00</MonetaryAmount>   <!--  the amount what goes to Publisher -->
+				<CurrencyCode>GBP</CurrencyCode>     
+				<CountryCode>GB</CountryCode>
+			</UnitAmountDueToPublisher>
+			<UnitAmountDueToSupplier>
+				<MonetaryAmount>70</MonetaryAmount>   <!--  the amount what goes to supplier -->
+<!--  Apr20th2020 comment : changed to 70  from 120 since we considered 120 as 
+the selling price .Need to include selling price element in future if required.. 
+And supplier is included just to show the possible scenarios to fit. Please refer MS word flow diagram for better understanding.-->
+				
+				<!-- EJD supplier doesn't make sense in this situation, 
+				T&F is the publisher and the party to whom report is being made. 
+				There is no other supplier in the relationship. 
+				Supplier party = "Composite containing details of the supplier organization
+				(other than the Publisher or content owner) to whom the report is being made." 
+				It would make more sense to use Seller Charges (selling price less seller charge is amount due to publisher) -->
+				<CurrencyCode>GBP</CurrencyCode>     
+				<CountryCode>GB</CountryCode>
+			</UnitAmountDueToSupplier>
+		</PricingDetail>		
+		<!-- added discounts XML below  -->
+		<LineSalesAmounts>
+			<DiscountsAmount>30</DiscountsAmount>      <!--  saleprice = 150 since ammountDueto supplier =120 + discount= 30 so disc% =20%-->
+<!-- EJD I am not sure what is happening here - selling price less discount less seller fees should equal amount due to publisher. 
+Documentation: "The monetary amounts due to the publisher may be calculated on the basis of an agreed net unit cost to the reseller, 
+or on the basis of a discount from either the publisher’s list price of the reseller’s actual sale price, 
+or on the basis of an agreed discount to the consumer that was applied by the selling agent to the publisher’s retail price.
+In addition, a reseller’s or agent’s fees may be deducted from the price. 
+Where there is both a discount on price and a reseller’s or agent’s fee, 
+the discounted price must be calculated before the fee is deducted;" -->
+
+<!--24thApr2020 comment : As per above comment, changed amount due to supplier to 70 now.. 
+So, amount due to publsiher = 150(saleAMount)- 30(discount) - (70)amount due to supplier  = 50 GBP to publisher 
+And also please refer to MS word flow diagram for clear understanding -->
+						
+			<CurrencyCode>GBP</CurrencyCode>	
+		</LineSalesAmounts>
+		
+		<PriceCondition>
+			<PriceConditionType>00</PriceConditionType>
+			<PriceConditionQuantity>
+				<PriceConditionQuantityType>01</PriceConditionQuantityType>
+				<Quantity>0</Quantity>
+				<QuantityUnit>00</QuantityUnit>
+			</PriceConditionQuantity>
+		</PriceCondition>
+		
+		<!--  1.ShipToParty -->
+		<ShipToParty>
+			<PartyIdentifier> 
+				<PartyIDType>Proprietary</PartyIDType>
+				<IDValue>XCV123DF</IDValue>				
+			</PartyIdentifier>
+			<AdditionalPartyIdentifier>   <!--this can be a optional one  -->
+				<PartyIDType>Proprietary</PartyIDType>
+				<IDValue>QW12345RT</IDValue>		
+			</AdditionalPartyIdentifier>
+			<PartyName>
+				<NameLine>HigginBothams</NameLine>   <!--  partyName is to whom T&F selling-->
+			</PartyName>		
+		</ShipToParty>
+		
+		<!-- 2. billTolocation -->
+		
+		<BillToLocation>
+			<LocationIdentifier>
+				<LocationIDType>CountryCode</LocationIDType>
+				<IDValue>GB</IDValue>
+			</LocationIdentifier>
+		</BillToLocation>
+		
+		<!--3. BillToParty  -->
+		
+		<BillToParty>
+			<PartyIdentifier>	
+				<PartyIDType>Proprietary</PartyIDType>	
+				<IDValue>QW12345RT</IDValue>				
+			</PartyIdentifier>
+			<AdditionalPartyIdentifier>
+				<PartyIDType>Proprietary</PartyIDType>
+				<IDValue>XCV123DF</IDValue>		
+			</AdditionalPartyIdentifier>
+			<PartyName>
+				<NameLine>HigginBothams</NameLine>
+			</PartyName>	
+		</BillToParty>		
+		
+		<!-- 4.ShipToLocation  -->
+		
+		<ShipToLocation>
+			<LocationIdentifier>
+				<LocationIDType>CountryCode</LocationIDType>
+				<IDValue>GB</IDValue>
+			</LocationIdentifier>
+		</ShipToLocation>
+		
+		<DateCoded>    
+		<!-- before comment:: Since order date is sent at header level, Is it required? -->
+			<Date>20191004</Date>   <!-- transactionDate  -->
+			<DateQualifierCode>TransactionDate</DateQualifierCode>
+		</DateCoded>		
+	</ItemDetail>
+	
+	<ItemDetail>
+		<LineNumber>2</LineNumber>
+		<ProductIdentifier>
+			<ProductIDType>ISBN</ProductIDType>
+			<IDTypeName>Digital ISBN</IDTypeName>
+			<IDValue>9781000683435</IDValue> <!-- This is digital isbn -refering to EbookIsbn from PQ Central XLS-->
+		</ProductIdentifier>
+		<ProductIdentifier>
+			<ProductIDType>ISBN</ProductIDType>
+			<IDTypeName>Physical ISBN</IDTypeName>
+			<IDValue>978115335777675</IDValue> <!-- This is physical isbn - refering to printIsbn from PQ Central XLS -->
+			<!-- EJD we don't need to use or ask for physical ISBN, it's just an option, it's not relevant to ebook sales -->
+			<!-- Apr20th2020 comment: just showed above to  show the possible options available. -->
+		</ProductIdentifier>
+		<FormatCode>softBook</FormatCode> <!-- format of the book which is sold, change to softBook from openEbook-->
+		<Quantity>1</Quantity>	
+		<PricingDetail>
+			<CurrencyConversionRate>1.0</CurrencyConversionRate>
+			<UnitAmountDueToPublisher>
+				<MonetaryAmount>60.00</MonetaryAmount>   <!--  the amount what goes to Publisher -->
+				<CurrencyCode>GBP</CurrencyCode>     
+				<CountryCode>GB</CountryCode>
+			</UnitAmountDueToPublisher>
+			<UnitAmountDueToSupplier>
+				<MonetaryAmount>90.00</MonetaryAmount>   <!--  the amount what goes to supplier -->
+				<CurrencyCode>GBP</CurrencyCode>     
+				<CountryCode>GB</CountryCode>
+			</UnitAmountDueToSupplier>
+		</PricingDetail>
+	
+		<!-- added discounts XML below  -->
+		<LineSalesAmounts>
+			<DiscountsAmount>0</DiscountsAmount>		
+			<CurrencyCode>GBP</CurrencyCode>	
+		</LineSalesAmounts>
+		
+		<PriceCondition>
+			<PriceConditionType>00</PriceConditionType>
+			<PriceConditionQuantity>
+				<PriceConditionQuantityType>01</PriceConditionQuantityType>
+				<Quantity>0</Quantity>
+				<QuantityUnit>00</QuantityUnit>
+			</PriceConditionQuantity>
+		</PriceCondition>
+		
+		<!--  1.ShipToParty -->
+		<ShipToParty>
+			<PartyIdentifier> 
+				<PartyIDType>Proprietary</PartyIDType>
+				<IDValue>XCV123DF</IDValue>				
+			</PartyIdentifier>
+			<AdditionalPartyIdentifier>   <!--this can be a optional one  -->
+				<PartyIDType>Proprietary</PartyIDType>
+				<IDValue>QW12345RT</IDValue>		
+			</AdditionalPartyIdentifier>
+			<PartyName>
+				<NameLine>HigginBothams</NameLine>   <!--  partyName is to whom T&F selling-->
+			</PartyName>		
+		</ShipToParty>
+		
+		<!-- 2. billTolocation -->
+		
+		<BillToLocation>
+			<LocationIdentifier>
+				<LocationIDType>CountryCode</LocationIDType>
+				<IDValue>GB</IDValue>
+			</LocationIdentifier>
+		</BillToLocation>
+		
+		<!--3. BillToParty  -->
+		
+		<BillToParty>
+			<PartyIdentifier>	
+				<PartyIDType>Proprietary</PartyIDType>	
+				<IDValue>QW12345RT</IDValue>				
+			</PartyIdentifier>
+			<AdditionalPartyIdentifier>
+				<PartyIDType>Proprietary</PartyIDType>
+				<IDValue>XCV123DF</IDValue>		
+			</AdditionalPartyIdentifier>
+			<PartyName>
+				<NameLine>HigginBothams</NameLine>
+			</PartyName>	
+		</BillToParty>
+		
+		
+		
+		<!-- 4.ShipToLocation  -->
+		
+		<ShipToLocation>
+			<LocationIdentifier>
+				<LocationIDType>CountryCode</LocationIDType>
+				<IDValue>GB</IDValue>
+			</LocationIdentifier>
+		</ShipToLocation>
+		
+		<DateCoded>    
+		<!--  before comment:: Since order date is sent at header level, Is it required? -->
+			<Date>20191004</Date>   <!-- transactionDate  -->
+			<DateQualifierCode>TransactionDate</DateQualifierCode>
+		</DateCoded>		
+	</ItemDetail>
+	
+	<ItemDetail>
+		<LineNumber>3</LineNumber>
+		<ProductIdentifier>
+			<ProductIDType>ISBN</ProductIDType>
+			<IDTypeName>Digital ISBN</IDTypeName>
+			<IDValue>8881000681635</IDValue> <!-- This is digital isbn -refering to EbookIsbn from PQ Central XLS-->
+		</ProductIdentifier>
+		<ProductIdentifier>
+			<ProductIDType>ISBN</ProductIDType>
+			<IDTypeName>Physical ISBN</IDTypeName>
+			<IDValue>9991138777675</IDValue> <!-- This is physical isbn - refering to printIsbn from PQ Central XLS -->
+		</ProductIdentifier>
+		<FormatCode>softBook</FormatCode> <!-- format of the book which is sold, change to softBook from openEbook-->
+		<Quantity>1</Quantity>	
+		<PricingDetail>
+			<CurrencyConversionRate>1.0</CurrencyConversionRate>
+			<UnitAmountDueToPublisher>
+				<MonetaryAmount>70</MonetaryAmount>   <!--  the amount what goes to Publisher -->
+				<CurrencyCode>GBP</CurrencyCode>     
+				<CountryCode>GB</CountryCode>
+			</UnitAmountDueToPublisher>
+			<UnitAmountDueToSupplier>
+				<MonetaryAmount>100.00</MonetaryAmount>   <!--  the amount what goes to supplier -->
+				<!--  APr20th2020: changed to 100 form 170.Please refer itemDetail -<LineNumber> : 1  section for clarity on this change-->
+				<CurrencyCode>GBP</CurrencyCode>     
+				<CountryCode>GB</CountryCode>
+			</UnitAmountDueToSupplier>
+		</PricingDetail>
+	
+		<!-- added discounts XML below  -->
+		<LineSalesAmounts>
+			<DiscountsAmount>30</DiscountsAmount>    <!--means total amount is 200 rs to sale actualy  -->	
+			<CurrencyCode>GBP</CurrencyCode>	
+		</LineSalesAmounts>
+		<PriceCondition>
+			<PriceConditionType>00</PriceConditionType>
+			<PriceConditionQuantity>
+				<PriceConditionQuantityType>01</PriceConditionQuantityType>
+				<Quantity>0</Quantity>
+				<QuantityUnit>00</QuantityUnit>
+			</PriceConditionQuantity>
+		</PriceCondition>
+		
+		<!--  1.ShipToParty -->
+		<ShipToParty>
+			<PartyIdentifier> 
+				<PartyIDType>Proprietary</PartyIDType>
+				<IDValue>XCV6623DF</IDValue>				
+			</PartyIdentifier>
+			<AdditionalPartyIdentifier>   <!--this can be a optional one  -->
+				<PartyIDType>Proprietary</PartyIDType>
+				<IDValue>QW1238885RT</IDValue>		
+			</AdditionalPartyIdentifier>
+			<PartyName>
+				<NameLine>HigginBothams</NameLine>   <!--  assumption, partyName is to
+				 whom T&F selling if not we can change accordingly-->
+			</PartyName>		
+		</ShipToParty>
+		
+		<!-- 2. billTolocation -->
+		
+		<BillToLocation>
+			<LocationIdentifier>
+				<LocationIDType>CountryCode</LocationIDType>
+				<IDValue>GB</IDValue>
+			</LocationIdentifier>
+		</BillToLocation>
+		
+		<!--3. BillToParty  -->
+		
+		<BillToParty>
+			<PartyIdentifier>	
+				<PartyIDType>Proprietary</PartyIDType>	
+				<IDValue>QW12345RT</IDValue>				
+			</PartyIdentifier>
+			<AdditionalPartyIdentifier>
+				<PartyIDType>Proprietary</PartyIDType>
+				<IDValue>XCV123DF</IDValue>		
+			</AdditionalPartyIdentifier>
+			<PartyName>
+				<NameLine>HigginBothams</NameLine>
+			</PartyName>	
+		</BillToParty>
+		
+		
+		
+		<!-- 4.ShipToLocation  -->
+		
+		<ShipToLocation>
+			<LocationIdentifier>
+				<LocationIDType>CountryCode</LocationIDType>
+				<IDValue>GB</IDValue>
+			</LocationIdentifier>
+		</ShipToLocation>
+		
+		<DateCoded>    
+		<!--  before comment:: Since order date is sent at header level, Is it required? -->
+			<Date>20191004</Date>   <!-- transactionDate  -->
+			<DateQualifierCode>TransactionDate</DateQualifierCode>
+		</DateCoded>		
+	</ItemDetail>
+	
+
+	<Summary>
+		<NumberOfLines>3</NumberOfLines>
+		<NumberOfUnits>3</NumberOfUnits>   <!--need to know about all units  , asp per my understanding presented like below -->
+		<NumberOfGrossSalesUnits>3</NumberOfGrossSalesUnits>
+		<NumberOfRefundedUnits>0</NumberOfRefundedUnits>
+		<NumberOfNetSalesUnits>3</NumberOfNetSalesUnits>
+		<NumberOfNonSaleUnits>0</NumberOfNonSaleUnits>
+		<TotalSalesAmounts>
+			<TotalGrossSalesAmount>500.00</TotalGrossSalesAmount>   <!-- Apr20th2020 comment: 
+			total sale amount = discount+amount due to publisher +amount due to supplier -->
+			<TotalRefundedSalesAmount>0.00</TotalRefundedSalesAmount> 
+			<TotalDiscountsAmount>60.00</TotalDiscountsAmount>   
+			<TotalNetSalesAmount>440</TotalNetSalesAmount>       <!-- Apr20th2020 comment:: netsales = totalGross - Totaldiscount -->
+			<TotalSellerChargeAmount>260.00</TotalSellerChargeAmount>  
+			<!-- Apr20th2020 comment ::  sellerCharge(amountToSupplier) = netSales -amountDueToPublisher -->
+			<CurrencyCode>GBP</CurrencyCode>
+			<CountryCode>GB</CountryCode>
+		</TotalSalesAmounts>
+		<TotalDueToPublisher>
+			<MonetaryAmount>180.00</MonetaryAmount>   
+			<CurrencyCode>GBP</CurrencyCode>
+			<CountryCode>GB</CountryCode>
+		</TotalDueToPublisher>
+	</Summary>
+</SalesReport>
+	

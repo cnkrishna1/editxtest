@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ReturnsResponse version="1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="EDItX_Message_V1.6.xsd">
+ 
+  <Header>
+    <ReturnsResponseNumber>RRN-0001</ReturnsResponseNumber>
+    <IssueDateTime>20200505</IssueDateTime>
+    <ReferenceCoded>
+      <ReferenceTypeCode>ReturnsRequestReference</ReferenceTypeCode> 
+       <!--since return req rasie by seller, hence it has this ref  -->
+        <ReferenceDate>20200407</ReferenceDate> <!-- which ref data to give -->
+    </ReferenceCoded>
+    <PurposeCode>Original</PurposeCode>
+    <CurrencyCode>GBP</CurrencyCode>
+    <BuyerParty>   <!-- to which the returns response is sent  generally a publisher or publishers distributor-->
+      <PartyID>
+        <PartyIDType>GLN</PartyIDType>
+        <Identifier>T and F Identifier </Identifier> <!--usually a number  -->
+      </PartyID>
+    </BuyerParty>
+    <SellerParty>      <!-- seller party will be aggregator say amazon -->
+      <PartyID>
+        <PartyIDType>GLN</PartyIDType>
+        <Identifier>Amazon GLN</Identifier>  <!-- Amazon Global Identificaiton Number  -->
+      </PartyID>
+    </SellerParty>
+    <ExpiryDate>20200630</ExpiryDate>
+  </Header>
+  <CombinedReturns>
+    <ReturnsAuthorizationNumber>RA-00001</ReturnsAuthorizationNumber>
+    <ShipToParty>
+      <PartyID>      <!-- to where the products should be returned ..ideally to publishers warehouse -->
+        <PartyIDType>GLN</PartyIDType>
+        <Identifier>T and F GLN Identifier</Identifier>
+      </PartyID>
+    </ShipToParty>
+    <ItemDetail>
+      <LineNumber>1</LineNumber>
+      <ProductID>
+        <ProductIDType>ISBN</ProductIDType>
+        <Identifier>98438549857</Identifier>
+      </ProductID>
+      <ItemDescription>
+      	<TitleDetail>the real soul of life</TitleDetail>
+      </ItemDescription>
+      <QuantityAccepted>3</QuantityAccepted>
+       <CreditQuantity>3</CreditQuantity>
+       <FreeQuantity>0</FreeQuantity>
+       <ReturnsInstructionCode>A01</ReturnsInstructionCode>  <!-- standard code.. -->
+    </ItemDetail>
+    <TotalUnits>3</TotalUnits>
+  </CombinedReturns>
+  <Summary>
+    <NumberOfLines>1</NumberOfLines>
+    <TotalUnits>3</TotalUnits>
+  </Summary>
+</ReturnsResponse>

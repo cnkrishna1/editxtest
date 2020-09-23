@@ -1,0 +1,1190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+	**************************************************
+	*                                                *
+	*                     EDItX                      *
+	*                                                *
+	*           SALES REPORT MESSAGE SCHEMA          *
+	*                                                *
+	*                STRUCTURE MODULE                *
+	*                 W3C XSD SCHEMA                 *
+	*                                                *
+	*          Original author: Francis Cave         *
+	*          Recent revisions: Graham Bell         *
+	*                                                *
+	*                  Release 1.2                   *
+	*              Status: PRE-RELEASE               *
+	*            Release date: 2018-08-07            *
+	*              Revised: 2018-08-07               *
+	*                                                *
+	*             (c) 2003-2018 EDItEUR              *
+	*             http://www.editeur.org/            *
+	*                                                *
+	**************************************************
+
+
+	TERMS AND CONDITIONS OF USE OF THE EDItX SALES REPORT MESSAGE AND ASSOCIATED 
+	DOCUMENTATION AND XML SCHEMAS
+
+	All EDItX standards and documentation – including this document – are copyright 
+	materials, made available free of charge for general use. A full license agreement 
+	(DOI: 10.4400/nwgj) that governs their use is available on the EDItEUR website. In 
+	particular, if you use any of the EDItX schemas, you will be deemed to have accepted 
+	these terms and conditions:
+
+	1. You agree that you will not add to, delete from, amend or copy for use outside of 
+	the schemas any part thereof except for strictly internal use in your own organization.
+
+	2. You agree that if your business would benefit from future additions or amendments 
+	to or extracts of the schemas for any purpose that is not strictly internal to your own 
+	organisation, you will in the first instance notify EDItEUR and allow EDItEUR to review 
+	and comment on your proposed use, in the interest of securing an orderly 
+	development of the Schema for the benefit of other users.
+
+	If you do not accept these terms, you must not use any version of the EDItX SALES REPORT
+	MESSAGE Schemas.
+
+	Full copies of all published versions of the latest release of this Schema and all 
+	associated documentation are available from the EDItEUR web site, where may also be 
+	found details of how to contact EDItEUR for advice on the use of this Schema. The URL 
+	for the EDItEUR web site is:
+
+	http://www.editeur.org/
+
+
+	SCHEMA REVISION HISTORY (IN REVERSE CHRONOLOGICAL ORDER)
+
+	2018-08-07: Pre-release of EDItX Sales Report Format v1.2
+	            Structure refactored so that every element definition is a global element, rather than each being defined in-line
+	            Additions to schema to improve functionality and align better with ONIX (particularly the <Price> composite)
+
+	2014-05-XX: Additions to embedded codes
+
+	2011-03-XX: Release of EDItX Sales Report Format v1.1
+
+	2009-03-10: Initial release of EDItX Sales Report Format v1.0, based on the EDItX Digital Sales Report Format
+
+	2003-02-10: Initial release of EDItX Digital Sales Report Format v1.0
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+	<xs:include schemaLocation="EDItX_CodeLists.xsd" />
+
+	<xs:element name="SalesReport">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Header" />
+				<xs:element ref="ItemDetail" maxOccurs="unbounded" />
+				<xs:element ref="Summary" />
+			</xs:sequence>
+			<xs:attribute name="version" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="1.1" />
+						<xs:enumeration value="1.2" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="Header">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="SalesReportNumber" />
+				<xs:element ref="IssueDateTime" />
+				<xs:element ref="ReferenceCoded" minOccurs="0" maxOccurs="unbounded" /> <!-- 1.2: added -->
+				<xs:element ref="PurposeCode" />
+				<xs:element ref="SalesReportTypeCode" minOccurs="0" />
+				<xs:element ref="ReportPriceType" minOccurs="0" />
+				<xs:choice minOccurs="0">
+					<xs:element ref="CurrencyCode" />                       <!-- 1.2: deprecated here -->
+					<xs:element ref="CountryCode" minOccurs="0" />          <!-- 1.2: deprecated here -->
+				</xs:choice>
+				<xs:choice minOccurs="0">
+					<xs:sequence>
+						<xs:element ref="FromDate" />                       <!-- 1.2: deprecated -->
+						<xs:element ref="ToDate" />                         <!-- 1.2: deprecated -->
+					</xs:sequence>
+					<xs:element ref="DateCoded" maxOccurs="unbounded" />
+				</xs:choice>
+				<xs:element ref="ClassOfSaleCode" minOccurs="0" maxOccurs="unbounded" />
+				<xs:choice minOccurs="0">
+					<xs:element ref="TradingZone" />                        <!-- 1.2: deprecated here -->
+					<xs:element ref="Territory" />                          <!-- 1.2: added -->
+				</xs:choice>
+				<xs:choice>
+					<!-- Reseller options -->
+					<xs:sequence>
+						<xs:element ref="SellerParty" />
+						<xs:choice>
+							<xs:sequence>
+								<xs:choice>
+									<xs:element ref="PublisherParty" />
+									<xs:element ref="SupplierParty" />
+								</xs:choice>
+								<xs:element ref="BuyerParty" minOccurs="0" maxOccurs="unbounded" />
+								<xs:element ref="ReportingParty" minOccurs="0" />
+								<xs:element ref="ReceivingParty" minOccurs="0" />
+							</xs:sequence>
+							<xs:sequence>
+								<xs:element ref="BuyerParty" minOccurs="0" maxOccurs="unbounded" />
+								<xs:element ref="ReportingParty" minOccurs="0" />
+								<xs:element ref="ReceivingParty" />
+							</xs:sequence>
+						</xs:choice>
+					</xs:sequence>
+					<!-- Agency options -->
+					<xs:sequence>
+						<xs:choice>
+							<xs:element ref="PublisherParty" />
+							<xs:element ref="SupplierParty" />
+						</xs:choice>
+						<xs:element ref="ReportingParty" />
+						<xs:element ref="ReceivingParty" minOccurs="0" />
+						<xs:element ref="SellingAgentParty" minOccurs="0" maxOccurs="unbounded" />
+					</xs:sequence>
+					<xs:sequence>
+						<xs:element ref="ReportingParty" />
+						<xs:element ref="ReceivingParty" />
+						<xs:element ref="SellingAgentParty" minOccurs="0" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ItemDetail">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="LineNumber" />
+				<xs:element ref="ProductIdentifier" maxOccurs="unbounded" />
+				<xs:element ref="ItemDescription" minOccurs="0" />
+				<xs:element ref="PublisherDetail" minOccurs="0" />
+				<xs:element ref="ImprintDetail" minOccurs="0" />
+				<xs:element ref="FormatCode" minOccurs="0" maxOccurs="unbounded" />
+				<xs:element ref="EpubTechnicalProtection" minOccurs="0" />                   <!-- 1.2: added -->
+				<xs:element ref="EpubUsageConstraint" minOccurs="0" maxOccurs="unbounded" /> <!-- 1.2: added -->
+				<xs:element ref="EpubLicense" minOccurs="0" />                               <!-- 1.2: added -->
+				<xs:element ref="PriceCondition" minOccurs="0" maxOccurs="unbounded" />      <!-- 1.2: added -->
+				<xs:element ref="DeviceType" minOccurs="0" />                                <!-- 1.2: deprecated -->
+				<xs:choice minOccurs="0">
+					<xs:element ref="Quantity" />
+					<xs:sequence>
+						<xs:element ref="GrossSoldQuantity" />
+						<xs:element ref="RefundedQuantity" />
+						<xs:element ref="NetSoldQuantity" />
+					</xs:sequence>
+				</xs:choice>
+				<xs:element ref="NonSaleDisposal" minOccurs="0" maxOccurs="unbounded" />
+				<xs:element ref="ReferenceCoded" minOccurs="0" maxOccurs="unbounded" />
+				<xs:element ref="ShipToParty" minOccurs="0" />
+				<xs:element ref="ShipToLocation" minOccurs="0" />
+				<xs:element ref="BillToParty" minOccurs="0" />
+				<xs:element ref="BillToLocation" minOccurs="0" />
+				<xs:choice minOccurs="0">
+					<xs:element name="DateCoded"> <!-- DateQualifierCode defined locally to limit enumeration -->
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="Date" />
+								<xs:element name="DateQualifierCode">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="TransactionDate" />
+											<xs:enumeration value="TransactionDateTime" />
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element ref="Date" />
+				</xs:choice>
+				<xs:element ref="PricingDetail" maxOccurs="unbounded" />
+				<xs:element ref="LineSalesAmounts" minOccurs="0" />
+				<xs:choice minOccurs="0">
+					<xs:element ref="RetailerParty" />
+					<xs:element ref="SellingAgentParty" />
+				</xs:choice>
+				<xs:choice minOccurs="0">
+					<xs:element ref="TradingZone" />                        <!-- 1.2: deprecated -->
+					<xs:element ref="Territory" />
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Summary">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="NumberOfLines" />
+				<xs:element ref="NumberOfUnits" minOccurs="0" />
+				<xs:sequence minOccurs="0">
+					<xs:element ref="NumberOfGrossSalesUnits" />
+					<xs:element ref="NumberOfRefundedUnits" />
+					<xs:element ref="NumberOfNetSalesUnits" />
+				</xs:sequence>
+				<xs:element ref="NumberOfNonSaleUnits" minOccurs="0" />
+				<xs:element ref="TotalSalesAmounts" minOccurs="0" maxOccurs="unbounded" />
+				<xs:choice>
+					<xs:element ref="TotalDueToPublisher" maxOccurs="unbounded" />
+					<xs:element ref="TotalDueToSupplier" maxOccurs="unbounded" />
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="AdditionalPartyIdentifier" type="SRPartyID" />
+	<xs:element name="AddressLine" type="xs:string" />
+	<xs:element name="TaxableAmount" type="xs:decimal" />
+	<xs:element name="Contributor" type="xs:string" />
+	<xs:element name="BillToLocation">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="LocationIdentifier" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="BillToParty" type="SRParty" />
+	<xs:element name="BuyerParty" type="SRParty" />
+	<xs:element name="ChargeQualifierCode" type="SRChargeQualifierCode" />
+	<xs:element name="ChargeSourceCode" type="SRChargeSourceCode" />
+	<xs:element name="ChargeTypeCode" type="SRChargeTypeCode" />
+	<xs:element name="ChargeTypeDescription" type="xs:string" />
+	<xs:element name="ProductClassificationCode" type="xs:string" />
+	<xs:element name="ProductClassification">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ProductClassificationType" />
+				<xs:element ref="ProductClassificationCode" />
+				<xs:element ref="Percent" minOccurs="0" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ProductClassificationType" type="SRClassificationSchemeCode" />
+	<xs:element name="ClassOfSaleCode" type="SRClassOfSaleCode" />
+	<xs:element name="CommissionDiscountPercentage" type="SRPercent" />
+	<xs:element name="CommunicationDetails">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="CommunicationTypeCode" />
+				<xs:element ref="CommunicationLocator" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CommunicationLocator" type="xs:string" />
+	<xs:element name="CommunicationTypeCode" type="CommunicationTypeCode" />
+	<xs:element name="ContactPerson">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ContactRoleCode" minOccurs="0"/>
+				<xs:element ref="PersonName" />
+				<xs:element ref="CommunicationDetails" minOccurs="0" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ContactRoleCode">
+		<xs:simpleType>
+			<xs:union memberTypes="List198 xs:string" />
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="CountryCode" type="CountryCode" />
+	<xs:element name="CurrencyCode" type="CurrencyCode" />
+	<xs:element name="CurrencyConversionRate" type="xs:decimal" />
+	<xs:element name="Date" type="SRDateOrDateTime" />
+	<xs:element name="DateCoded">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Date" />
+				<xs:element ref="DateQualifierCode" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DateQualifierCode" type="SRDateQualifierCode" />
+	<xs:element name="DeviceType" type="SRDeviceTypeCode" />
+	<xs:element name="DiscountsAmount" type="xs:decimal" />
+	<xs:element name="DiscountPercentage" type="SRPercent" />
+	<xs:element name="DisposalQuantity" type="xs:int" />
+	<xs:element name="DisposalType" type="SRNonSaleDisposalTypeCode" />
+	<xs:element name="FormatCode">
+		<xs:simpleType>
+			<xs:union memberTypes="SRFormatCode List150 List175 xs:string" />
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="FromDate" type="SRDateOrDateTime" />
+	<xs:element name="GrossSalesAmount" type="xs:decimal" />
+	<xs:element name="GrossSalesAmountBeforeDiscounts" type="xs:decimal" />
+	<xs:element name="GrossSoldQuantity" type="xs:int" />
+	<xs:element name="IDValue" type="xs:string" />
+	<xs:element name="IDTypeName" type="xs:string" />
+	<xs:element name="ImprintIdentifier">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ImprintIDType" />
+				<xs:element ref="IDTypeName" minOccurs="0" />
+				<xs:element ref="IDValue" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ImprintIDType" type="SRImprintIDType" />
+	<xs:element name="ImprintDetail">
+		<xs:complexType>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element ref="ImprintIdentifier" maxOccurs="unbounded" />
+					<xs:element ref="ImprintName" minOccurs="0" />
+				</xs:sequence>
+				<xs:element ref="ImprintName" />
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ImprintName" type="xs:string" />
+	<xs:element name="IssueDateTime" type="SRDateOrDateTime" />
+	<xs:element name="ItemDescription">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice>
+					<xs:element ref="TitleDetail" />
+					<xs:sequence>
+						<xs:element ref="Title" />
+						<xs:element ref="Contributor" minOccurs="0" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:choice>
+				<xs:element ref="OtherDetail" minOccurs="0" />
+				<xs:element ref="ProductClassification" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="LineNumber" type="xs:positiveInteger" />
+	<xs:element name="LineSalesAmounts">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="GrossSalesAmountBeforeDiscounts" minOccurs="0" />
+				<xs:element ref="DiscountsAmount" minOccurs="0" />
+				<xs:element ref="GrossSalesAmount" minOccurs="0" />
+				<xs:element ref="RefundedAmount" minOccurs="0" />
+				<xs:element ref="NetSalesAmount" minOccurs="0" />
+				<xs:element ref="SellerCharge" minOccurs="0" maxOccurs="unbounded" />
+				<xs:choice minOccurs="0">
+					<xs:element ref="LineAmountDueToPublisher" />
+					<xs:element ref="LineAmountDueToSupplier" />
+				</xs:choice>
+				<xs:element ref="CurrencyCode" minOccurs="0" />
+				<xs:choice minOccurs="0">
+					<xs:element ref="CountryCode" />
+					<xs:element ref="RegionCode" />
+					<xs:element ref="Territory" />
+				</xs:choice>
+				<xs:choice minOccurs="0">
+					<xs:element ref="Tax" maxOccurs="unbounded" />
+					<xs:element ref="TaxExempt" />
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="LocationIdentifier">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="LocationIDType" />
+				<xs:element ref="IDTypeName" minOccurs="0" />
+				<xs:element ref="IDValue" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="LocationIDType" type="SRShipToLocationIDAgencyCode" />
+	<xs:element name="MonetaryAmount" type="xs:decimal" />
+	<xs:element name="NameLine" type="xs:string" />
+	<xs:element name="NetSalesAmount" type="xs:decimal" />
+	<xs:element name="NetSoldQuantity" type="xs:int" />
+	<xs:element name="NonSaleDisposal">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="DisposalType" />
+				<xs:element ref="DisposalQuantity" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="NumberOfLines" type="xs:int" />
+	<xs:element name="NumberOfUnits" type="xs:int" />
+	<xs:element name="NumberOfGrossSalesUnits" type="xs:int" />
+	<xs:element name="NumberOfRefundedUnits" type="xs:int" />
+	<xs:element name="NumberOfNetSalesUnits" type="xs:int" />
+	<xs:element name="NumberOfNonSaleUnits" type="xs:int" />
+	<xs:element name="OtherDetail" type="xs:string" />
+	<xs:element name="PartyIdentifier" type="SRPartyID" />
+	<xs:element name="PartyIDType" type="SRPartyIDType" />
+	<xs:element name="PartyName" type="SRPartyName" />
+	<xs:element name="TaxRatePercent" type="SRPercent" />
+	<xs:element name="PersonName" type="xs:string" />
+	<xs:element name="PostalAddress">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="AddressLine" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Price">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="PriceIdentifier" minOccurs="0" maxOccurs="unbounded" />          <!-- 1.2: added -->
+				<xs:choice>
+					<xs:sequence>
+						<xs:element ref="PriceType" />                                            <!-- 1.2: added -->
+						<xs:element ref="PriceQualifier" minOccurs="0" />                         <!-- 1.2: added -->
+						<xs:element ref="DiscountCoded" minOccurs="0" maxOccurs="unbounded" />    <!-- 1.2: added -->
+						<xs:element ref="Discount" minOccurs="0" maxOccurs="unbounded" />         <!-- 1.2: added -->
+						<xs:choice>
+							<xs:element ref="MonetaryAmount" />                                   <!-- 1.2: deprecated here -->
+							<xs:element ref="PriceAmount" />                                      <!-- 1.2: added -->
+						</xs:choice>
+						<xs:element ref="CurrencyCode" minOccurs="0" />
+						<xs:choice minOccurs="0">
+							<xs:element ref="CountryCode" />
+							<xs:element ref="RegionCode" />                                       <!-- 1.2: added -->
+							<xs:element ref="Territory" />                                        <!-- 1.2: added -->
+						</xs:choice>
+						<xs:choice minOccurs="0">
+							<xs:element ref="Tax" maxOccurs="unbounded" />
+							<xs:element ref="TaxExempt" />                                        <!-- 1.2: added -->
+						</xs:choice>
+					</xs:sequence>
+					<xs:sequence>
+						<xs:element ref="DiscountCoded" minOccurs="0" maxOccurs="unbounded" />    <!-- 1.2: added -->
+						<xs:element ref="Discount" minOccurs="0" maxOccurs="unbounded" />         <!-- 1.2: added -->
+						<xs:choice>
+							<xs:element ref="MonetaryAmount" />                                   <!-- 1.2: deprecated here -->
+							<xs:element ref="PriceAmount" />                                      <!-- 1.2: added -->
+						</xs:choice>
+						<xs:element ref="CurrencyCode" minOccurs="0" />
+						<xs:choice minOccurs="0">
+							<xs:element ref="CountryCode" />
+							<xs:element ref="RegionCode" />                                       <!-- 1.2: added -->
+							<xs:element ref="Territory" />                                        <!-- 1.2: added -->
+						</xs:choice>
+						<xs:element ref="PriceQualifierCode" minOccurs="0" />                     <!-- 1.2: no longer mandatory (use sequence above instead) -->
+						<xs:choice minOccurs="0">
+							<xs:element ref="Tax" maxOccurs="unbounded" />
+							<xs:element ref="TaxExempt" />                                        <!-- 1.2: added -->
+						</xs:choice>
+					</xs:sequence>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PricingDetail">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ClassOfSaleCode" minOccurs="0" maxOccurs="unbounded" />
+				<xs:element ref="Price" />
+				<xs:choice minOccurs="0">
+					<xs:element ref="DiscountPercentage" />
+					<xs:element ref="CommissionDiscountPercentage" />
+				</xs:choice>
+				<xs:element ref="CurrencyConversionRate" minOccurs="0" />
+				<xs:element ref="SellerCharge" minOccurs="0" maxOccurs="unbounded" />
+				<xs:choice minOccurs="0">
+					<xs:element ref="UnitAmountDueToPublisher" />
+					<xs:element ref="UnitAmountDueToSupplier" />
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PriceQualifierCode" type="SRPriceQualifierCode" />
+	<xs:element name="ProductIdentifier">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ProductIDType" />
+				<xs:element ref="IDTypeName" minOccurs="0" />
+				<xs:element ref="IDValue" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ProductIDType" type="SRProductIDType" />
+	<xs:element name="PublisherIdentifier">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="PublisherIDType" />
+				<xs:element ref="IDTypeName" minOccurs="0" />
+				<xs:element ref="IDValue" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PublisherIDType" type="SRPartyIDType" />
+	<xs:element name="PublisherDetail">
+		<xs:complexType>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element ref="PublisherIdentifier" maxOccurs="unbounded" />
+					<xs:element ref="PublisherName" minOccurs="0" />
+				</xs:sequence>
+				<xs:element ref="PublisherName" />
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PublisherName" type="xs:string" />
+	<xs:element name="PublisherParty" type="SRParty" />
+	<xs:element name="PurposeCode" type="SRPurposeCode" />
+	<xs:element name="Quantity" type="xs:int" />
+	<xs:element name="ReportingParty" type="SRParty" />
+	<xs:element name="ReportPriceType" type="SRPriceQualifierCode" />
+	<xs:element name="ReceivingParty" type="SRParty" />
+	<xs:element name="ReferenceCoded">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ReferenceTypeCode" />
+				<xs:element ref="ReferenceTypeName" minOccurs="0" />
+				<xs:choice>
+					<xs:sequence>
+						<xs:element ref="ReferenceNumber" />
+						<xs:choice minOccurs="0">
+							<xs:element ref="ReferenceDate" />
+							<xs:element ref="ReferenceDateTime" />
+						</xs:choice>
+					</xs:sequence>
+					<xs:element ref="ReferenceDate" />
+					<xs:element ref="ReferenceDateTime" />
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ReferenceDate" type="SRDateOrDateTime" />
+	<xs:element name="ReferenceDateTime" type="SRDateTime" />
+	<xs:element name="ReferenceNumber" type="xs:string" />
+	<xs:element name="ReferenceTypeCode" type="SRItemReferenceTypeCode" />
+	<xs:element name="ReferenceTypeName" type="xs:string" />
+	<xs:element name="RefundedAmount" type="xs:decimal" />
+	<xs:element name="RefundedQuantity" type="xs:int" />
+	<xs:element name="RetailerParty">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="PartyName" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SalesReportNumber" type="xs:string" />
+	<xs:element name="SalesReportTypeCode" type="SRSalesReportTypeCode" />
+	<xs:element name="SellerCharge">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ChargeTypeCode" minOccurs="0" />
+				<xs:element ref="ChargeTypeDescription" minOccurs="0" />
+				<xs:element ref="ChargeSourceCode" minOccurs="0" />
+				<xs:element ref="MonetaryAmount" />
+				<xs:element ref="CurrencyCode" minOccurs="0" />
+				<xs:choice minOccurs="0">
+					<xs:element ref="CountryCode" />
+					<xs:element ref="RegionCode" />                       <!-- 1.2: added -->
+					<xs:element ref="Territory" />                        <!-- 1.2: added -->
+				</xs:choice>
+				<xs:element ref="ChargeQualifierCode" />
+				<xs:choice minOccurs="0">
+					<xs:element ref="Tax" maxOccurs="unbounded" />
+					<xs:element ref="TaxExempt" />                        <!-- 1.2: added -->
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SellerParty" type="SRParty" />
+	<xs:element name="SellingAgentParty" type="SRParty" />
+	<xs:element name="ShipToLocation">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="LocationIdentifier" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ShipToParty" type="SRParty" />
+	<xs:element name="SupplierParty" type="SRParty" />
+	<xs:element name="Tax" type="SRTax" />
+	<xs:element name="TaxAmount" type="xs:decimal" />
+	<xs:element name="TaxComponent">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="TaxComponentTypeCode" />
+				<xs:element ref="TaxComponentTypeName" minOccurs="0" />
+				<xs:element ref="TaxRateCode" minOccurs="0" />
+				<xs:element ref="TaxRatePercent" minOccurs="0" />
+				<xs:element ref="TaxableAmount" minOccurs="0" />
+				<xs:element ref="TaxAmount" minOccurs="0" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TaxComponentTypeCode" type="SRTaxComponentTypeCode" />
+	<xs:element name="TaxComponentTypeName" type="xs:string" />
+	<xs:element name="TaxRateCode" type="xs:string" />
+	<xs:element name="TaxType" type="SRTaxType" />
+	<xs:element name="TaxTypeName" type="SRTaxTypeName" />
+	<xs:element name="Title" type="xs:string" />
+	<xs:element name="TitleDetail" type="xs:string" />
+	<xs:element name="ToDate" type="SRDateOrDateTime" />
+	<xs:element name="TotalDueToPublisher" type="SRTotalAmountDue" />
+	<xs:element name="TotalDueToSupplier" type="SRTotalAmountDue" />
+	<xs:element name="TotalGrossSalesAmount" type="xs:decimal" />
+	<xs:element name="TotalNetSalesAmount" type="xs:decimal" />
+	<xs:element name="TotalRefundedSalesAmount" type="xs:decimal" />
+	<xs:element name="TotalSalesAmounts">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="TotalGrossSalesAmount" minOccurs="0" />
+				<xs:element ref="TotalRefundedSalesAmount" minOccurs="0" />
+				<xs:element ref="TotalNetSalesAmount" minOccurs="0" />
+				<xs:element ref="TotalSellerChargeAmount" minOccurs="0" />
+				<xs:element ref="CurrencyCode" minOccurs="0" />
+				<xs:choice minOccurs="0">
+					<xs:element ref="CountryCode" />
+					<xs:element ref="RegionCode" />
+					<xs:element ref="Territory" />
+				</xs:choice>
+				<xs:choice minOccurs="0">
+					<xs:element ref="Tax" maxOccurs="unbounded" />
+					<xs:element ref="TaxExempt" />
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TotalSellerChargeAmount" type="xs:decimal" />
+	<xs:element name="TradingZone" type="SRTradingZoneCode" />
+	<xs:element name="UnitAmountDueToPublisher" type="SRTotalAmountDue" />
+	<xs:element name="UnitAmountDueToSupplier" type="SRTotalAmountDue" />
+
+	<xs:element name="AdditionalPartyID" substitutionGroup="AdditionalPartyIdentifier" /> <!-- 1.2: added -->
+	<xs:element name="Author" substitutionGroup="Contributor" />              <!-- 1.2: added -->
+	<xs:element name="ImprintID" substitutionGroup="ImprintIdentifier" />     <!-- 1.2: added -->
+	<xs:element name="LocationID" substitutionGroup="LocationIdentifier" />   <!-- 1.2: added -->
+	<xs:element name="PartyID" substitutionGroup="PartyIdentifier" />         <!-- 1.2: added -->
+	<xs:element name="PublisherID" substitutionGroup="PublisherIdentifier" /> <!-- 1.2: added -->
+	<xs:element name="ProductID" substitutionGroup="ProductIdentifier" />     <!-- 1.2: added -->
+	<xs:element name="AmountTaxable" substitutionGroup="TaxableAmount" />     <!-- 1.2: added -->
+	<xs:element name="Identifier" substitutionGroup="IDValue" />              <!-- 1.2: added -->
+	<xs:element name="TaxTypeCode" substitutionGroup="TaxType" />             <!-- 1.2: added -->
+	<xs:element name="Percent" substitutionGroup="TaxRatePercent" />          <!-- 1.2: added -->
+	<xs:element name="ClassificationCoded" substitutionGroup="ProductClassification" />         <!-- 1.2: added -->
+	<xs:element name="ClassificationCode" substitutionGroup="ProductClassificationCode" />      <!-- 1.2: added -->
+	<xs:element name="ClassificationCodeType" substitutionGroup="ProductClassificationType" />  <!-- 1.2: added -->
+	<xs:element name="LineAmountDueToPublisher" substitutionGroup="UnitAmountDueToPublisher" /> <!-- 1.2: added -->
+	<xs:element name="LineAmountDueToSupplier" substitutionGroup="UnitAmountDueToSupplier" />   <!-- 1.2: added -->
+	<xs:element name="ReportPriceQualifierCode" substitutionGroup="ReportPriceType" />          <!-- 1.2: added -->
+
+	<xs:element name="Territory">                                         <!-- 1.2: added -->
+		<xs:complexType>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element ref="CountriesIncluded" />
+					<xs:element minOccurs="0" ref="RegionsIncluded"/>
+					<xs:element minOccurs="0" ref="RegionsExcluded" />
+				</xs:sequence>
+				<xs:sequence>
+					<xs:element ref="RegionsIncluded" />
+					<xs:element minOccurs="0" ref="CountriesExcluded" />
+					<xs:element minOccurs="0" ref="RegionsExcluded" />
+				</xs:sequence>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CountriesIncluded" type="SRCountryCodeList" />      <!-- 1.2: added -->
+	<xs:element name="CountriesExcluded" type="SRCountryCodeList" />      <!-- 1.2: added -->
+	<xs:element name="RegionsIncluded" type="SRRegionCodeList" />         <!-- 1.2: added -->
+	<xs:element name="RegionsExcluded" type="SRRegionCodeList" />         <!-- 1.2: added -->
+	<xs:element name="PriceQualifier" type="List59" />                    <!-- 1.2: added -->
+	<xs:element name="PriceIdentifier">                                   <!-- 1.2: added -->
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="PriceIDType" />
+				<xs:element ref="IDTypeName" minOccurs="0" />
+				<xs:element ref="IDValue" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PriceIDType" type="List217" />                      <!-- 1.2: added -->
+	<xs:element name="PriceType" type="SRPriceType" />                    <!-- 1.2: added -->
+	<xs:element name="EpubTechnicalProtection" type="List144" />          <!-- 1.2: added -->
+	<xs:element name="EpubUsageConstraint">                               <!-- 1.2: added -->
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="EpubUsageType" />
+				<xs:element ref="EpubUsageStatus" />
+				<xs:element ref="EpubUsageLimit" minOccurs="0" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="EpubUsageType" type="List230" />                    <!-- 1.2: added -->
+	<xs:element name="EpubUsageStatus" type="List146" />                  <!-- 1.2: added -->
+	<xs:element name="EpubUsageLimit">                                    <!-- 1.2: added -->
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Quantity" />
+				<xs:element ref="EpubUsageUnit" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="EpubUsageUnit" type="List147" />                    <!-- 1.2: added -->
+	<xs:element name="PriceCondition">                                    <!-- 1.2: added -->
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="PriceConditionType" />
+				<xs:element ref="PriceConditionQuantity" minOccurs="0" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PriceConditionType" type="List167" />               <!-- 1.2: added -->
+	<xs:element name="PriceConditionQuantity">                            <!-- 1.2: added -->
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="PriceConditionQuantityType" />
+				<xs:element ref="Quantity" />
+				<xs:element ref="QuantityUnit" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PriceConditionQuantityType" type="List168" />       <!-- 1.2: added -->
+	<xs:element name="QuantityUnit" type="List169" />                     <!-- 1.2: added -->
+	<xs:element name="EpubLicense">                                       <!-- 1.2: added -->
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="EpubLicenseName" />
+				<xs:element ref="EpubLicenseExpression" minOccurs="0" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="EpubLicenseName" type="xs:string" />                <!-- 1.2: added -->
+	<xs:element name="EpubLicenseExpression">                             <!-- 1.2: added -->
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="EpubLicenseExpressionType" />
+				<xs:element ref="EpubLicenseExpressionTypeName" minOccurs="0" />
+				<xs:element ref="EpubLicenseExpressionLink" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="EpubLicenseExpressionType" type="List218" />        <!-- 1.2: added -->
+	<xs:element name="EpubLicenseExpressionTypeName" type="xs:string" />  <!-- 1.2: added -->
+	<xs:element name="EpubLicenseExpressionLink" type="xs:anyURI" />      <!-- 1.2: added -->
+	<xs:element name="DiscountCoded">                                     <!-- 1.2: added -->
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="DiscountCodeType" />
+				<xs:element ref="DiscountCodeTypeName" minOccurs="0" />
+				<xs:element ref="DiscountCode" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DiscountCodeType" type="List100" />                 <!-- 1.2: added -->
+	<xs:element name="DiscountCodeTypeName" type="xs:string" />           <!-- 1.2: added -->
+	<xs:element name="DiscountCode" type="xs:string" />                   <!-- 1.2: added -->
+	<xs:element name="Discount">                                          <!-- 1.2: added -->
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="DiscountType" minOccurs="0" />
+				<xs:sequence minOccurs="0">
+					<xs:element ref="Quantity" />
+					<xs:element ref="ToQuantity" minOccurs="0" />
+				</xs:sequence>
+				<xs:choice>
+					<xs:sequence>
+						<xs:element ref="DiscountPercent" />
+						<xs:element ref="DiscountAmount" minOccurs="0" />
+					</xs:sequence>
+					<xs:element ref="DiscountAmount" />
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DiscountType" type="List170" />                     <!-- 1.2: added -->
+	<xs:element name="ToQuantity" type="xs:decimal" />                    <!-- 1.2: added -->
+	<xs:element name="DiscountPercent" type="SRPercent" />                <!-- 1.2: added -->
+	<xs:element name="DiscountAmount" type="xs:decimal" />                <!-- 1.2: added -->
+	<xs:element name="RegionCode" type="SRRegionCode" />                  <!-- 1.2: added -->
+	<xs:element name="PricePartDescription" type="xs:string" />           <!-- 1.2: added -->
+	<xs:element name="PriceAmount" type="SRPriceAmount" />                <!-- 1.2: added -->
+	<xs:element name="TaxExempt" type="SREmptyElement" />                 <!-- 1.2: added -->
+	
+	<xs:complexType name="SRParty">
+		<xs:sequence>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element ref="PartyIdentifier" />
+					<xs:element ref="AdditionalPartyIdentifier" minOccurs="0" maxOccurs="unbounded" />
+					<xs:element ref="PartyName" minOccurs="0" />
+				</xs:sequence>
+				<xs:sequence>
+					<xs:element ref="AdditionalPartyIdentifier" minOccurs="0" maxOccurs="unbounded" />
+					<xs:element ref="PartyName" />
+				</xs:sequence>
+			</xs:choice>
+			<xs:element ref="PostalAddress" minOccurs="0" />
+			<xs:element ref="CommunicationDetails" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element ref="ContactPerson" minOccurs="0" maxOccurs="unbounded" />
+			<xs:choice minOccurs="0">
+				<xs:element ref="CountryCode" />
+				<xs:element ref="RegionCode" />
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SRPartyID">
+		<xs:sequence>
+			<xs:element ref="PartyIDType" />
+			<xs:element ref="IDTypeName" minOccurs="0" />
+			<xs:element ref="IDValue" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SRPartyName">
+		<xs:sequence>
+			<xs:element ref="NameLine" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SRTax">
+		<xs:sequence>
+			<xs:element ref="ProductIdentifier" minOccurs="0" maxOccurs="unbounded" /> <!-- 1.2: added -->
+			<xs:element ref="PricePartDescription" minOccurs="0" />                   <!-- 1.2: added -->
+			<xs:element ref="TaxType" />
+			<xs:element ref="TaxTypeName" minOccurs="0" />
+			<xs:element ref="TaxRateCode" minOccurs="0" />
+			<xs:element ref="TaxRatePercent" minOccurs="0" />
+			<xs:element ref="TaxableAmount" minOccurs="0" />
+			<xs:element ref="TaxAmount" minOccurs="0" />
+			<xs:element ref="TaxComponent" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SRTotalAmountDue">
+		<xs:sequence>
+			<xs:element ref="MonetaryAmount" />
+			<xs:element ref="CurrencyCode" minOccurs="0" />
+			<xs:choice minOccurs="0">
+				<xs:element ref="CountryCode" />
+				<xs:element ref="RegionCode" />
+				<xs:element ref="Territory" />
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="SREmptyElement" /> <!-- 1.2: added -->
+
+	<xs:simpleType name="SRCountryCodeList"> <!-- 1.2: added -->
+		<xs:list itemType="List91" />
+	</xs:simpleType>
+	<xs:simpleType name="SRRegionCodeList">  <!-- 1.2: added -->
+		<xs:list itemType="List49" />
+	</xs:simpleType>
+	<xs:simpleType name="SRPartyIDType">     <!-- 1.2: added -->
+		<xs:union memberTypes="SRPartyIDAgencyCode List44" />
+	</xs:simpleType>
+	<xs:simpleType name="SRImprintIDType">   <!-- 1.2: added -->
+		<xs:union memberTypes="SRImprintIDAgencyCode List44"/>
+	</xs:simpleType>
+	<xs:simpleType name="SRTaxType">         <!-- 1.2: added -->
+		<xs:union memberTypes="SRTaxTypeCode List171" />
+	</xs:simpleType>
+	<xs:simpleType name="SRPercent">         <!-- 1.2: added -->
+		<xs:restriction base="xs:decimal">
+			<xs:minInclusive value="0" />
+			<xs:maxInclusive value="100" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SRTaxTypeName">     <!-- 1.2: added -->
+		<xs:union memberTypes="List62 xs:string" />
+	</xs:simpleType>
+	<xs:simpleType name="SRPriceAmount">     <!-- 1.2: added -->
+		<xs:restriction base="xs:decimal">
+			<xs:minInclusive value="0" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SRProductIDType">   <!-- 1.2: added -->
+		<xs:union memberTypes="ProductIDAgencyCode List5" />
+	</xs:simpleType>
+	<xs:simpleType name="SRPriceType">       <!-- 1.2: added -->
+		<xs:union memberTypes="List58">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="51" />
+					<xs:enumeration value="52" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>
+	<xs:simpleType name="SRPurposeCode">     <!-- 1.2: added -->
+		<xs:union memberTypes="PurposeCode">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Replacement" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>
+
+	<xs:simpleType name="SRDate">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="2\d\d\d(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-8])" />
+			<xs:pattern value="2\d\d\d(0[13-9]|1[0-2])(29|30)" />
+			<xs:pattern value="2\d\d\d(0[13578]|1[02])31" />
+			<xs:pattern value="2[048](0[048]|[13579][26]|[2468][048])0229" />
+			<xs:pattern value="2[1235679](0[48]|[13579][26]|[2468][048])0229" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SRDateOrDateTime">
+		<xs:union memberTypes="SRDate SRDateTime" />
+	</xs:simpleType>
+	<xs:simpleType name="SRDateTime">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="2\d\d\d(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-8])T([01][0-9]|2[0-3])[0-5][0-9]([0-5][0-9])?(Z|[+\-](0[0-9]|1[0-2])(00|15|30|45))?" />
+			<xs:pattern value="2\d\d\d(0[13-9]|1[0-2])(29|30)T([01][0-9]|2[0-3])[0-5][0-9]([0-5][0-9])?(Z|[+\-](0[0-9]|1[0-2])(00|15|30|45))?" />
+			<xs:pattern value="2\d\d\d(0[13578]|1[02])31T([01][0-9]|2[0-3])[0-5][0-9]([0-5][0-9])?(Z|[+\-](0[0-9]|1[0-2])(00|15|30|45))?" />
+			<xs:pattern value="2[048](0[048]|[13579][26]|[2468][048])0229T([01][0-9]|2[0-3])[0-5][0-9]([0-5][0-9])?(Z|[+\-](0[0-9]|1[0-2])(00|15|30|45))?" />
+			<xs:pattern value="2[1235679](0[48]|[13579][26]|[2468][048])0229T([01][0-9]|2[0-3])[0-5][0-9]([0-5][0-9])?(Z|[+\-](0[0-9]|1[0-2])(00|15|30|45))?" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SRChargeQualifierCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="UnitChargeIncludingTax" />
+			<xs:enumeration value="UnitChargeExcludingTax" />
+			<xs:enumeration value="LineChargeIncludingTax" />
+			<xs:enumeration value="LineChargeExcludingTax" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SRChargeSourceCode">
+		<xs:union>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="ReportingParty" />
+					<xs:enumeration value="SellingAgentParty" />
+					<xs:enumeration value="FulfilmentAgentParty" />
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:pattern value="[2-9][0-9]" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>
+	<xs:simpleType name="SRChargeTypeCode">
+		<xs:union>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Commission" />
+					<xs:enumeration value="Shipping" />
+					<xs:enumeration value="Handling" />
+					<xs:enumeration value="GiftWrapping" />
+					<xs:enumeration value="Packaging" />
+					<xs:enumeration value="Printing" />
+					<xs:enumeration value="Other" />
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:pattern value="[2-9][0-9]" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>
+	<xs:simpleType name="SRClassificationSchemeCode">
+		<xs:restriction base="List9" />
+	</xs:simpleType>
+	<xs:simpleType name="SRClassOfSaleCode">
+		<xs:union>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="00" />
+					<xs:enumeration value="01" />
+					<xs:enumeration value="02" />
+					<xs:enumeration value="03" />
+					<xs:enumeration value="04" />
+					<xs:enumeration value="05" />
+					<xs:enumeration value="06" />
+					<xs:enumeration value="07" />
+					<xs:enumeration value="08" />
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:pattern value="[2-9][0-9]" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>
+	<xs:simpleType name="SRDateQualifierCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="SalesPeriodStart" />
+			<xs:enumeration value="SalesPeriodEnd" />
+			<xs:enumeration value="SalesDate" />
+			<!-- xs:enumeration value="TransactionDate" / -->
+			<!-- xs:enumeration value="TransactionDateTime" / -->
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SRDeviceTypeCode">
+		<xs:restriction base="xs:string" />
+	</xs:simpleType>
+	<xs:simpleType name="SRFormatCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="PrintOnDemand" />
+			<xs:enumeration value="HTML" />
+			<xs:enumeration value="TXT" />
+			<xs:enumeration value="PDF" />
+			<xs:enumeration value="PDFMerchant" />
+			<xs:enumeration value="AdobeEbookReader" />
+			<xs:enumeration value="MicrosoftReaderLevel1-3" />
+			<xs:enumeration value="MicrosoftReaderLevel5" />
+			<xs:enumeration value="NetLibrary" />
+			<xs:enumeration value="MetaText" />
+			<xs:enumeration value="MightyWords" />
+			<xs:enumeration value="PalmReader" />
+			<xs:enumeration value="Softbook" />
+			<xs:enumeration value="RocketBook" />
+			<xs:enumeration value="GemstarREB1100" />
+			<xs:enumeration value="GemstarREB1200" />
+			<xs:enumeration value="FranklinEBookman" />
+			<xs:enumeration value="Books24x7" />
+			<xs:enumeration value="DigitalOwl" />
+			<xs:enumeration value="Handheldmed" />
+			<xs:enumeration value="WizeUp" />
+			<xs:enumeration value="TK3" />
+			<xs:enumeration value="Litraweb" />
+			<xs:enumeration value="MobiPocket" />
+			<xs:enumeration value="OpenEbook" />
+			<xs:enumeration value="GoReader" />
+			<xs:enumeration value="Ebrary" />
+			<xs:enumeration value="TownCompass" />
+			<xs:enumeration value="Exebook" />
+			<xs:enumeration value="SonyBBeB" />
+			<xs:enumeration value="VitaSourceBookshelf" />
+			<xs:enumeration value="AdobeDigitalEditions" />
+			<xs:enumeration value="MyLibrary" />
+			<xs:enumeration value="Kindle" />
+			<xs:enumeration value="MultiFormats" />
+			<xs:enumeration value="Other" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SRImprintIDAgencyCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Proprietary" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SRItemReferenceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Proprietary" />
+			<xs:enumeration value="ReportItemReferenceNumber" />
+			<xs:enumeration value="InvoiceReference" />
+			<xs:enumeration value="InvoiceLineReference" />
+			<xs:enumeration value="CreditNoteReference" />
+			<xs:enumeration value="CreditNoteLineReference" />
+			<xs:enumeration value="DespatchNoteReference" />
+			<xs:enumeration value="DespatchNoteLineReference" />
+			<xs:enumeration value="ReportingPartyReference" />
+			<xs:enumeration value="SellingAgentPartyReference" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SRNonSaleDisposalTypeCode">
+		<xs:union>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Unspecified" />
+					<xs:enumeration value="Promotion" />
+					<xs:enumeration value="Review" />
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:pattern value="[2-9][0-9]" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>
+	<xs:simpleType name="SROtherPartyIDAgencyCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="TaxRegistrationNumber" />
+			<xs:enumeration value="VATRegistrationNumber" />
+			<xs:enumeration value="GLN" />
+			<xs:enumeration value="SAN" />
+			<xs:enumeration value="VKNR" />
+			<xs:enumeration value="NBSN" />
+			<xs:enumeration value="BAGNR" />
+			<xs:enumeration value="PublishersAccountNumber" />
+			<xs:enumeration value="SellersAccountNumber" />
+			<xs:enumeration value="Proprietary" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SRPartyIDAgencyCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Proprietary" /> <!-- same as 01 -->
+			<xs:enumeration value="VKNR" />        <!-- same as 04 -->
+			<xs:enumeration value="GLN" />         <!-- same as 06 -->
+			<xs:enumeration value="SAN" />         <!-- same as 07 -->
+			<xs:enumeration value="NBSN" />
+			<xs:enumeration value="BAGNR" />
+			<xs:enumeration value="NNSR" />        <!-- Norwegian National School Registry -->
+			<xs:enumeration value="NON" />         <!-- Norwegian Organisation Number -->
+			<xs:enumeration value="VATRegistrationNumber" /> <!-- same as 23 -->
+			<xs:enumeration value="TaxRegistrationNumber" />
+			<xs:enumeration value="SellersAccountNumber" />
+			<xs:enumeration value="PublishersAccountNumber" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SRPriceQualifierCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="SRPExcludingTax" />         <!-- = 01 -->
+			<xs:enumeration value="SRPIncludingTax" />         <!-- = 02 -->
+			<xs:enumeration value="FixedRPExcludingTax" />     <!-- = 03 -->
+			<xs:enumeration value="FixedRPIncludingTax" />     <!-- = 04 -->
+			<xs:enumeration value="UnitCostIncludingTax" />    <!-- = 05 -->
+			<xs:enumeration value="UnitCostExcludingTax" />    <!-- = 07 -->
+			<xs:enumeration value="PublisherRPExcludingTax" /> <!-- = 41 -->
+			<xs:enumeration value="PublisherRPIncludingTax" /> <!-- = 42 -->
+			<xs:enumeration value="SoldAtPriceExcludingTax" /> <!-- = 43 -->
+			<xs:enumeration value="SoldAtPriceIncludingTax" /> <!-- = 44 -->
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SRRegionCode">
+		<xs:restriction base="List49" />
+	</xs:simpleType>
+	<xs:simpleType name="SRSalesReportTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ByProduct" />
+			<xs:enumeration value="ByTransaction" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SRShipToLocationIDAgencyCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Proprietary" />
+			<xs:enumeration value="GLN" />
+			<xs:enumeration value="SAN" />
+			<xs:enumeration value="CountryCode" />    <!-- = ONIX List 91 -->
+			<xs:enumeration value="ONIXRegionCode" /> <!-- = ONIX List 49 -->
+			<xs:enumeration value="PostalCode" />     <!-- should start with country code -->
+			<xs:enumeration value="RegionCode" />     <!-- = USPS region code !!! -->
+			<xs:enumeration value="CountyName" />
+			<xs:enumeration value="CityName" />
+			<xs:enumeration value="DistrictName" />
+			<xs:enumeration value="GeoCode" />        <!-- Vertex US Tax GeoCode -->
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SRTaxComponentTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Proprietary" />
+			<xs:enumeration value="CAGSTFederal" />
+			<xs:enumeration value="CAGSTProvincial" />
+			<xs:enumeration value="USState" />
+			<xs:enumeration value="USCounty" />
+			<xs:enumeration value="USCity" />
+			<xs:enumeration value="USDistrict" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SRTaxTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Proprietary" />
+			<xs:enumeration value="CAGST" />
+			<xs:enumeration value="CAHST" />
+			<xs:enumeration value="USST" />
+			<xs:enumeration value="AUGST" />
+			<xs:enumeration value="NZGST" />
+			<xs:enumeration value="EUVAT" />
+			<xs:enumeration value="CHVAT" />
+			<xs:enumeration value="ISVAT" />
+			<xs:enumeration value="NOVAT" />
+			<xs:enumeration value="INVAT" />
+			<xs:enumeration value="JPCT" />
+			<xs:enumeration value="KRVAT" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SRTradingZoneCode">
+		<xs:union memberTypes="CountryCode SRRegionCode" />
+	</xs:simpleType>
+</xs:schema>

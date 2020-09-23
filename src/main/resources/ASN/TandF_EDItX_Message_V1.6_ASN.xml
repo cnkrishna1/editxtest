@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EDItXMessage version="1.6"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="EDItX_Message_V1.6.xsd">
+	<EDItXMessageHeader>
+		<InterchangeReference>InterchangeReference</InterchangeReference>
+		<MessageNumber>MessageNumber</MessageNumber>
+		<DocumentType>AdvanceShipNotice</DocumentType>
+		<VersionNumber>VersionNumber</VersionNumber>
+		<NumberOfDocuments>1</NumberOfDocuments>
+		<Manifest>
+			<DocumentNumber>DocumentNumber</DocumentNumber>
+		</Manifest>
+		<Sender>
+			<PartyID>
+				<PartyIDType>GLN</PartyIDType>
+				<Identifier>TandF Customer Services</Identifier>
+			</PartyID>
+			<AdditionalPartyID>
+				<PartyIDType>TaxRegistrationNumber</PartyIDType>
+				<Identifier>Identifier</Identifier>
+			</AdditionalPartyID>
+			<PartyName>
+				<NameLine>TAndF Customer Services</NameLine>
+			</PartyName>
+			<PostalAddress>
+				<AddressLine>TAndF Customer Services</AddressLine>
+				<PostalTownCity>Sheepen Place</PostalTownCity>
+				<PostalCode>3LP</PostalCode>
+				<CountrySubdivision>Colchester</CountrySubdivision>
+				<CountrySubdivisionCode>CO3</CountrySubdivisionCode>
+				<Country>United Kingdom</Country>
+				<CountryCode>GB</CountryCode>
+			</PostalAddress>
+			<CommunicationDetails>
+				<CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+				<CommunicationLocator>+1 215 625 8900</CommunicationLocator>
+			</CommunicationDetails>
+			<ContactPerson>
+				<ContactRoleCode>ContactRoleCode</ContactRoleCode>
+				<PersonName>PersonName</PersonName>
+				<CommunicationDetails>
+					<CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+					<CommunicationLocator>+1 215 625 8900</CommunicationLocator>
+				</CommunicationDetails>
+			</ContactPerson>
+			<CountryCode>GB</CountryCode>
+		</Sender>
+		<Receiver>
+			<PartyID>
+				<PartyIDType>GLN</PartyIDType>
+				<!-- here the request sender is the seller eg: consider as Amazon or 
+					we consider the one who will be the product owner means simply a publisher/supplier 
+					eg: t&F -->
+				<Identifier>1208965</Identifier> <!-- I am mentioning the customer number here. -->
+			</PartyID>
+			<PostalAddress>
+				<AddressLine>Kennesaw State University</AddressLine>
+				<AddressLine>Sturgis Library</AddressLine>
+				<AddressLine>1000 Chastain Road</AddressLine>
+				<PostalTownCity>KENNESAW</PostalTownCity>
+				<PostalCode>30144</PostalCode>
+				<CountrySubdivision>CountrySubdivision</CountrySubdivision>
+				<CountrySubdivisionCode>GA</CountrySubdivisionCode>
+				<Country>United States of America</Country>
+				<CountryCode>US</CountryCode>
+			</PostalAddress>
+			<CommunicationDetails>
+				<CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+				<CommunicationLocator>CommunicationLocator</CommunicationLocator>
+			</CommunicationDetails>
+			<ContactPerson>
+				<ContactRoleCode>ContactRoleCode</ContactRoleCode>
+				<PersonName>NameLine</PersonName>
+				<CommunicationDetails>
+					<CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+					<CommunicationLocator>CommunicationLocator</CommunicationLocator>
+				</CommunicationDetails>
+			</ContactPerson>
+			<CountryCode>US</CountryCode>
+		</Receiver>
+		<PurposeCode>Duplicate</PurposeCode>
+		<SentDateTime>20200625</SentDateTime>
+
+	</EDItXMessageHeader>
+	<EDItXMessagePayload>
+
+		<AdvanceShipNotice version="1.1"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:noNamespaceSchemaLocation="EDItX_TradeAdvanceShipNotice_V1.1.xsd">
+			<Header>
+				<ASNNumber>ASNNumber</ASNNumber>
+				<IssueDateTime>20200627</IssueDateTime>
+				<PackageMark>
+					<PackageMarkTypeCode>SSCC-18</PackageMarkTypeCode>
+					<PackageMarkValue>PackageMarkValue</PackageMarkValue>
+				</PackageMark>
+				<PurposeCode>Duplicate</PurposeCode>
+				<CurrencyCode>AED</CurrencyCode>
+				<CountryCode>AD</CountryCode>
+				<DateCoded>
+					<Date>20200627</Date>
+					<DateQualifierCode>DeliveryDateLatest</DateQualifierCode>
+				</DateCoded>
+				<BuyerParty>
+					<PartyID>
+						<PartyIDType>GLN</PartyIDType>
+						<!-- here the request sender is the seller eg: consider as Amazon or 
+							we consider the one who will be the product owner means simply a publisher/supplier 
+							eg: t&F -->
+						<Identifier>1208965</Identifier> <!-- I am mentioning the customer number here. -->
+					</PartyID>
+					<PostalAddress>
+						<AddressLine>999 Maple Street</AddressLine>
+						<PostalTownCity>CONTOOCOOK</PostalTownCity>
+						<PostalCode>03229-3374</PostalCode>
+						<CountrySubdivision>NH</CountrySubdivision>
+						<CountrySubdivisionCode>NH</CountrySubdivisionCode>
+						<Country>UNITED STATES OF AMERICA</Country>
+						<CountryCode>US</CountryCode>
+					</PostalAddress>
+					<CommunicationDetails>
+						<CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+						<CommunicationLocator>CommunicationLocator</CommunicationLocator>
+					</CommunicationDetails>
+					<ContactPerson>
+						<ContactRoleCode>ContactRoleCode</ContactRoleCode>
+						<PersonName>NameLine</PersonName>
+						<CommunicationDetails>
+							<CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+							<CommunicationLocator>CommunicationLocator</CommunicationLocator>
+						</CommunicationDetails>
+					</ContactPerson>
+					<CountryCode>US</CountryCode>
+				</BuyerParty>
+				<SellerParty>
+					<PartyID>
+						<PartyIDType>GLN</PartyIDType>
+						<Identifier>TandF Customer Services</Identifier>
+					</PartyID>
+					<AdditionalPartyID>
+						<PartyIDType>TaxRegistrationNumber</PartyIDType>
+						<Identifier>Identifier</Identifier>
+					</AdditionalPartyID>
+					<PartyName>
+						<NameLine>TAndF Customer Services</NameLine>
+					</PartyName>
+					<PostalAddress>
+						<AddressLine>TAndF Customer Services</AddressLine>
+						<PostalTownCity>Sheepen Place</PostalTownCity>
+						<PostalCode>3LP</PostalCode>
+						<CountrySubdivision>Colchester</CountrySubdivision>
+						<CountrySubdivisionCode>CO3</CountrySubdivisionCode>
+						<Country>United Kingdom</Country>
+						<CountryCode>GB</CountryCode>
+					</PostalAddress>
+					<CommunicationDetails>
+						<CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+						<CommunicationLocator>+1 215 625 8900</CommunicationLocator>
+					</CommunicationDetails>
+					<ContactPerson>
+						<ContactRoleCode>ContactRoleCode</ContactRoleCode>
+						<PersonName>PersonName</PersonName>
+						<CommunicationDetails>
+							<CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+							<CommunicationLocator>+1 215 625 8900</CommunicationLocator>
+						</CommunicationDetails>
+					</ContactPerson>
+					<CountryCode>GB</CountryCode>
+				</SellerParty>
+				<ShipToParty>
+					<PartyID>
+						<PartyIDType>GLN</PartyIDType>
+						<!-- here the request sender is the seller eg: consider as Amazon or 
+							we consider the one who will be the product owner means simply a publisher/supplier 
+							eg: t&F -->
+						<Identifier>1208965</Identifier> <!-- I am mentioning the customer number here. -->
+					</PartyID>
+					<PostalAddress>
+						<AddressLine>Kennesaw State University</AddressLine>
+						<AddressLine>Sturgis Library</AddressLine>
+						<AddressLine>1000 Chastain Road</AddressLine>
+						<PostalTownCity>KENNESAW</PostalTownCity>
+						<PostalCode>30144</PostalCode>
+						<CountrySubdivision>CountrySubdivision</CountrySubdivision>
+						<CountrySubdivisionCode>GA</CountrySubdivisionCode>
+						<Country>United States of America</Country>
+						<CountryCode>US</CountryCode>
+					</PostalAddress>
+					<CommunicationDetails>
+						<CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+						<CommunicationLocator>CommunicationLocator</CommunicationLocator>
+					</CommunicationDetails>
+					<ContactPerson>
+						<ContactRoleCode>ContactRoleCode</ContactRoleCode>
+						<NameLine>NameLine</NameLine>
+						<CommunicationDetails>
+							<CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+							<CommunicationLocator>CommunicationLocator</CommunicationLocator>
+						</CommunicationDetails>
+					</ContactPerson>
+					<CountryCode>US</CountryCode>
+				</ShipToParty>
+				<BillToParty>
+					<PartyID>
+						<PartyIDType>GLN</PartyIDType>
+						<!-- here the request sender is the seller eg: consider as Amazon or 
+							we consider the one who will be the product owner means simply a publisher/supplier 
+							eg: t&F -->
+						<Identifier>1208965</Identifier> <!-- I am mentioning the customer number here. -->
+					</PartyID>
+					<PostalAddress>
+						<AddressLine>999 Maple Street</AddressLine>
+						<PostalTownCity>CONTOOCOOK</PostalTownCity>
+						<PostalCode>03229-3374</PostalCode>
+						<CountrySubdivision>NH</CountrySubdivision>
+						<CountrySubdivisionCode>NH</CountrySubdivisionCode>
+						<Country>UNITED STATES OF AMERICA</Country>
+						<CountryCode>US</CountryCode>
+					</PostalAddress>
+					<CommunicationDetails>
+						<CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+						<CommunicationLocator>CommunicationLocator</CommunicationLocator>
+					</CommunicationDetails>
+					<ContactPerson>
+						<ContactRoleCode>ContactRoleCode</ContactRoleCode>
+						<PersonName>NameLine</PersonName>
+						<CommunicationDetails>
+							<CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+							<CommunicationLocator>CommunicationLocator</CommunicationLocator>
+						</CommunicationDetails>
+					</ContactPerson>
+					<CountryCode>US</CountryCode>
+				</BillToParty>
+				<ShippingFrom>
+					<Location>
+						<LocationName>US</LocationName>
+					</Location>
+				</ShippingFrom>
+				<Delivery>
+					<DeliveryTimeCode>2Day</DeliveryTimeCode>
+				</Delivery>
+				<DefaultLinearUnit>Centimetre</DefaultLinearUnit>
+				<DefaultWeightUnit>Gram</DefaultWeightUnit>
+				<AdditionalService>
+					<ServiceDescriptionCoded>
+						<ServiceDescriptionCodeType>Seller</ServiceDescriptionCodeType>
+						<ServiceDescriptionCode>ServiceDescriptionCode</ServiceDescriptionCode>
+					</ServiceDescriptionCoded>
+					<ServiceQuantity>
+						<ServiceQuantityDescription>ServiceQuantityDescription</ServiceQuantityDescription>
+						<QuantityDetail>
+							<Value>Value</Value>
+							<ReferenceUnit>ReferenceUnit</ReferenceUnit>
+						</QuantityDetail>
+					</ServiceQuantity>
+					<AdditionalServiceDescription>AdditionalServiceDescription</AdditionalServiceDescription>
+					<ReferenceCoded>
+						<ReferenceTypeCode>ContractReference</ReferenceTypeCode> <!-- the other one is PromotionOrDealReference -->
+						<ReferenceNumber>952273770</ReferenceNumber>
+					</ReferenceCoded>
+					<PricingDetail>
+						<Price>
+							<MonetaryAmount>0.0</MonetaryAmount>
+							<CurrencyCode>AED</CurrencyCode>
+							<CountryCode>AD</CountryCode>
+							<PriceQualifierCode>TotalPriceIncludingTax</PriceQualifierCode>
+							<Tax>
+								<TaxTypeCode>GST</TaxTypeCode>
+								<TaxRateCode>TaxRateCode</TaxRateCode>
+								<Percent>0.0</Percent>
+								<AmountTaxable>0.0</AmountTaxable>
+								<TaxAmount>0.0</TaxAmount>
+							</Tax>
+						</Price>
+						<DiscountPercentage>0.0</DiscountPercentage>
+						<DiscountDetail>
+							<DiscountCodeType>Seller</DiscountCodeType>
+							<DiscountPart>
+								<DiscountCode>DiscountCode</DiscountCode>
+								<DiscountPercentage>0.0</DiscountPercentage>
+							</DiscountPart>
+						</DiscountDetail>
+					</PricingDetail>
+				</AdditionalService>
+				<Message>
+					<MessageType>03</MessageType> <!-- values 01 to 99 defined by trading partner agreement -->
+					<MessageLine>Advance Shipment</MessageLine>
+				</Message>
+			</Header>
+			<ItemDetail>
+				<LineNumber>1</LineNumber>
+				<ProductID>
+					<ProductIDType>Proprietary</ProductIDType>
+					<IDTypeName>IDTypeName</IDTypeName>
+					<Identifier>Identifier</Identifier>
+				</ProductID>
+				<ItemDescription>
+					<ItemCharacteristicCode>PromotionalOrPOSItem</ItemCharacteristicCode>
+				</ItemDescription>
+				<QuantityShipping>1</QuantityShipping>
+				<ReferenceCoded>
+					<ReferenceTypeCode>ContractReference</ReferenceTypeCode> <!-- the other one is PromotionOrDealReference -->
+					<ReferenceNumber>952273770</ReferenceNumber>
+				</ReferenceCoded>
+				<PricingDetail>
+					<Price>
+						<MonetaryAmount>60.0</MonetaryAmount>
+						<CurrencyCode>USD</CurrencyCode>
+						<CountryCode>US</CountryCode>
+						<PriceQualifierCode>FixedRPIncludingTax</PriceQualifierCode>
+						<Tax>
+							<TaxTypeCode>GST</TaxTypeCode>
+							<TaxRateCode>TaxRateCode</TaxRateCode>
+							<Percent>0.0</Percent>
+							<AmountTaxable>0.0</AmountTaxable>
+							<TaxAmount>0.0</TaxAmount>
+						</Tax>
+					</Price>
+					<DiscountPercentage>17.0</DiscountPercentage>
+					<DiscountDetail>
+						<DiscountCodeType>Seller</DiscountCodeType>
+						<DiscountPart>
+							<DiscountCode>DiscountCode</DiscountCode>
+							<DiscountPercentage>0.0</DiscountPercentage>
+						</DiscountPart>
+					</DiscountDetail>
+				</PricingDetail>
+				<OrderQuantity>1</OrderQuantity>
+				<ShippedQuantity>1</ShippedQuantity>
+				<BackorderedQuantity>0</BackorderedQuantity>
+				<CanceledQuantity>0</CanceledQuantity>
+				<PackageReference>
+					<PackedQuantity>1</PackedQuantity>
+					<PackageNumber>1234567</PackageNumber>
+				</PackageReference>
+				<ContainedItemDetail>
+					<ProductID>
+						<ProductIDType>Proprietary</ProductIDType>
+						<IDTypeName>IDTypeName</IDTypeName>
+						<Identifier>Identifier</Identifier>
+					</ProductID>
+					<ContainedItemQuantity>0</ContainedItemQuantity>
+				</ContainedItemDetail>
+				<AdditionalService>
+					<ServiceDescriptionCoded>
+						<ServiceDescriptionCodeType>Seller</ServiceDescriptionCodeType>
+						<ServiceDescriptionCode>ServiceDescriptionCode</ServiceDescriptionCode>
+					</ServiceDescriptionCoded>
+					<ServiceQuantity>
+						<ServiceQuantityDescription>ServiceQuantityDescription</ServiceQuantityDescription>
+						<QuantityDetail>
+							<Value>Value</Value>
+							<ReferenceUnit>ReferenceUnit</ReferenceUnit>
+						</QuantityDetail>
+					</ServiceQuantity>
+					<AdditionalServiceDescription>AdditionalServiceDescription</AdditionalServiceDescription>
+					<ReferenceCoded>
+						<ReferenceTypeCode>ContractReference</ReferenceTypeCode> <!-- the other one is PromotionOrDealReference -->
+						<ReferenceNumber>952273770</ReferenceNumber>
+					</ReferenceCoded>
+					<PricingDetail>
+						<Price>
+							<MonetaryAmount>60.0</MonetaryAmount>
+							<CurrencyCode>USD</CurrencyCode>
+							<CountryCode>US</CountryCode>
+							<PriceQualifierCode>TotalPriceIncludingTax</PriceQualifierCode>
+							<Tax>
+								<TaxTypeCode>GST</TaxTypeCode>
+								<TaxRateCode>TaxRateCode</TaxRateCode>
+								<Percent>0.0</Percent>
+								<AmountTaxable>0.0</AmountTaxable>
+								<TaxAmount>0.0</TaxAmount>
+							</Tax>
+						</Price>
+						<DiscountPercentage>17.0</DiscountPercentage>
+						<DiscountDetail>
+							<DiscountCodeType>Seller</DiscountCodeType>
+							<DiscountPart>
+								<DiscountCode>DiscountCode</DiscountCode>
+								<DiscountPercentage>0.0</DiscountPercentage>
+							</DiscountPart>
+						</DiscountDetail>
+					</PricingDetail>
+				</AdditionalService>
+				<Message>
+					<MessageType>03</MessageType> <!-- values 01 to 99 defined by trading partner agreement -->
+					<MessageLine>Advance Shipment</MessageLine>
+				</Message>
+			</ItemDetail>
+			<PackageDetail>
+				<PackageTypeCoded>
+					<PackageTypeCodeType>EDItEUR</PackageTypeCodeType>
+					<PackageTypeCode>PackageTypeCode</PackageTypeCode>
+				</PackageTypeCoded>
+				<NumberOfPackages>0</NumberOfPackages>
+				<Package>
+					<PackageNumber>0</PackageNumber>
+					<PackageMark>
+						<PackageMarkTypeCode>SSCC-18</PackageMarkTypeCode>
+						<PackageMarkValue>PackageMarkValue</PackageMarkValue>
+					</PackageMark>
+					<Measure>
+						<MeasureTypeCode>Height</MeasureTypeCode>
+						<MeasurementValue>0.0</MeasurementValue>
+						<MeasureUnitCode>Centimetre</MeasureUnitCode>
+					</Measure>
+				</Package>
+			</PackageDetail>
+			<Summary>
+				<NumberOfLines>1</NumberOfLines>
+				<UnitsShipped>1</UnitsShipped>
+			</Summary>
+		</AdvanceShipNotice>
+
+	</EDItXMessagePayload>
+</EDItXMessage>

@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EDItXMessage version="1.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="EDItX_Message_V1.6.xsd">
+  <EDItXMessageHeader>
+    <InterchangeReference>InterchangeReference</InterchangeReference>
+    <MessageNumber>952283764</MessageNumber> <!-- This is the Credit Note Number  -->
+    <DocumentType>OrderCancelation</DocumentType>
+    <VersionNumber>1.0</VersionNumber>
+    <NumberOfDocuments>1</NumberOfDocuments>
+    <Sender>
+      <PartyID>
+        <PartyIDType>GLN</PartyIDType>
+        <Identifier>Identifier</Identifier> <!-- TandF -->
+      </PartyID>
+    </Sender>
+    <Receiver>
+      <PartyID>
+        <PartyIDType>GLN</PartyIDType>
+        <Identifier>1208965</Identifier><!-- Identifier who cancelled -->
+      </PartyID>
+    </Receiver>
+    <PurposeCode>Original</PurposeCode>
+    <SentDateTime>20200627</SentDateTime>
+  </EDItXMessageHeader>
+  <EDItXMessagePayload>
+    <OrderCancelation version="1.1"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="EDItX_TradeOrderCancelation_V1.1.xsd">
+	<Header>
+		<OrderCancelationNumber>OrderCancelationNumber</OrderCancelationNumber>
+		<IssueDateTime>20200524</IssueDateTime>
+		<ReferenceCoded>
+			<ReferenceTypeCode>BuyersOrderReference</ReferenceTypeCode>
+			<ReferenceNumber>952273770</ReferenceNumber>
+		</ReferenceCoded>
+		<PurposeCode>Duplicate</PurposeCode>
+		<BuyerParty>
+			<PartyID>
+				<PartyIDType>GLN</PartyIDType>
+				<Identifier>Identifier</Identifier>
+			</PartyID>
+			<AdditionalPartyID>
+				<PartyIDType>TaxRegistrationNumber</PartyIDType>
+				<Identifier>Identifier</Identifier>
+			</AdditionalPartyID>
+			<PartyName>
+				<NameLine>NameLine</NameLine>
+			</PartyName>
+			<PostalAddress>
+				<AddressLine>999 Maple Street</AddressLine>
+				<PostalTownCity>CONTOOCOOK</PostalTownCity>
+				<PostalCode>03229-3374</PostalCode>
+				<CountrySubdivision>NH</CountrySubdivision>
+				<CountrySubdivisionCode>NH</CountrySubdivisionCode>
+				<Country>UNITED STATES OF AMERICA</Country>
+				<CountryCode>US</CountryCode>
+			</PostalAddress>
+			<CommunicationDetails>
+				<CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+				<CommunicationLocator>CommunicationLocator</CommunicationLocator>
+			</CommunicationDetails>
+			<ContactPerson>
+				<ContactRoleCode>ContactRoleCode</ContactRoleCode>
+				<PersonName>PersonName</PersonName>
+				<CommunicationDetails>
+					<CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+					<CommunicationLocator>CommunicationLocator</CommunicationLocator>
+				</CommunicationDetails>
+			</ContactPerson>
+			<CountryCode>US</CountryCode>
+		</BuyerParty>
+		<SellerParty>
+			<PartyID>
+				<PartyIDType>GLN</PartyIDType>
+				<Identifier>TandF Customer Services</Identifier>
+			</PartyID>
+			<AdditionalPartyID>
+				<PartyIDType>TaxRegistrationNumber</PartyIDType>
+				<Identifier>Identifier</Identifier>
+			</AdditionalPartyID>
+			<PartyName>
+				<NameLine>TAndF Customer Services</NameLine>
+			</PartyName>
+			<PostalAddress>
+				<AddressLine>TAndF Customer Services</AddressLine>
+				<PostalTownCity>Sheepen Place</PostalTownCity>
+				<PostalCode>3LP</PostalCode>
+				<CountrySubdivision>Colchester</CountrySubdivision>
+				<CountrySubdivisionCode>CO3</CountrySubdivisionCode>
+				<Country>United Kingdom</Country>
+				<CountryCode>GB</CountryCode>
+			</PostalAddress>
+			<CommunicationDetails>
+				<CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+				<CommunicationLocator>+1 215 625 8900</CommunicationLocator>
+			</CommunicationDetails>
+			<ContactPerson>
+				<ContactRoleCode>ContactRoleCode</ContactRoleCode>
+				<PersonName>PersonName</PersonName>
+				<CommunicationDetails>
+					<CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+					<CommunicationLocator>+1 215 625 8900</CommunicationLocator>
+				</CommunicationDetails>
+			</ContactPerson>
+			<CountryCode>GB</CountryCode>
+		</SellerParty>
+		<ShipToParty>
+			<PartyID>
+				<PartyIDType>GLN</PartyIDType>
+				<!-- here the request sender is the seller eg: consider as Amazon or 
+					we consider the one who will be the product owner means simply a publisher/supplier 
+					eg: t&F -->
+				<Identifier>1208965</Identifier> <!-- I am mentioning the customer number here. -->
+			</PartyID>
+			<PostalAddress>
+				<AddressLine>Kennesaw State University</AddressLine>
+				<AddressLine>Sturgis Library</AddressLine>
+				<AddressLine>1000 Chastain Road</AddressLine>
+				<PostalTownCity>KENNESAW</PostalTownCity>
+				<PostalCode>30144</PostalCode>
+				<CountrySubdivision>CountrySubdivision</CountrySubdivision>
+				<CountrySubdivisionCode>GA</CountrySubdivisionCode>
+				<Country>United States of America</Country>
+				<CountryCode>US</CountryCode>
+			</PostalAddress>
+			<CommunicationDetails>
+				<CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+				<CommunicationLocator>CommunicationLocator</CommunicationLocator>
+			</CommunicationDetails>
+			<ContactPerson>
+				<ContactRoleCode>ContactRoleCode</ContactRoleCode>
+				<PersonName>NameLine</PersonName>
+				<CommunicationDetails>
+					<CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+					<CommunicationLocator>CommunicationLocator</CommunicationLocator>
+				</CommunicationDetails>
+			</ContactPerson>
+			<ContactPerson>
+				<ContactRoleCode>ContactRoleCode</ContactRoleCode>
+				<PersonName>NameLine</PersonName>
+				<CommunicationDetails>
+					<CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+					<CommunicationLocator>CommunicationLocator</CommunicationLocator>
+				</CommunicationDetails>
+			</ContactPerson>
+		</ShipToParty>
+		<BillToParty>
+			<PartyID>
+				<PartyIDType>GLN</PartyIDType>
+				<!-- here the request sender is the seller eg: consider as Amazon or 
+					we consider the one who will be the product owner means simply a publisher/supplier 
+					eg: t&F -->
+				<Identifier>1208965</Identifier> <!-- I am mentioning the customer number here. -->
+			</PartyID>
+			<PostalAddress>
+				<AddressLine>999 Maple Street</AddressLine>
+				<PostalTownCity>CONTOOCOOK</PostalTownCity>
+				<PostalCode>03229-3374</PostalCode>
+				<CountrySubdivision>NH</CountrySubdivision>
+				<CountrySubdivisionCode>NH</CountrySubdivisionCode>
+				<Country>UNITED STATES OF AMERICA</Country>
+				<CountryCode>US</CountryCode>
+			</PostalAddress>
+			<CommunicationDetails>
+				<CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+				<CommunicationLocator>CommunicationLocator</CommunicationLocator>
+			</CommunicationDetails>
+			<ContactPerson>
+				<ContactRoleCode>ContactRoleCode</ContactRoleCode>
+				<PersonName>NameLine</PersonName>
+				<CommunicationDetails>
+					<CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+					<CommunicationLocator>CommunicationLocator</CommunicationLocator>
+				</CommunicationDetails>
+			</ContactPerson>
+			
+			<ContactPerson>
+				<ContactRoleCode>ContactRoleCode</ContactRoleCode>
+				<PersonName>PersonName</PersonName>
+				<CommunicationDetails>
+					<CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+					<CommunicationLocator>CommunicationLocator</CommunicationLocator>
+				</CommunicationDetails>
+			</ContactPerson>
+			<CountryCode>US</CountryCode>
+		</BillToParty>
+		<RequestType>WholeOrder</RequestType> <!-- The other one is ListedItems we can either cancel whole order or partial -->
+	</Header>
+	<ItemDetail>
+		<LineNumber>1</LineNumber>
+		<ProductID>
+			<ProductIDType>ISBN</ProductIDType>
+			<IDTypeName>TF Books eBook sale</IDTypeName>
+			<Identifier>9781351034982</Identifier> <!-- ISBN Number -->
+		</ProductID>
+		<ItemDescription>
+			<TitleDetail>Operations Management, Lewis</TitleDetail>
+		</ItemDescription>
+		<OrderQuantity>1</OrderQuantity>
+		<QuantityToCancel>1</QuantityToCancel>
+		<ReferenceCoded>
+			<ReferenceTypeCode>BuyersOrderReference</ReferenceTypeCode>
+			<ReferenceNumber>952273770</ReferenceNumber>
+		</ReferenceCoded>
+		<ShipToParty>
+			<PartyID>
+				<PartyIDType>GLN</PartyIDType>
+				<!-- here the request sender is the seller eg: consider as Amazon or 
+					we consider the one who will be the product owner means simply a publisher/supplier 
+					eg: t&F -->
+				<Identifier>1208965</Identifier> <!-- I am mentioning the customer number here. -->
+			</PartyID>
+			<PostalAddress>
+				<AddressLine>Kennesaw State University</AddressLine>
+				<AddressLine>Sturgis Library</AddressLine>
+				<AddressLine>1000 Chastain Road</AddressLine>
+				<PostalTownCity>KENNESAW</PostalTownCity>
+				<PostalCode>30144</PostalCode>
+				<CountrySubdivision>CountrySubdivision</CountrySubdivision>
+				<CountrySubdivisionCode>GA</CountrySubdivisionCode>
+				<Country>United States of America</Country>
+				<CountryCode>US</CountryCode>
+			</PostalAddress>
+			<CommunicationDetails>
+				<CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+				<CommunicationLocator>CommunicationLocator</CommunicationLocator>
+			</CommunicationDetails>
+			<ContactPerson>
+				<ContactRoleCode>ContactRoleCode</ContactRoleCode>
+				<PersonName>NameLine</PersonName>
+				<CommunicationDetails>
+					<CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+					<CommunicationLocator>CommunicationLocator</CommunicationLocator>
+				</CommunicationDetails>
+			</ContactPerson>
+			<ContactPerson>
+				<ContactRoleCode>ContactRoleCode</ContactRoleCode>
+				<PersonName>NameLine</PersonName>
+				<CommunicationDetails>
+					<CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+					<CommunicationLocator>CommunicationLocator</CommunicationLocator>
+				</CommunicationDetails>
+			</ContactPerson>
+		</ShipToParty>
+	</ItemDetail>
+	<Summary>
+		<NumberOfLines>1</NumberOfLines>
+		<UnitsOrdered>1</UnitsOrdered>
+		<UnitsCanceled>1</UnitsCanceled>
+	</Summary>
+</OrderCancelation>
+  </EDItXMessagePayload>
+</EDItXMessage>

@@ -1,0 +1,608 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+	**************************************************
+	*                                                *
+	*                     EDItX                      *
+	*                                                *
+	*        INVENTORY REPORT MESSAGE SCHEMA         *
+	*                                                *
+	*                STRUCTURE MODULE                *
+	*                 W3C XSD SCHEMA                 *
+	*                                                *
+	*          Original author: Francis Cave         *
+	*          Recent revisions: Graham Bell         *
+	*                                                *
+	*                  Release 1.1                   *
+	*              Status: PRE-RELEASE               *
+	*            Release date: 2018-08-07            *
+	*              Revised: 2018-08-07               *
+	*                                                *
+	*             (c) 2009-2018 EDItEUR              *
+	*             http://www.editeur.org/            *
+	*                                                *
+	**************************************************
+
+
+	TERMS AND CONDITIONS OF USE OF THE EDItX INVENTORY REPORT MESSAGE AND ASSOCIATED 
+	DOCUMENTATION AND XML SCHEMAS
+
+	All EDItX standards and documentation – including this document – are copyright 
+	materials, made available free of charge for general use. A full license agreement 
+	(DOI: 10.4400/nwgj) that governs their use is available on the EDItEUR website. In 
+	particular, if you use any of the EDItX schemas, you will be deemed to have accepted 
+	these terms and conditions:
+
+	1. You agree that you will not add to, delete from, amend or copy for use outside of 
+	the schemas any part thereof except for strictly internal use in your own organization.
+
+	2. You agree that if your business would benefit from future additions or amendments 
+	to or extracts of the schemas for any purpose that is not strictly internal to your own 
+	organisation, you will in the first instance notify EDItEUR and allow EDItEUR to review 
+	and comment on your proposed use, in the interest of securing an orderly 
+	development of the Schema for the benefit of other users.
+
+	If you do not accept these terms, you must not use any version of the EDItX INVENTORY 
+	REPORT MESSAGE Schemas.
+
+	Full copies of all published versions of the latest release of this Schema and all 
+	associated documentation are available from the EDItEUR web site, where may also be 
+	found details of how to contact EDItEUR for advice on the use of this Schema. The URL 
+	for the EDItEUR web site is:
+
+	http://www.editeur.org/
+
+
+	SCHEMA REVISION HISTORY (IN REVERSE CHRONOLOGICAL ORDER)
+
+	2018-08-07: Pre-release of EDItX Sales Report Format v1.1
+	            Structure refactored so that every element definition is a global element, rather than each being defined in-line
+	            Additions to schema to improve functionality for e-books, POD, and to align better with ONIX
+
+	2009-07-17: Initial release of EDItX Inventory Report Format v1.0
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+	<xs:include schemaLocation="EDItX_CodeLists.xsd" />
+
+	<xs:element name="InventoryReport">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Header" />
+				<xs:element ref="ItemDetail" maxOccurs="unbounded" />
+				<xs:element ref="Summary" />
+			</xs:sequence>
+			<xs:attribute name="version" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="1.0" />
+						<xs:enumeration value="1.1" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="Header">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="InventoryReportNumber" />
+				<xs:element ref="IssueDateTime" />
+				<xs:element ref="ReferenceCoded" minOccurs="0" maxOccurs="unbounded" />
+				<xs:element ref="PurposeCode" />
+				<xs:element ref="DateCoded" minOccurs="0" maxOccurs="2" />
+				<xs:choice>
+					<!-- Reseller model options -->
+					<xs:sequence>
+						<xs:element ref="SellerParty" />
+						<xs:element ref="NewLocationParty" minOccurs="0" />
+						<xs:choice>
+							<xs:sequence>
+								<xs:choice>
+									<xs:element ref="PublisherParty" />
+									<xs:element ref="SupplierParty" />
+								</xs:choice>
+								<xs:element ref="ReportingParty" minOccurs="0" />
+								<xs:element ref="ReceivingParty" minOccurs="0" />
+							</xs:sequence>
+							<xs:sequence>
+								<xs:element ref="ReportingParty" minOccurs="0" />
+								<xs:element ref="ReceivingParty" />
+							</xs:sequence>
+						</xs:choice>
+					</xs:sequence>
+					<!-- Agency model options -->
+					<xs:sequence>
+						<xs:choice>
+							<xs:sequence>
+								<xs:choice>
+									<xs:element ref="PublisherParty" />
+									<xs:element ref="SupplierParty" />
+								</xs:choice>
+								<xs:element ref="ReportingParty" />
+								<xs:element ref="ReceivingParty" minOccurs="0" />
+							</xs:sequence>
+							<xs:element ref="ReceivingParty" />
+						</xs:choice>
+						<xs:element ref="SellingAgentParty" minOccurs="0" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ItemDetail">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="LineNumber" />
+				<xs:element ref="ProductIdentifier" maxOccurs="unbounded" />
+				<xs:element ref="ItemDescription" minOccurs="0" />
+				<xs:element ref="FormatCode" minOccurs="0" maxOccurs="unbounded" />
+				<xs:choice>
+					<xs:sequence>
+						<xs:element ref="InventoryStatus" />
+						<xs:element ref="InventoryNote" minOccurs="0" />
+					</xs:sequence>
+					<xs:element ref="InventoryQuantity" maxOccurs="unbounded" />
+				</xs:choice>
+				<xs:element ref="ReferenceCoded" minOccurs="0" maxOccurs="unbounded" />
+				<xs:element ref="DateCoded" minOccurs="0" maxOccurs="2" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Summary">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="NumberOfLines" />
+				<xs:element ref="NumberOfUnitsByQuantityType" minOccurs="0" maxOccurs="unbounded" />
+				<xs:element ref="NumberOfProductsByInventoryStatus" minOccurs="0" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="AdditionalPartyIdentifier" type="IRPartyID" />
+	<xs:element name="AddressLine" type="xs:string" />
+	<xs:element name="CommunicationDetails">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="CommunicationTypeCode" />
+				<xs:element ref="CommunicationLocator" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CommunicationLocator" type="xs:string" />
+	<xs:element name="CommunicationTypeCode" type="CommunicationTypeCode" />
+	<xs:element name="ContactPerson">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ContactRoleCode" minOccurs="0" />
+				<xs:element ref="PersonName" />
+				<xs:element ref="CommunicationDetails" minOccurs="0" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ContactRoleCode" type="IRContactRoleCode" />
+	<xs:element name="CountryCode" type="CountryCode" />
+	<xs:element name="Date" type="IRDateOrDateTime" />
+	<xs:element name="DateCoded">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Date" />
+				<xs:element ref="DateQualifierCode" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DateQualifierCode" type="IRDateQualifierCode" />
+	<xs:element name="FormatCode">
+		<xs:simpleType>
+			<xs:union memberTypes="IRFormatCode List150 List175 xs:string" />
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="IDValue" type="xs:string" />
+	<xs:element name="IDTypeName" type="xs:string" />
+	<xs:element name="InventoryQuantity">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="QuantityType" />
+				<xs:element ref="QuantityValue" />
+				<xs:element ref="NewLocationParty" minOccurs="0" />
+				<xs:element ref="QuantityNote" minOccurs="0" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="InventoryReportNumber" type="xs:string" />
+	<xs:element name="IssueDateTime" type="IRDateOrDateTime" />
+	<xs:element name="ItemDescription">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice>
+					<xs:element ref="TitleDetail" />
+					<xs:sequence>
+						<xs:element ref="Title" />
+						<xs:element ref="Contributor" minOccurs="0" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:choice>
+				<xs:element ref="OtherDetail" minOccurs="0" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="LineNumber" type="xs:positiveInteger" />
+	<xs:element name="LocationIdentifier">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="LocationIDType" />
+				<xs:element ref="IDTypeName" minOccurs="0" />
+				<xs:element ref="IDValue" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="LocationIDType" type="IRLocationIDAgencyCode" />
+	<xs:element name="LocationName" type="IRLocationName" />
+	<xs:element name="NameLine" type="xs:string" />
+	<xs:element name="NewLocationParty" type="IRPartyWithLocation" />
+	<xs:element name="NumberOfLines" type="xs:positiveInteger" />
+	<xs:element name="NumberOfProductsByInventoryStatus">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="InventoryStatus" />
+				<xs:element ref="QuantityValue" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="NumberOfUnitsByQuantityType">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="QuantityType" />
+				<xs:element ref="QuantityValue" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PartyIDType" type="IRPartyIDType" />
+	<xs:element name="PartyIdentifier" type="IRPartyID" />
+	<xs:element name="PersonName" type="xs:string" />
+	<xs:element name="PartyName" type="IRPartyName" />
+	<xs:element name="ProductIdentifier">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ProductIDType" />
+				<xs:element ref="IDTypeName" minOccurs="0" />
+				<xs:element ref="IDValue" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ProductIDType" type="IRProductIDType" />
+	<xs:element name="PostalAddress">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="AddressLine" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PublisherParty" type="IRParty" />
+	<xs:element name="PurposeCode" type="PurposeCode" />
+	<xs:element name="QuantityType" type="IRQuantityTypeCode" />
+	<xs:element name="QuantityValue" type="xs:nonNegativeInteger" />
+	<xs:element name="QuantityNote" type="xs:string" />
+	<xs:element name="ReferenceCoded">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ReferenceTypeCode" />
+				<xs:element ref="ReferenceTypeName" minOccurs="0" />
+				<xs:choice>
+					<xs:sequence>
+						<xs:element ref="ReferenceNumber" />
+						<xs:element ref="ReferenceDate" minOccurs="0" />
+					</xs:sequence>
+					<xs:element ref="ReferenceDate" />
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ReferenceTypeCode" type="IRItemReferenceTypeCode" />
+	<xs:element name="ReferenceNumber" type="xs:string" />
+	<xs:element name="ReferenceDate" type="IRDateOrDateTime" />
+	<xs:element name="ReportingParty" type="IRParty" />
+	<xs:element name="SellerParty" type="IRPartyWithLocation" />
+	<xs:element name="TitleDetail" type="xs:string" />
+	<xs:element name="Location" type="IRLocation" />
+
+	<xs:element name="AdditionalPartyID" substitutionGroup="AdditionalPartyIdentifier" /> <!-- 1.1: added -->
+	<xs:element name="Author" substitutionGroup="Contributor" />                          <!-- 1.1: added -->
+	<xs:element name="Identifier" substitutionGroup="IDValue" />                          <!-- 1.1: added -->
+	<xs:element name="PartyID" substitutionGroup="PartyIdentifier" />                     <!-- 1.1: added -->
+	<xs:element name="ProductID" substitutionGroup="ProductIdentifier" />                 <!-- 1.1: added -->
+	<xs:element name="NumberOfUnits" substitutionGroup="NumberOfUnitsByQuantityType" />   <!-- 1.1: added -->
+
+	<xs:element name="Contributor" type="xs:string" />                                    <!-- 1.1: added -->
+	<xs:element name="InventoryNote" type="xs:string" />                                  <!-- 1.1: added -->
+	<xs:element name="InventoryStatus" type="IRInventoryStatus" />                        <!-- 1.1: added -->
+	<xs:element name="OtherDetail" type="xs:string" />                                    <!-- 1.1: added -->
+	<xs:element name="ReferenceTypeName" type="xs:string" />                              <!-- 1.1: added -->
+	<xs:element name="RegionCode" type="IRRegionCode" />                                  <!-- 1.1: added -->
+	<xs:element name="Title" type="xs:string" />                                          <!-- 1.1: added -->
+	<xs:element name="ReceivingParty" type="IRParty" />                                   <!-- 1.1: added -->
+	<xs:element name="SellingAgentParty" type="IRParty" />                                <!-- 1.1: added -->
+	<xs:element name="SupplierParty" type="IRParty" />                                    <!-- 1.1: added -->
+
+	<xs:simpleType name="IRDate">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="2\d\d\d(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-8])" />
+			<xs:pattern value="2\d\d\d(0[13-9]|1[0-2])(29|30)" />
+			<xs:pattern value="2\d\d\d(0[13578]|1[02])31" />
+			<xs:pattern value="2[048](0[048]|[13579][26]|[2468][048])0229" />
+			<xs:pattern value="2[1235679](0[48]|[13579][26]|[2468][048])0229" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="IRDateOrDateTime">
+		<xs:union memberTypes="IRDate IRDateTime" />
+	</xs:simpleType>
+	<xs:simpleType name="IRDateTime">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="2\d\d\d(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-8])T([01][0-9]|2[0-3])[0-5][0-9]([0-5][0-9])?(Z|[+\-](0[0-9]|1[0-2])(00|15|30|45))?" />
+			<xs:pattern value="2\d\d\d(0[13-9]|1[0-2])(29|30)T([01][0-9]|2[0-3])[0-5][0-9]([0-5][0-9])?(Z|[+\-](0[0-9]|1[0-2])(00|15|30|45))?" />
+			<xs:pattern value="2\d\d\d(0[13578]|1[02])31T([01][0-9]|2[0-3])[0-5][0-9]([0-5][0-9])?(Z|[+\-](0[0-9]|1[0-2])(00|15|30|45))?" />
+			<xs:pattern value="2[048](0[048]|[13579][26]|[2468][048])0229T([01][0-9]|2[0-3])[0-5][0-9]([0-5][0-9])?(Z|[+\-](0[0-9]|1[0-2])(00|15|30|45))?" />
+			<xs:pattern value="2[1235679](0[48]|[13579][26]|[2468][048])0229T([01][0-9]|2[0-3])[0-5][0-9]([0-5][0-9])?(Z|[+\-](0[0-9]|1[0-2])(00|15|30|45))?"
+			/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="IRPartyName">
+		<xs:sequence>
+			<xs:element ref="NameLine" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="IRParty">
+		<xs:sequence>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element ref="PartyIdentifier" />
+					<xs:element ref="AdditionalPartyIdentifier" minOccurs="0" maxOccurs="unbounded" />
+					<xs:element ref="PartyName" minOccurs="0" />
+				</xs:sequence>
+				<xs:sequence>
+					<xs:element ref="AdditionalPartyIdentifier" minOccurs="0" maxOccurs="unbounded" />
+					<xs:element ref="PartyName" />
+				</xs:sequence>
+			</xs:choice>
+			<xs:element ref="PostalAddress" minOccurs="0" />
+			<xs:element ref="CommunicationDetails" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element ref="ContactPerson" minOccurs="0" maxOccurs="unbounded" />
+			<xs:choice minOccurs="0">
+				<xs:element ref="CountryCode" />
+				<xs:element ref="RegionCode" />
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="IRPartyID">
+		<xs:sequence>
+			<xs:element ref="PartyIDType" />
+			<xs:element ref="IDTypeName" minOccurs="0" />
+			<xs:element ref="IDValue" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="IRPartyWithLocation">
+		<xs:sequence>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element ref="PartyIdentifier" />
+					<xs:element ref="AdditionalPartyIdentifier" minOccurs="0" maxOccurs="unbounded" />
+					<xs:element ref="PartyName" minOccurs="0" />
+				</xs:sequence>
+				<xs:sequence>
+					<xs:element ref="AdditionalPartyIdentifier" minOccurs="0" maxOccurs="unbounded" />
+					<xs:element ref="PartyName" />
+				</xs:sequence>
+			</xs:choice>
+			<xs:element ref="PostalAddress" minOccurs="0" />
+			<xs:element ref="CommunicationDetails" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element ref="ContactPerson" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element ref="Location" minOccurs="0" />
+			<xs:choice minOccurs="0">
+				<xs:element ref="CountryCode" />
+				<xs:element ref="RegionCode" />
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="IRLocation">
+		<xs:choice>
+			<xs:sequence>
+				<xs:element ref="LocationIdentifier" maxOccurs="unbounded" />
+				<xs:element ref="LocationName" minOccurs="0" />
+			</xs:sequence>
+			<xs:element ref="LocationName" />
+		</xs:choice>
+	</xs:complexType>
+
+	<xs:simpleType name="IRLocationIDAgencyCode"> <!-- 1.1: added -->
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Proprietary" />
+			<xs:enumeration value="GLN" />
+			<xs:enumeration value="SAN" />
+			<xs:enumeration value="URI" />
+			<xs:enumeration value="PostalCode" />     <!-- should start with country code -->
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="IRInventoryStatus">      <!-- 1.1: added -->
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="00" />     <!-- Unknown or Unspecified -->
+			<xs:enumeration value="01" />     <!-- NoMetadata, NoMaster -->
+			<xs:enumeration value="02" />     <!-- NoMetadata, MasterOnHand -->
+			<xs:enumeration value="03" />     <!-- NoMetadata, MasterInQA -->
+			<xs:enumeration value="04" />     <!-- NoMetadata, MasterRejected -->
+			<xs:enumeration value="05" />     <!-- NoMetadata, MasterReady -->
+			<xs:enumeration value="11" />     <!-- MetadataOnHand, NoMaster -->
+			<xs:enumeration value="12" />     <!-- MetadataOnHand, MasterOnHand -->
+			<xs:enumeration value="13" />     <!-- MetadataOnHand, MasterInQA -->
+			<xs:enumeration value="14" />     <!-- MetadataOnHand, MasterRejected -->
+			<xs:enumeration value="15" />     <!-- MetadataOnHand, MasterReady -->
+			<xs:enumeration value="21" />     <!-- MetadataInQA, NoMaster -->
+			<xs:enumeration value="22" />     <!-- MetadataInQA, MasterOnHand -->
+			<xs:enumeration value="23" />     <!-- MetadataInQA, MasterInQA -->
+			<xs:enumeration value="24" />     <!-- MetadataInQA, MasterRejected -->
+			<xs:enumeration value="25" />     <!-- MetadataInQA, MasterReady -->
+			<xs:enumeration value="31" />     <!-- MetadataRejected, NoMaster -->
+			<xs:enumeration value="32" />     <!-- MetadataRejected, MasterOnHand -->
+			<xs:enumeration value="33" />     <!-- MetadataRejected, MasterInQA -->
+			<xs:enumeration value="34" />     <!-- MetadataRejected, MasterRejected -->
+			<xs:enumeration value="35" />     <!-- MetadataRejected, MasterReady -->
+			<xs:enumeration value="41" />     <!-- MetadataReady, NoMaster, NotPreordering -->
+			<xs:enumeration value="42" />     <!-- MetadataReady, MasterOnHand, NotPreordering -->
+			<xs:enumeration value="43" />     <!-- MetadataReady, MasterInQA, NotPreordering -->
+			<xs:enumeration value="44" />     <!-- MetadataReady, MasterRejected, NotPreordering -->
+			<xs:enumeration value="45" />     <!-- MetadataReady, MasterReady, NotPreordering -->
+			<xs:enumeration value="51" />     <!-- MetadataReady, NoMaster, Preordering -->
+			<xs:enumeration value="52" />     <!-- MetadataReady, MasterOnHand, Preordering -->
+			<xs:enumeration value="53" />     <!-- MetadataReady, MasterInQA, Preordering -->
+			<xs:enumeration value="54" />     <!-- MetadataReady, MasterRejected, Preordering -->
+			<xs:enumeration value="55" />     <!-- MetadataReady, MasterReady, Preordering -->
+			<xs:enumeration value="61" />     <!-- ProductFulfilling, WithNoKnownIssues -->
+			<xs:enumeration value="62" />     <!-- ProductFulfilling, WithKnownMasterIssue -->
+			<xs:enumeration value="63" />     <!-- ProductFulfilling, WithKnownMetadataIssue -->
+			<xs:enumeration value="64" />     <!-- ProductFulfilling, WithKnownMasterAndMetadataIssues -->
+			<xs:enumeration value="71" />     <!-- ProductFrozen, WithNoKnownIssues, Ordering -->
+			<xs:enumeration value="72" />     <!-- ProductFrozen, WithKnownMasterIssue, Ordering -->
+			<xs:enumeration value="73" />     <!-- ProductFrozen, WithKnownMetadataIssue, Ordering -->
+			<xs:enumeration value="74" />     <!-- ProductFrozen, WithKnownMasterAndMetadataIssues, Ordering -->
+			<xs:enumeration value="75" />     <!-- ProductFrozen, WithNoKnownIssues, NotOrdering -->
+			<xs:enumeration value="76" />     <!-- ProductFrozen, WithKnownMasterIssue, NotOrdering -->
+			<xs:enumeration value="77" />     <!-- ProductFrozen, WithKnownMetadataIssue, NotOrdering -->
+			<xs:enumeration value="78" />     <!-- ProductFrozen, WithKnownMasterAndMetadataIssues, NotOrdering -->
+			<xs:enumeration value="99" />     <!-- ProductRemovedFromInventory -->
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="IRPartyIDType">          <!-- 1.1: added -->
+		<xs:union memberTypes="IRPartyIDAgencyCode List44" />
+	</xs:simpleType>
+	<xs:simpleType name="IRRegionCode">           <!-- 1.1: added -->
+		<xs:restriction base="List49" />
+	</xs:simpleType>
+	<xs:simpleType name="IRContactRoleCode">      <!-- 1.1: added -->
+		<xs:restriction base="List198" />
+	</xs:simpleType>
+	<xs:simpleType name="IRProductIDType">        <!-- 1.1: added -->
+		<xs:union memberTypes="ProductIDAgencyCode List5" />
+	</xs:simpleType>
+
+	<xs:simpleType name="IRLocationName">
+		<xs:restriction base="xs:string" />
+	</xs:simpleType>
+	<xs:simpleType name="IRFormatCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="PrintOnDemand" />
+			<!-- deprecated -->
+			<xs:enumeration value="HTML" />
+			<xs:enumeration value="TXT" />
+			<xs:enumeration value="PDF" />
+			<xs:enumeration value="PDFMerchant" />
+			<xs:enumeration value="AdobeEbookReader" />
+			<xs:enumeration value="MicrosoftReaderLevel1-3" />
+			<xs:enumeration value="MicrosoftReaderLevel5" />
+			<xs:enumeration value="NetLibrary" />
+			<xs:enumeration value="MetaText" />
+			<xs:enumeration value="MightyWords" />
+			<xs:enumeration value="PalmReader" />
+			<xs:enumeration value="Softbook" />
+			<xs:enumeration value="RocketBook" />
+			<xs:enumeration value="GemstarREB1100" />
+			<xs:enumeration value="GemstarREB1200" />
+			<xs:enumeration value="FranklinEBookman" />
+			<xs:enumeration value="Books24x7" />
+			<xs:enumeration value="DigitalOwl" />
+			<xs:enumeration value="Handheldmed" />
+			<xs:enumeration value="WizeUp" />
+			<xs:enumeration value="TK3" />
+			<xs:enumeration value="Litraweb" />
+			<xs:enumeration value="MobiPocket" />
+			<xs:enumeration value="OpenEbook" />
+			<xs:enumeration value="GoReader" />
+			<xs:enumeration value="Ebrary" />
+			<xs:enumeration value="TownCompass" />
+			<xs:enumeration value="Exebook" />
+			<xs:enumeration value="SonyBBeB" />
+			<xs:enumeration value="VitaSourceBookshelf" />
+			<xs:enumeration value="AdobeDigitalEditions" />
+			<xs:enumeration value="MyLibrary" />
+			<xs:enumeration value="Kindle" />
+			<xs:enumeration value="MultiFormats" />
+			<xs:enumeration value="Other" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="IRDateQualifierCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="InventoryPeriodStart" />
+			<xs:enumeration value="InventoryPeriodEnd" />
+			<xs:enumeration value="InventoryDate" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="IRItemReferenceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ReportItemReferenceNumber" /> <!-- not used in header -->
+			<xs:enumeration value="ContractReference" />
+			<xs:enumeration value="StandingOrderReference" />
+			<xs:enumeration value="Proprietary" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="IROtherPartyIDAgencyCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="TaxRegistrationNumber" />
+			<xs:enumeration value="VATRegistrationNumber" />
+			<xs:enumeration value="GLN" />
+			<xs:enumeration value="SAN" />
+			<xs:enumeration value="VKNR" />
+			<xs:enumeration value="NBSN" />
+			<xs:enumeration value="BAGNR" />
+			<xs:enumeration value="PublishersAccountNumber" />
+			<xs:enumeration value="SellersAccountNumber" />
+			<xs:enumeration value="Proprietary" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="IRPartyIDAgencyCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Proprietary" /> <!-- same as 01 -->
+			<xs:enumeration value="VKNR" />        <!-- same as 04 -->
+			<xs:enumeration value="GLN" />         <!-- same as 06 -->
+			<xs:enumeration value="SAN" />         <!-- same as 07 -->
+			<xs:enumeration value="NBSN" />
+			<xs:enumeration value="BAGNR" />
+			<xs:enumeration value="NNSR" />        <!-- Norwegian National School Registry -->
+			<xs:enumeration value="NON" />         <!-- Norwegian Organisation Number -->
+			<xs:enumeration value="VATRegistrationNumber" /> <!-- same as 23 -->
+			<xs:enumeration value="TaxRegistrationNumber" />
+			<xs:enumeration value="SellersAccountNumber" />
+			<xs:enumeration value="PublishersAccountNumber" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="IRQuantityTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="InHand" />
+			<xs:enumeration value="InHandMax" />
+			<xs:enumeration value="InHandMin" />
+			<xs:enumeration value="InHandUnreserved" />
+			<xs:enumeration value="InHandReserved" />
+			<xs:enumeration value="InHandUnreservedMax" />
+			<xs:enumeration value="InHandReservedMax" />
+			<xs:enumeration value="InHandUnreservedMin" />
+			<xs:enumeration value="InHandReservedMin" />
+			<xs:enumeration value="OnOrder" />
+			<xs:enumeration value="OnOrderMax" />
+			<xs:enumeration value="OnOrderMin" />
+			<xs:enumeration value="OnOrderUnreserved" />
+			<xs:enumeration value="OnOrderReserved" />
+			<xs:enumeration value="OnOrderUnreservedMax" />
+			<xs:enumeration value="OnOrderReservedMax" />
+			<xs:enumeration value="OnOrderUnreservedMin" />
+			<xs:enumeration value="OnOrderReservedMin" />
+			<xs:enumeration value="OutstandingRequirement" />
+			<xs:enumeration value="Despatched" />
+			<xs:enumeration value="LostOrStolen" />
+			<xs:enumeration value="DamagedOrDestroyed" />
+			<xs:enumeration value="Transferred" />
+			<xs:enumeration value="Returned" />
+			<xs:enumeration value="Destroyed" />
+			<xs:enumeration value="ReturnedForDestruction" />
+			<xs:enumeration value="ReturnedForResale" />
+			<xs:enumeration value="RemovedFromInventory" />
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

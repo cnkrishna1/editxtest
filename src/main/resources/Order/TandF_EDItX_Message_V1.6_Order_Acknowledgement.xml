@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EDItXMessageAcknowledgement version="1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="EDItX_Message_V1.6.xsd">
+   <InterchangeReference>InterchangeReference</InterchangeReference>
+    <MessageNumber>ZXCV678</MessageNumber>
+    <DocumentType>Order</DocumentType>
+    <VersionNumber>1.0</VersionNumber>
+    <NumberOfDocuments>1</NumberOfDocuments>
+<Sender>
+      <PartyID>
+        <PartyIDType>GLN</PartyIDType>   
+        <!-- here the request sender is the seller eg: consider as Amazon  which will be the 7th element of order request xml as per standard of Editx-->
+        <Identifier>Amazon</Identifier>
+      </PartyID>
+    </Sender>
+    <Receiver>
+      <PartyID>
+        <PartyIDType>SellersAccountNumber</PartyIDType>
+        <Identifier>HDFC0000243678</Identifier>     
+         <!-- 8th element of order request in main header as per acknowledgement standard of editX-->
+      </PartyID>
+    </Receiver>
+    <PurposeCode>Original</PurposeCode>  <!--9th element of order header request  as per acknowledgement standard of editX- -->
+  <ReceivedDateTime>20200417T0255Z</ReceivedDateTime>
+  <AcknowledgedDateTime>20200417T0256Z</AcknowledgedDateTime>
+  <AcknowledgementStatusCode>Accepted</AcknowledgementStatusCode>
+  <AcknowledgementStatusMessage>Received and passed on for processing</AcknowledgementStatusMessage>   
+  <!--  this message is dependent on "AcknowledgementStatusCode"-->
+  <LastMessageNumber>ZXCV678</LastMessageNumber>   <!-- Assumption :: this element corresponds to "MessageNumber" in Header section of Request -->
+</EDItXMessageAcknowledgement>

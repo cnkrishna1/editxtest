@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EDItXMessage version="1.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="EDItX_Message_V1.6.xsd">
+  <EDItXMessageHeader>
+    <InterchangeReference>InventoryReference</InterchangeReference>   <!--need to know what should be the appropriate value in each report here  -->
+     <!--  combination of interchange reference and
+message number gives the message an identifier that is unique within the trading relationship. -->
+    <MessageNumber>00001</MessageNumber>
+    <DocumentType>StockReport</DocumentType>  <!-- mentioned as salesReport  only since it doesn't have any specific to Inventory report-->
+    <VersionNumber>v1</VersionNumber>
+    <NumberOfDocuments>2</NumberOfDocuments>
+    <Sender>
+      <PartyID>       <!-- intended to be used by a retailer, distributor or other intermediary managing inventory on behalf of the publisher
+       or by an agent reporting on their behalf, to report inventory levels to the publisher.   -->
+        <PartyIDType>GLN</PartyIDType>   
+        <Identifier>UniqueValue Here (XXXXXXX)</Identifier>   <!-- retailer/distributor  -->
+      </PartyID>
+    </Sender>
+    <Receiver>
+      <PartyID>   <!-- receiver is the Publisher : T&F in our case -->
+        <PartyIDType>GLN</PartyIDType>
+        <Identifier>T and F Unique Value</Identifier>
+      </PartyID>
+    </Receiver>
+    <PurposeCode>Original</PurposeCode>
+    <SentDateTime>20200504</SentDateTime>   <!-- currentDate i.e; date at which report has sent -->
+  </EDItXMessageHeader>
+  <EDItXMessagePayload>
+    <InventoryReport version="1.0">
+      <Header>
+        <InventoryReportNumber>I-00001</InventoryReportNumber>
+        <IssueDateTime>20200131</IssueDateTime>
+        <PurposeCode>Original</PurposeCode>
+        <DateCoded>
+        	<Date>20200504</Date>  <!-- date on which inventory report generated/prepared.  -->
+        	<DateQualifierCode>InventoryDate</DateQualifierCode>  
+        </DateCoded> 
+        <SellerParty>     	 <!-- sellerParty is distributor/retailer in our case -->
+        	<PartyID>
+        		<PartyIDType>GLN</PartyIDType>
+        		<Identifier>Respective SellerParty Identifier</Identifier>
+        	</PartyID>
+        </SellerParty>
+        <PublisherParty>
+        	<PartyID>
+        		<PartyIDType>GLN</PartyIDType>
+        		<Identifier>T and F identifier</Identifier>
+        	</PartyID>
+        </PublisherParty>
+  </Header>
+      <ItemDetail>
+        <LineNumber>1</LineNumber>
+        <ProductID>
+          <ProductIDType>ISBN</ProductIDType>
+          <Identifier>PhysicalISBN</Identifier>
+        </ProductID>
+        <ItemDescription>
+        	<TitleDetail>Statics By Mark</TitleDetail>
+        </ItemDescription>
+        <InventoryQuantity>
+        	<QuantityType>Despatched</QuantityType> <!-- this can be selected appropriately.. -->
+        	<QuantityValue>2</QuantityValue>
+        </InventoryQuantity>
+      </ItemDetail>
+      <ItemDetail>
+        <LineNumber>2</LineNumber>
+        <ProductID>
+          <ProductIDType>Proprietary</ProductIDType>
+          <IDTypeName>Bookstore Item no</IDTypeName>  <!-- this element is mandatory when <ProductIDType> is "Proprietary" only-->
+          <Identifier> alphaNumeric Value</Identifier>
+        </ProductID>
+        <ItemDescription>
+        	<TitleDetail>Fundas of Stocks and Mutual Funds </TitleDetail>
+        </ItemDescription>
+        <InventoryQuantity>
+        	<QuantityType>InHand</QuantityType> <!-- this can be selected appropriately.. -->
+        	<QuantityValue>3</QuantityValue>
+        </InventoryQuantity>
+      </ItemDetail>
+      <Summary>
+        <NumberOfLines>2</NumberOfLines>  <!-- total number of itemDetails -->
+        <NumberOfUnits>   <!--  this can be repeatable one based on the <QuantityType> -->
+        <QuantityType>Despatched</QuantityType>  
+        <QuantityValue>2</QuantityValue>
+        </NumberOfUnits>
+        <NumberOfUnits>   <!-- for respective itemDetail and this element is repeatable -->
+        <QuantityType>InHand</QuantityType>
+        <QuantityValue>3</QuantityValue>
+        </NumberOfUnits>
+      </Summary>
+    </InventoryReport>
+  </EDItXMessagePayload>
+</EDItXMessage>

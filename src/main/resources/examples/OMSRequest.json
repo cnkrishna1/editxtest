@@ -1,0 +1,63 @@
+{
+    "orderType": "SALES",
+    "orderedItem": [
+      {
+        "currency": "USD",
+        "description": "Phase Transformations in Metals and Alloys (Revised Reprint)",
+        "discount": 0.00,
+        "discountAmount": 0.00,
+        "discountCode": "",
+        "discountCurrency": "",
+        "lineItemType": "Ebook",
+        "orderedQuantity": 1,
+        "price": 58.57,
+        "productId": "9780429112256",
+        "quantity": 1,
+        "salesOrg": "IN01",
+        "salesType": "PURCHASE",
+        "status": "FULFILLED",
+        "taxAmount": 0.00,
+        "taxCode": ""
+      },
+      {
+        "currency": "USD",
+        "description": "Power System Transients: Parameter Determination",
+        "discount": 0.00,
+        "discountAmount": 0.00,
+        "discountCode": "",
+        "discountCurrency": "",
+        "lineItemType": "Ebook",
+        "orderedQuantity": 1,
+        "price": 36.44,
+        "productId": "9781315218984",
+        "quantity": 1,
+        "salesOrg": "IN01",
+        "salesType": "PURCHASE",
+        "status": "FULFILLED",
+        "taxAmount": 0.00,
+        "taxCode": ""
+      }
+    ],
+    "channel": "AMAZON_EBK_SALES",
+    "notes": "Amazon_TAYQQ Amazon Mexico December 2019 .csv",
+    "customerId": "4021428",
+    "buyerId": "4021428",
+    "orderDate": "2020-03-02",
+    "orderPrice": 773.21,
+    "orderStatus": "OPEN",
+    "seller": "AMAZON",
+    "billingAddress": {
+      "addressCountry": "United States",
+      "addressContactName": null,
+      "addressContactEmail": null,
+      "postalCode": "98118",
+      "businessPartnerNo": "3119720",
+      "countryCode": "US",
+      "telephoneNo": null,
+      "externalCustomerAddressId": 38881,
+      "taxRegistrationNumber": null,
+      "taxCategory": null
+    },
+    "subTotalPrice": 773.21,
+    "totalTax": 0.00
+  }

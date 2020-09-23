@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EDItXMessageAcknowledgement version="1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="EDItX_Message_V1.6.xsd">
+    <InterchangeReference>InterchangeReference</InterchangeReference>
+    <MessageNumber>SR-23456</MessageNumber>
+    <DocumentType>SalesReport</DocumentType>
+    <VersionNumber>1.0</VersionNumber>
+    <NumberOfDocuments>1</NumberOfDocuments>
+ <Sender>
+      <PartyID>
+        <PartyIDType>GLN</PartyIDType>
+        <Identifier>GLNIdentifier</Identifier>
+      </PartyID>
+    </Sender>
+    <Receiver>
+      <PartyID>
+        <PartyIDType>GLN</PartyIDType>
+        <Identifier>GLNIdentifier</Identifier>
+      </PartyID>
+    </Receiver>
+    <PurposeCode>Original</PurposeCode>
+  <ReceivedDateTime>20200421T1301Z</ReceivedDateTime>
+  <AcknowledgedDateTime>20200421T1302Z</AcknowledgedDateTime>
+  <AcknowledgementStatusCode>PayloadErrors</AcknowledgementStatusCode>
+  <AcknowledgementStatusMessage>Payload does not match header (wrong document type and/or document numbers, wrong number of documents, etc)</AcknowledgementStatusMessage>   
+  <!--  this message is dependent on "AcknowledgementStatusCode"-->
+  <LastMessageNumber>SR-23456</LastMessageNumber>   
+  <!-- Assumption :: this element corresponds to "MessageNumber" in Header section of Request. 
+  If not need to provide the last message number of the prevous transaction it seems.. -->
+</EDItXMessageAcknowledgement>

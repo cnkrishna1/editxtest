@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SalesReport version="1.1"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
+	xs:noNamespaceSchemaLocation="TandFSalesReport_EDItX.xsd">
+	<!-- this xml refers to PQCentral USD section XLS  -->
+	<Header>
+		<SalesReportNumber>0123456</SalesReportNumber>   <!-- didnt find details wrt this.. -->
+		<IssueDateTime>20191004</IssueDateTime>  <!-- how to know what will be the issue date time here for the scenario 
+		SalesPeriodEnd and in other cases too -->
+		<!--  before comment  ::  Assuming this is report generation date particular to the reseller which will have no relevance here-->
+		<ReferenceCoded>
+			<ReferenceTypeCode>InvoiceLineReference</ReferenceTypeCode>  <!-- since it has number of line items , changed to InvoiceLineReference type-->
+			<!--   before comment ::  In case of negative order, CreditNoteReference will be used (considering Ingram negative invoices) -->
+			<ReferenceNumber>1234567890</ReferenceNumber>  <!-- need to know about this -->
+		</ReferenceCoded>
+		<PurposeCode>Original</PurposeCode> <!-- put the same as  amazon one  -->
+		<SalesReportTypeCode>ByTransaction</SalesReportTypeCode>  <!-- since different transactions involved , changed to  "ByTransaction" type -->
+		<ReportPriceType>SRPExcludingTax</ReportPriceType> <!-- The amount is excluding tax as we are calculating tax using SAP when applicable -->
+		<DateCoded> <!-- This is order date sent by the aggregator, applies to whole request. -->
+			<Date>20200102</Date>      <!--  since all transactions happend in 2019 , made Date to 2020 Jan 2st, and also with relevance to qualifiercode :: SalesPeriodEnd  -->
+			<DateQualifierCode>SalesPeriodEnd</DateQualifierCode>
+		</DateCoded>
+		<ClassOfSaleCode>03</ClassOfSaleCode>  <!--  need to understand better on this-->
+		<Territory>
+			<CountriesIncluded>US FI AU CA</CountriesIncluded>
+			<RegionsIncluded>US-AK AU-CT CA-NL  </RegionsIncluded>  <!--  how to find region for Finland FI -->
+		</Territory>
+		<SellerParty>
+			<PartyIdentifier>
+				<PartyIDType>Proprietary</PartyIDType>   <!-- need to know significance of this -->
+				<IDTypeName>PQ-Central</IDTypeName>  <!-- party name eg: amazon -->
+				<IDValue>XXXX</IDValue> <!-- need to enter PQ_Central id  -->
+			</PartyIdentifier>
+		</SellerParty>
+	</Header>
+	<ItemDetail>
+		<LineNumber>1</LineNumber>
+		<ProductIdentifier>
+			<ProductIDType>ISBN</ProductIDType>
+			<IDTypeName>Digital ISBN</IDTypeName>
+			<IDValue>9781351577489</IDValue> <!-- This is digital isbn -refering to EbookIsbn from PQ Central XLS-->
+		</ProductIdentifier>
+		<ProductIdentifier>
+			<ProductIDType>ISBN</ProductIDType>
+			<IDTypeName>Physical ISBN</IDTypeName>
+			<IDValue>9781409435563</IDValue> <!-- This is physical isbn - refering to printIsbn from PQ Central XLS -->
+		</ProductIdentifier>
+		<FormatCode>OpenEbook</FormatCode> <!-- format of the book which is sold, change to softBook from openEbook-->
+		<Quantity>01</Quantity>
+		<PricingDetail>
+			<CurrencyConversionRate>1.0</CurrencyConversionRate>
+			<UnitAmountDueToPublisher>
+				<MonetaryAmount>37.49</MonetaryAmount>   <!--  the amount what goes to Publisher refer Due to Publisher columun in XLS -->
+				<CurrencyCode>USD</CurrencyCode>     
+				<CountryCode>US</CountryCode>
+			</UnitAmountDueToPublisher>   <!-- Apr21st2020 comment: Here,UnitAmountDueToSupplier is not considered.
+			So in summary also total sellerCharger would be zero -->
+		</PricingDetail>
+		<PriceCondition>
+			<PriceConditionType>10</PriceConditionType>   <!-- as per onix code list (https://ns.editeur.org/onix/en/167)
+			 -rent refers to 10  -->
+			<PriceConditionQuantity>
+				<PriceConditionQuantityType>01</PriceConditionQuantityType>
+				<Quantity>0</Quantity>
+				<QuantityUnit>00</QuantityUnit>
+			</PriceConditionQuantity>
+		</PriceCondition>
+		<DateCoded>    
+		<!--before comment:: Since order date is sent at header level, Is it required? -->
+			<Date>20191126</Date>   <!-- transactionDate  -->
+			<DateQualifierCode>TransactionDate</DateQualifierCode>
+		</DateCoded>
+	</ItemDetail>
+	<ItemDetail>
+		<LineNumber>2</LineNumber>
+		<ProductIdentifier>
+			<ProductIDType>ISBN</ProductIDType>
+			<IDTypeName>Digital ISBN</IDTypeName>
+			<IDValue>9781351562607</IDValue> <!-- This is digital isbn refering to EbookIsbn from PQ Central XLS -->
+		</ProductIdentifier>
+		<ProductIdentifier>
+			<ProductIDType>ISBN</ProductIDType>
+			<IDTypeName>Physical ISBN</IDTypeName>
+			<IDValue>9780754667841</IDValue> <!-- This is physical isbn  refering to printIsbn-->
+		</ProductIdentifier>
+		<FormatCode>Softbook</FormatCode> <!-- format of the book which is sold-->
+		<Quantity>1</Quantity>
+		<PricingDetail>
+			<CurrencyConversionRate>0.92</CurrencyConversionRate>      <!-- EUR = 0.92 of USD--> 
+			<UnitAmountDueToPublisher>
+				<MonetaryAmount>104.97</MonetaryAmount> <!-- By having negative monetory amount, we are differentiating sales and returns here -->
+				<CurrencyCode>EUR</CurrencyCode>
+				<CountryCode>FI</CountryCode>
+			</UnitAmountDueToPublisher>     <!-- Apr21st2020 comment: Here,UnitAmountDueToSupplier is not considered. -->
+		</PricingDetail>
+		<PriceCondition>
+			<PriceConditionType>00</PriceConditionType>
+			<PriceConditionQuantity>
+				<PriceConditionQuantityType>01</PriceConditionQuantityType>
+				<Quantity>0</Quantity>
+				<QuantityUnit>00</QuantityUnit>
+			</PriceConditionQuantity>
+		</PriceCondition>
+		<DateCoded>
+			<Date>20191018</Date>
+			<DateQualifierCode>TransactionDate</DateQualifierCode>
+		</DateCoded>
+	</ItemDetail>
+	<ItemDetail>
+		<LineNumber>3</LineNumber>
+		<ProductIdentifier>
+			<ProductIDType>ISBN</ProductIDType>
+			<IDTypeName>Digital ISBN</IDTypeName>
+			<IDValue>9781351558945</IDValue> <!-- This is digital isbn -->
+		</ProductIdentifier>
+		<ProductIdentifier>
+			<ProductIDType>ISBN</ProductIDType>
+			<IDTypeName>Physical ISBN</IDTypeName>
+			<IDValue>9780754661443</IDValue> <!-- This is physical isbn -->
+		</ProductIdentifier>
+		<FormatCode>OpenEbook</FormatCode> <!-- assuming  of the book which is sold-->
+		<Quantity>01</Quantity>
+		<PricingDetail>
+			<CurrencyConversionRate>0.61</CurrencyConversionRate>  <!--  AUS = 0.61 USD-->
+			<UnitAmountDueToPublisher>
+				<MonetaryAmount>75.58</MonetaryAmount>
+				<CurrencyCode>AUD</CurrencyCode>
+				<CountryCode>AU</CountryCode>     <!-- Apr21st2020 comment: Here,UnitAmountDueToSupplier is not considered. -->
+			</UnitAmountDueToPublisher>
+		</PricingDetail>
+		<PriceCondition>
+			<PriceConditionType>00</PriceConditionType>
+			<PriceConditionQuantity>
+				<PriceConditionQuantityType>01</PriceConditionQuantityType>
+				<Quantity>0</Quantity>
+				<QuantityUnit>00</QuantityUnit>
+			</PriceConditionQuantity>
+		</PriceCondition>
+		<DateCoded>
+			<Date>20191127</Date>
+			<DateQualifierCode>TransactionDate</DateQualifierCode>
+		</DateCoded>
+	</ItemDetail>
+	<ItemDetail>
+		<LineNumber>4</LineNumber>
+		<ProductIdentifier>
+			<ProductIDType>ISBN</ProductIDType>
+			<IDTypeName>Digital ISBN</IDTypeName>
+			<IDValue>9781351539746</IDValue> <!-- This is digital isbn  refer to eBookIsbn columun in xls-->
+		</ProductIdentifier>
+		<ProductIdentifier>
+			<ProductIDType>ISBN</ProductIDType>
+			<IDTypeName>Physical ISBN</IDTypeName>
+			<IDValue>9781409442370</IDValue> <!-- This is physical isbn  refers to PrintIsbn columum in xls-->
+		</ProductIdentifier>
+		<FormatCode>OpenEbook</FormatCode> <!-- format of the book which is sold-->
+		<Quantity>01</Quantity>
+		<PricingDetail>
+			<CurrencyConversionRate>0.71</CurrencyConversionRate>
+			<UnitAmountDueToPublisher>
+				<MonetaryAmount>128.02</MonetaryAmount>
+				<CurrencyCode>CAD</CurrencyCode>
+				<CountryCode>CA</CountryCode>    <!-- Apr21st2020 comment: Here,UnitAmountDueToSupplier is not considered. -->
+			</UnitAmountDueToPublisher>
+		</PricingDetail>
+		<PriceCondition>
+			<PriceConditionType>00</PriceConditionType>
+			<PriceConditionQuantity>
+				<PriceConditionQuantityType>01</PriceConditionQuantityType>
+				<Quantity>0</Quantity>
+				<QuantityUnit>00</QuantityUnit>
+			</PriceConditionQuantity>
+		</PriceCondition>
+		<DateCoded>
+			<Date>20191219</Date>  <!--  trx date of 4th item-->
+			<DateQualifierCode>TransactionDate</DateQualifierCode>
+		</DateCoded>
+	</ItemDetail>
+	<Summary>
+		<NumberOfLines>4</NumberOfLines>
+		<NumberOfUnits>00</NumberOfUnits>   <!--need to know about all units  , asp per my understanding presented like below -->
+		<NumberOfGrossSalesUnits>4</NumberOfGrossSalesUnits> <!-- EJD: this line should not be included for reseller model-->	
+		<NumberOfRefundedUnits>00</NumberOfRefundedUnits> <!-- EJD: this line should not be included for reseller model-->
+		<!-- Apr21st2020: we have included above elements just to cover all the possible scenarios,
+		acutally we removed these but as an example XML , added these to show what are all the possibles can fit in-->
+		<NumberOfNetSalesUnits>4</NumberOfNetSalesUnits>
+		<NumberOfNonSaleUnits>00</NumberOfNonSaleUnits>
+		<TotalSalesAmounts>
+			<TotalGrossSalesAmount>493.28</TotalGrossSalesAmount>   <!--  calculated from  each Gross Revenue - columun of XLS but didnt match anywhere with the total of  Gross Revenue present in sheet-->
+			<!-- EJD: this line should not be included for reseller model-->
+			<TotalRefundedSalesAmount>50.00</TotalRefundedSalesAmount><!-- EJD: this line should not be included for reseller model-->
+			<!-- Apr21st2020: we have included above elements just to cover all the possible scenarios,
+		acutally we removed these but as an example XML , added these to show what are all the possibles can fit in-->
+			<TotalNetSalesAmount>493.28</TotalNetSalesAmount>     <!--sale price per unit columun from xl sheet refers to this  -->
+			<TotalSellerChargeAmount>0.0</TotalSellerChargeAmount>  <!-- Apr21st2020: netsales = totalGross - Totaldiscount -->
+			<!-- Apr21st2020: sellerCharge amount is the one it goes to supplier which ideally would be  **sellerCharge(amountToSupplier) = netSales -amountDueToPublisher**
+			 since it is considered , given as o vlaue at each itemDetail too as mentioned at itemDetail section -->
+			<!-- EJD: no existing scenario for Seller Charge -->
+			<CurrencyCode>USD</CurrencyCode>
+			<CountryCode>US</CountryCode>
+		</TotalSalesAmounts>
+		<TotalDueToPublisher>
+			<MonetaryAmount>271.05</MonetaryAmount>   <!--  SInce different countries currencies are invloved , 
+			total will be the converisonRate*value of each item to get result in USD -->
+			<!-- EJD OK is it established with support that this is how it's meant to work, 
+			i.e. provide currency values and conversion rate above, but no converted values above, and the converted total only here? If so, OK, avoids duplication -->
+			 <!--  Apr201st2020 comment: Yes, none of the converted values will be shown in the individual item detail , only conversion rate and the respective country currency value will be there
+			 And converted total will be shown here in summary  directly in USD currency. So there is no issue of duplication here .Please correct me if i am wrong. 
+			 Ready for further criticism ....
+			-->
+			<CurrencyCode>USD</CurrencyCode>
+			<CountryCode>US</CountryCode>
+		</TotalDueToPublisher>
+	</Summary>
+</SalesReport>

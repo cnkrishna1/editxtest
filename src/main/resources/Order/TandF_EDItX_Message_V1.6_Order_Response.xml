@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OrderResponse version="1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="EDItX_Message_V1.6.xsd">
+  <Header>
+    <OrderResponseNumber>OR-00001</OrderResponseNumber>
+    <IssueDateTime>20200417</IssueDateTime> <!-- current time of response  -->
+    <ReferenceCoded> 
+      <ReferenceTypeCode>BuyersOrderReference</ReferenceTypeCode>
+      <ReferenceDate>20200330</ReferenceDate>  <!-- date of the order requested -->
+    </ReferenceCoded>
+    <PurposeCode>Original</PurposeCode>
+   <!--  <CurrencyCode>AED</CurrencyCode>
+    <CountryCode>AD</CountryCode> -->
+    <DateCoded>
+      <Date>20200417</Date>
+      <DateQualifierCode>CancelIfNotShippedBy</DateQualifierCode>
+    </DateCoded>
+    <BuyerParty>
+      <PartyID>     
+        <PartyIDType>GLN</PartyIDType>  <!--  details of aggregator-->
+        <Identifier>Aggregators like amazon Identifier</Identifier>  <!--  amazon GLN number-->
+      </PartyID>
+    </BuyerParty>
+    <SellerParty>
+      <PartyID>   
+        <PartyIDType>GLN</PartyIDType>   <!--  in order response case, seller party is supplier  T&F wrt  
+        refer  ** https://www.editeur.org/files/EDItX%20-%20trade%20book/EDItX_TradeOrderResp+StatRep_V1.2.pdf -->
+        <Identifier>T and F</Identifier>
+      </PartyID>
+    </SellerParty>
+    <ShipToParty>
+    	<PartyID>   <!--  generally shipToParty is the buyer say amazon in this case 
+    	if it differs then need to provide details otherwsie can be empty-->
+    		<PartyIDType>SellersAccountNumber</PartyIDType>
+    		<Identifier>HDFC0000243678</Identifier>      
+    	</PartyID>
+    </ShipToParty>
+    <BillToParty>    <!--  generally BillToParty is the buyer say amazon in this case 
+    	if it differs then need to provide details otherwsie can be empty-->
+      <PartyID>
+        <PartyIDType>SellersAccountNumber</PartyIDType>
+        <Identifier>SBI23452378965</Identifier>
+      </PartyID>
+    </BillToParty>
+    <ShippingFrom>      <!-- warehouse of T&F because form here only goods wll get shipped -->
+      <Location>
+      <LocationIdentifier>
+      	<LocationIDType>Proprietary</LocationIDType>
+      	<IDTypeName>T and F</IDTypeName>  <!-- shipped by T&F assumption.  -->
+      	<IDValue>XXXX</IDValue>
+      </LocationIdentifier>
+      <LocationName>UK</LocationName>
+      </Location>
+    </ShippingFrom>
+    <OrderQualifierCoded>    <!--need to understand what are all below elements signifies  -->
+      <OrderQualifierCodeType>Seller</OrderQualifierCodeType>
+      <OrderQualifierCode>OrderQualifierCode</OrderQualifierCode>
+    </OrderQualifierCoded>   
+    <ShippingInstructionsCode>ShipSeparately</ShippingInstructionsCode>
+    <InvoiceInstructionsCode>InvoiceSeparately</InvoiceInstructionsCode>
+    <AdditionalService>
+      <ServiceDescriptionCoded>    
+        <ServiceDescriptionCodeType>Seller</ServiceDescriptionCodeType>
+        <ServiceDescriptionCode>ServiceDescriptionCode</ServiceDescriptionCode>
+      </ServiceDescriptionCoded>
+    </AdditionalService>
+    <OrderResponseType>NoDetail</OrderResponseType>
+    <OrderStatus>AcceptedShipping</OrderStatus>
+    <OrderStatusMessage>Order Accepted for Shipping</OrderStatusMessage>
+  </Header>
+  <ItemDetail>
+    <LineNumber>1</LineNumber>
+    <ProductID>
+      <ProductIDType>Proprietary</ProductIDType>
+      <Identifier>QW0987Q</Identifier>    <!--  product identifier an unique number-->
+    </ProductID>
+    <ItemDescription>
+      <TitleDetail>Wings of Fire</TitleDetail>
+    </ItemDescription>
+    <ItemRelatedParty>
+      <PartyID>
+        <PartyIDType>GLN</PartyIDType>
+        <Identifier>ItemRelatedPartyIdentifier</Identifier>
+      </PartyID>
+    </ItemRelatedParty>
+    <OrderQuantity>10</OrderQuantity>
+    <DateCoded>
+      <Date>20200416</Date>
+      <DateQualifierCode>CancelIfNotShippedBy</DateQualifierCode>
+    </DateCoded>
+    <OrderItemQualifierCoded>
+      <OrderItemQualifierCodeType>Seller</OrderItemQualifierCodeType>
+      <OrderItemQualifierCode>OrderItemQualifierCode</OrderItemQualifierCode>
+    </OrderItemQualifierCoded>
+    <PricingDetail>
+      <Price>
+        <MonetaryAmount>125</MonetaryAmount>
+        <PriceQualifierCode>FixedRPIncludingTax</PriceQualifierCode>
+      </Price>
+    </PricingDetail>
+    <OrderLineStatusCoded>
+      <StatusCodeType>EDItEUR</StatusCodeType>
+      <StatusCode>accepted</StatusCode>
+    </OrderLineStatusCoded>
+    <QuantityShipping>10</QuantityShipping>
+    <CanceledQuantity>0</CanceledQuantity>
+    <AvailabilityCoded>
+      <AvailabilityCodeType>Seller</AvailabilityCodeType>
+      <AvailabilityCode>AvailabilityCode</AvailabilityCode>
+    </AvailabilityCoded>
+    <ExpectedShipDate>20200426</ExpectedShipDate>
+    <ConsumerOnSaleDate>20200430</ConsumerOnSaleDate> 
+    <Substitute>
+      <ProductID>
+        <ProductIDType>Proprietary</ProductIDType>
+        <Identifier>Identifier</Identifier>
+      </ProductID>
+    </Substitute>
+    <AdditionalService>
+      <ServiceDescriptionCoded>
+        <ServiceDescriptionCodeType>Seller</ServiceDescriptionCodeType>
+        <ServiceDescriptionCode>ServiceDescriptionCode</ServiceDescriptionCode>
+      </ServiceDescriptionCoded>
+    </AdditionalService>
+  </ItemDetail>
+  
+  <ItemDetail>
+    <LineNumber>2</LineNumber>
+    <ProductID>
+      <ProductIDType>ISBN</ProductIDType>
+      <Identifier>98438549857</Identifier>    <!--  -->
+    </ProductID>
+    <ItemDescription>
+      <TitleDetail> Title of the book </TitleDetail>
+    </ItemDescription>
+    <ItemRelatedParty>
+      <PartyID>
+        <PartyIDType>GLN</PartyIDType>
+        <Identifier>ItemRelatedPartyIdentifier</Identifier>
+      </PartyID>
+    </ItemRelatedParty>
+    <OrderQuantity>5</OrderQuantity>
+    <DateCoded>
+      <Date>20200416</Date>
+      <DateQualifierCode>CancelIfNotShippedBy</DateQualifierCode>
+    </DateCoded>
+    <OrderItemQualifierCoded>
+      <OrderItemQualifierCodeType>Seller</OrderItemQualifierCodeType>
+      <OrderItemQualifierCode>OrderItemQualifierCode</OrderItemQualifierCode>
+    </OrderItemQualifierCoded>
+    <PricingDetail>
+      <Price>
+        <MonetaryAmount>100</MonetaryAmount>
+        <PriceQualifierCode>FixedRPIncludingTax</PriceQualifierCode>
+      </Price>
+    </PricingDetail>
+    <OrderLineStatusCoded>
+      <StatusCodeType>EDItEUR</StatusCodeType>
+      <StatusCode>accepted</StatusCode>
+    </OrderLineStatusCoded>
+    <QuantityShipping>0</QuantityShipping> <!-- quantity in progress for shipping now -->
+   
+    <ShippedQuantity>5</ShippedQuantity>  <!--already shipped quantity  -->
+    <BackorderedQuantity>0</BackorderedQuantity>
+    <CanceledQuantity>0</CanceledQuantity>    <!--  optional elements-->
+    <AvailabilityCoded>
+      <AvailabilityCodeType>Seller</AvailabilityCodeType>
+      <AvailabilityCode>AvailabilityCode</AvailabilityCode>
+    </AvailabilityCoded>
+    <ExpectedShipDate>20200426</ExpectedShipDate>
+    <ConsumerOnSaleDate>20200430</ConsumerOnSaleDate> 
+    <Substitute>
+      <ProductID>
+        <ProductIDType>Proprietary</ProductIDType>
+        <Identifier>Identifier</Identifier>
+      </ProductID>
+    </Substitute>
+    <AdditionalService>
+      <ServiceDescriptionCoded>
+        <ServiceDescriptionCodeType>Seller</ServiceDescriptionCodeType>
+        <ServiceDescriptionCode>ServiceDescriptionCode</ServiceDescriptionCode>
+      </ServiceDescriptionCoded>
+    </AdditionalService>
+  </ItemDetail>
+  <Summary>
+    <NumberOfLines>2</NumberOfLines>
+    <UnitsOrdered>15</UnitsOrdered>
+    <UnitsBackordered>0</UnitsBackordered>   <!-- optional fields for future fit in to use  -->
+    <UnitsCanceled>0</UnitsCanceled>
+  </Summary>
+</OrderResponse>

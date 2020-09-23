@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EDItXMessage version="1.6"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="EDItX_Message_V1.6.xsd">
+	<EDItXMessageHeader>
+		<InterchangeReference>InterchangeReference</InterchangeReference>
+		<MessageNumber>INV-0000001</MessageNumber> <!-- This is the Invoice Number -->
+		<DocumentType>Invoice</DocumentType>
+		<VersionNumber>1.0</VersionNumber>
+		<NumberOfDocuments>1</NumberOfDocuments>
+		<Sender>
+			<PartyID>
+				<PartyIDType>GLN</PartyIDType>
+				<Identifier>Identifier</Identifier> <!-- TandF -->
+			</PartyID>
+		</Sender>
+		<Receiver>
+			<PartyID>
+				<PartyIDType>GLN</PartyIDType>
+				<Identifier>1208965</Identifier><!-- Identifier who cancelled -->
+			</PartyID>
+		</Receiver>
+		<PurposeCode>Original</PurposeCode>
+		<SentDateTime>20200627</SentDateTime>
+	</EDItXMessageHeader>
+	<EDItXMessagePayload>
+		<Invoice version="1.2"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:noNamespaceSchemaLocation="EDItX_TradeInvoice_V1.2.xsd">
+			<Header>
+				<InvoiceNumber>INV-0000001</InvoiceNumber>
+				<IssueDateTime>20200407</IssueDateTime>
+				<DocumentType>Invoice</DocumentType>
+				<!-- Since related to consumer direct fulfilment (CDF) commented <ReferenceCoded> 
+					<ReferenceTypeCode>BOLReference</ReferenceTypeCode> <ReferenceNumber>dadd</ReferenceNumber> 
+					</ReferenceCoded> -->
+				<PurposeCode>Original</PurposeCode>
+				<CurrencyCode>USD</CurrencyCode>
+				<CountryCode>US</CountryCode>
+				<DateCoded>
+					<Date>20200407</Date>
+					<DateQualifierCode>MeterDate</DateQualifierCode>
+				</DateCoded>
+				<BuyerParty>
+					<PartyID>
+						<PartyIDType>GLN</PartyIDType>
+						<!-- here the request sender is the seller eg: consider as Amazon or 
+							we consider the one who will be the product owner means simply a publisher/supplier 
+							eg: t&F -->
+						<Identifier>1208965</Identifier> <!-- I am mentioning the customer number here. -->
+					</PartyID>
+					<PostalAddress>
+						<AddressLine>999 Maple Street</AddressLine>
+						<PostalTownCity>CONTOOCOOK</PostalTownCity>
+						<PostalCode>03229-3374</PostalCode>
+						<CountrySubdivision>NH</CountrySubdivision>
+						<CountrySubdivisionCode>NH</CountrySubdivisionCode>
+						<Country>UNITED STATES OF AMERICA</Country>
+						<CountryCode>US</CountryCode>
+					</PostalAddress>
+					<CommunicationDetails>
+						<CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+						<CommunicationLocator>CommunicationLocator</CommunicationLocator>
+					</CommunicationDetails>
+					<ContactPerson>
+						<ContactRoleCode>ContactRoleCode</ContactRoleCode>
+						<NameLine>NameLine</NameLine>
+						<CommunicationDetails>
+							<CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+							<CommunicationLocator>CommunicationLocator</CommunicationLocator>
+						</CommunicationDetails>
+					</ContactPerson>
+					<CountryCode>US</CountryCode>
+				</BuyerParty>
+				<SellerParty>
+					<PartyID>
+						<PartyIDType>GLN</PartyIDType>
+						<Identifier>TandF Customer Services</Identifier>
+					</PartyID>
+					<AdditionalPartyID>
+						<PartyIDType>TaxRegistrationNumber</PartyIDType>
+						<Identifier>Identifier</Identifier>
+					</AdditionalPartyID>
+					<PartyName>
+						<NameLine>TAndF Customer Services</NameLine>
+					</PartyName>
+					<PostalAddress>
+						<AddressLine>TAndF Customer Services</AddressLine>
+						<PostalTownCity>Sheepen Place</PostalTownCity>
+						<PostalCode>3LP</PostalCode>
+						<CountrySubdivision>Colchester</CountrySubdivision>
+						<CountrySubdivisionCode>CO3</CountrySubdivisionCode>
+						<Country>United Kingdom</Country>
+						<CountryCode>GB</CountryCode>
+					</PostalAddress>
+					<CommunicationDetails>
+						<CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+						<CommunicationLocator>+1 215 625 8900</CommunicationLocator>
+					</CommunicationDetails>
+					<ContactPerson>
+						<ContactRoleCode>ContactRoleCode</ContactRoleCode>
+						<PersonName>PersonName</PersonName>
+						<CommunicationDetails>
+							<CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+							<CommunicationLocator>+1 215 625 8900</CommunicationLocator>
+						</CommunicationDetails>
+					</ContactPerson>
+					<CountryCode>GB</CountryCode>
+				</SellerParty>
+				<ShipToParty>
+					<PartyID>
+						<PartyIDType>GLN</PartyIDType>
+						<!-- here the request sender is the seller eg: consider as Amazon or 
+							we consider the one who will be the product owner means simply a publisher/supplier 
+							eg: t&F -->
+						<Identifier>1208965</Identifier> <!-- I am mentioning the customer number here. -->
+					</PartyID>
+					<PostalAddress>
+						<AddressLine>Kennesaw State University</AddressLine>
+						<AddressLine>Sturgis Library</AddressLine>
+						<AddressLine>1000 Chastain Road</AddressLine>
+						<PostalTownCity>KENNESAW</PostalTownCity>
+						<PostalCode>30144</PostalCode>
+						<CountrySubdivision>CountrySubdivision</CountrySubdivision>
+						<CountrySubdivisionCode>GA</CountrySubdivisionCode>
+						<Country>United States of America</Country>
+						<CountryCode>US</CountryCode>
+					</PostalAddress>
+					<CommunicationDetails>
+						<CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+						<CommunicationLocator>CommunicationLocator</CommunicationLocator>
+					</CommunicationDetails>
+					<ContactPerson>
+						<ContactRoleCode>ContactRoleCode</ContactRoleCode>
+						<NameLine>NameLine</NameLine>
+						<CommunicationDetails>
+							<CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+							<CommunicationLocator>CommunicationLocator</CommunicationLocator>
+						</CommunicationDetails>
+					</ContactPerson>
+					<CountryCode>US</CountryCode>
+				</ShipToParty>
+				<BillToParty>
+					<PartyID>
+						<PartyIDType>GLN</PartyIDType>
+						<!-- here the request sender is the seller eg: consider as Amazon or 
+							we consider the one who will be the product owner means simply a publisher/supplier 
+							eg: t&F -->
+						<Identifier>1208965</Identifier> <!-- I am mentioning the customer number here. -->
+					</PartyID>
+					<PostalAddress>
+						<AddressLine>999 Maple Street</AddressLine>
+						<PostalTownCity>CONTOOCOOK</PostalTownCity>
+						<PostalCode>03229-3374</PostalCode>
+						<CountrySubdivision>NH</CountrySubdivision>
+						<CountrySubdivisionCode>NH</CountrySubdivisionCode>
+						<Country>UNITED STATES OF AMERICA</Country>
+						<CountryCode>US</CountryCode>
+					</PostalAddress>
+					<CommunicationDetails>
+						<CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+						<CommunicationLocator>CommunicationLocator</CommunicationLocator>
+					</CommunicationDetails>
+					<ContactPerson>
+						<ContactRoleCode>ContactRoleCode</ContactRoleCode>
+						<NameLine>NameLine</NameLine>
+						<CommunicationDetails>
+							<CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+							<CommunicationLocator>CommunicationLocator</CommunicationLocator>
+						</CommunicationDetails>
+					</ContactPerson>
+					<CountryCode>US</CountryCode>
+				</BillToParty>
+				<ShippedFrom>
+					<Location>
+						<LocationName></LocationName>
+					</Location>
+				</ShippedFrom>
+				<!-- This element refers to Means of delivery hence might not have relevance 
+					in TandF context <Delivery /> -->
+				<PaymentTerms>
+					<NetDaysDue>0</NetDaysDue>
+				</PaymentTerms>
+				<SettlementDiscount>
+					<NumberOfDays>0</NumberOfDays>
+					<DiscountPercentage>0.0</DiscountPercentage>
+				</SettlementDiscount>
+			</Header>
+			<OrderDetail>
+				<!-- Since related to consumer direct fulfilment (CDF) commented <ReferenceCoded> 
+					<ReferenceTypeCode>BOLReference</ReferenceTypeCode> <ReferenceNumber>dadd</ReferenceNumber> 
+					</ReferenceCoded> -->
+				<OrderAdditionalCharge>
+					<ChargeTypeCode>ChargeTypeCode</ChargeTypeCode>
+					<ChargeTypeDescription>ChargeTypeDescription</ChargeTypeDescription>
+					<!-- Since related to consumer direct fulfilment (CDF) commented <ReferenceCoded> 
+						<ReferenceTypeCode>BOLReference</ReferenceTypeCode> <ReferenceNumber>dadd</ReferenceNumber> 
+						</ReferenceCoded> -->
+					<ChargeCalculation>
+						<ChargeQuantity>1</ChargeQuantity>
+						<AmountPerUnit>66.00</AmountPerUnit>
+					</ChargeCalculation>
+					<ChargeAmountExcludingTax>0.0</ChargeAmountExcludingTax>
+					<Tax>
+						<TaxTypeCode>GST</TaxTypeCode>
+						<TaxRateCode>TaxRateCode</TaxRateCode>
+						<Percent>0.0</Percent>
+						<AmountTaxable>0.0</AmountTaxable>
+						<TaxAmount>0.0</TaxAmount>
+					</Tax>
+					<ChargeAmount>0.0</ChargeAmount>
+					<CurrencyCode>USD</CurrencyCode>
+					<CountryCode>US</CountryCode>
+				</OrderAdditionalCharge>
+				<OrderAdditionalAllowance>
+					<AllowanceTypeCode>AllowanceTypeCode</AllowanceTypeCode>
+					<AllowanceTypeDescription>AllowanceTypeDescription</AllowanceTypeDescription>
+					<!-- Since related to consumer direct fulfilment (CDF) commented <ReferenceCoded> 
+						<ReferenceTypeCode>BOLReference</ReferenceTypeCode> <ReferenceNumber>dadd</ReferenceNumber> 
+						</ReferenceCoded> -->
+					<AllowanceCalculation>
+						<AllowanceQuantity>0</AllowanceQuantity>
+						<AmountPerUnit>0.0</AmountPerUnit>
+					</AllowanceCalculation>
+					<AllowanceAmountExcludingTax>0.0</AllowanceAmountExcludingTax>
+					<Tax>
+						<TaxTypeCode>GST</TaxTypeCode>
+						<TaxRateCode>TaxRateCode</TaxRateCode>
+						<Percent>0.0</Percent>
+						<AmountTaxable>0.0</AmountTaxable>
+						<TaxAmount>0.0</TaxAmount>
+					</Tax>
+					<AllowanceAmount>0.0</AllowanceAmount>
+					<CurrencyCode>AED</CurrencyCode>
+					<CountryCode>AD</CountryCode>
+				</OrderAdditionalAllowance>
+				<Message>
+					<MessageType>MessageType</MessageType>
+					<MessageLine>MessageLine</MessageLine>
+				</Message>
+				<ItemDetail>
+					<LineNumber>1</LineNumber>
+				<ProductID>
+					<ProductIDType>ISBN</ProductIDType>
+					<IDTypeName>TF Books eBook sale</IDTypeName>
+					<Identifier>9781351034982</Identifier> <!-- ISBN Number -->
+				</ProductID>
+				<ItemDescription>
+					<TitleDetail>Operations Management, Lewis</TitleDetail>
+				</ItemDescription>
+					<ItemRelatedParty>
+					<PartyRole>Library Services</PartyRole> <!-- I believe we need to have standard list here for types of party roles 
+						here -->
+					<PartyID>
+						<PartyIDType>GLN</PartyIDType>
+						<!-- here the request sender is the seller eg: consider as Amazon or 
+							we consider the one who will be the product owner means simply a publisher/supplier 
+							eg: t&F -->
+						<Identifier>1208965</Identifier> <!-- I am mentioning the customer number here. -->
+					</PartyID>
+					<AdditionalPartyID>
+						<PartyIDType>TaxRegistrationNumber</PartyIDType>
+						<Identifier>Identifier</Identifier>
+					</AdditionalPartyID>
+					<PartyName>
+						<NameLine>YBP Library Services</NameLine>
+					</PartyName>
+					<PostalAddress>
+						<AddressLine>999 Maple Street</AddressLine>
+						<PostalTownCity>CONTOOCOOK</PostalTownCity>
+						<PostalCode>03229-3374</PostalCode>
+						<CountrySubdivision>NH</CountrySubdivision>
+						<CountrySubdivisionCode>NH</CountrySubdivisionCode>
+						<Country>UNITED STATES OF AMERICA</Country>
+						<CountryCode>US</CountryCode>
+					</PostalAddress>
+					<CommunicationDetails>
+						<CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+						<CommunicationLocator>CommunicationLocator</CommunicationLocator>
+					</CommunicationDetails>
+					<ContactPerson>
+						<ContactRoleCode>ContactRoleCode</ContactRoleCode>
+						<PersonName>PersonName</PersonName>
+						<CommunicationDetails>
+							<CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+							<CommunicationLocator>CommunicationLocator</CommunicationLocator>
+						</CommunicationDetails>
+					</ContactPerson>
+					<CountryCode>US</CountryCode>
+				</ItemRelatedParty>
+					<InvoicedQuantity>1</InvoicedQuantity>
+					<!-- Since related to consumer direct fulfilment (CDF) commented <ReferenceCoded> 
+						<ReferenceTypeCode>BOLReference</ReferenceTypeCode> <ReferenceNumber>dadd</ReferenceNumber> 
+						</ReferenceCoded> -->
+					<PricingDetail>
+						<Price>
+							<MonetaryAmount>54.78</MonetaryAmount>
+							<CurrencyCode>USD</CurrencyCode>
+							<CountryCode>US</CountryCode>
+							<PriceQualifierCode>FixedRPIncludingTax</PriceQualifierCode>
+							<Tax>
+								<TaxTypeCode>GST</TaxTypeCode>
+								<TaxRateCode>TaxRateCode</TaxRateCode>
+								<Percent>0.0</Percent>
+								<AmountTaxable>0.0</AmountTaxable>
+								<TaxAmount>0.0</TaxAmount>
+							</Tax>
+						</Price>
+						<DiscountPercentage>17.00</DiscountPercentage>
+					</PricingDetail>
+					<PackageReference>
+						<PackedQuantity>0</PackedQuantity>
+						<PackageNumber>0</PackageNumber>
+					</PackageReference>
+					<AdditionalCharge>
+						<ChargeTypeCode>Shipping</ChargeTypeCode>
+						<ChargeTypeDescription>ChargeTypeDescription</ChargeTypeDescription>
+						<!-- Since related to consumer direct fulfilment (CDF) commented <ReferenceCoded> 
+							<ReferenceTypeCode>BOLReference</ReferenceTypeCode> <ReferenceNumber>dadd</ReferenceNumber> 
+							</ReferenceCoded> -->
+						<ChargeCalculation>
+							<ChargeQuantity>0</ChargeQuantity>
+							<AmountPerUnit>0.0</AmountPerUnit>
+						</ChargeCalculation>
+						<ChargeAmountExcludingTax>0.0</ChargeAmountExcludingTax>
+						<Tax>
+							<TaxTypeCode>GST</TaxTypeCode>
+							<TaxRateCode>TaxRateCode</TaxRateCode>
+							<Percent>0.0</Percent>
+							<AmountTaxable>0.0</AmountTaxable>
+							<TaxAmount>0.0</TaxAmount>
+						</Tax>
+						<ChargeAmount>0.0</ChargeAmount>
+						<CurrencyCode>AED</CurrencyCode>
+						<CountryCode>AD</CountryCode>
+					</AdditionalCharge>
+					<AdditionalAllowance>
+						<AllowanceTypeCode>GiftCertificate</AllowanceTypeCode>
+						<AllowanceTypeDescription>AllowanceTypeDescription</AllowanceTypeDescription>
+						<!-- Since related to consumer direct fulfilment (CDF) commented <ReferenceCoded> 
+							<ReferenceTypeCode>BOLReference</ReferenceTypeCode> <ReferenceNumber>dadd</ReferenceNumber> 
+							</ReferenceCoded> -->
+						<AllowanceCalculation>
+							<AllowanceQuantity>0</AllowanceQuantity>
+							<AmountPerUnit>0.0</AmountPerUnit>
+						</AllowanceCalculation>
+						<AllowanceAmountExcludingTax>0.0</AllowanceAmountExcludingTax>
+						<Tax>
+							<TaxTypeCode>GST</TaxTypeCode>
+							<TaxRateCode>TaxRateCode</TaxRateCode>
+							<Percent>0.0</Percent>
+							<AmountTaxable>0.0</AmountTaxable>
+							<TaxAmount>0.0</TaxAmount>
+						</Tax>
+						<AllowanceAmount>0.0</AllowanceAmount>
+						<CurrencyCode>USD</CurrencyCode>
+						<CountryCode>US</CountryCode>
+					</AdditionalAllowance>
+					<LineTotalExcludingTax>0.0</LineTotalExcludingTax>
+					<Message>
+						<MessageType>MessageType</MessageType>
+						<MessageLine>MessageLine</MessageLine>
+					</Message>
+				</ItemDetail>
+			</OrderDetail>
+			<InvoiceAdditionalCharge>
+				<ChargeTypeCode>Shipping</ChargeTypeCode>
+				<ChargeTypeDescription>ChargeTypeDescription</ChargeTypeDescription>
+				<!-- Since related to consumer direct fulfilment (CDF) commented <ReferenceCoded> 
+					<ReferenceTypeCode>BOLReference</ReferenceTypeCode> <ReferenceNumber>dadd</ReferenceNumber> 
+					</ReferenceCoded> -->
+				<ChargeCalculation>
+					<ChargeQuantity>0</ChargeQuantity>
+					<AmountPerUnit>0.0</AmountPerUnit>
+				</ChargeCalculation>
+				<ChargeAmountExcludingTax>0.0</ChargeAmountExcludingTax>
+				<Tax>
+					<TaxTypeCode>GST</TaxTypeCode>
+					<TaxRateCode>TaxRateCode</TaxRateCode>
+					<Percent>0.0</Percent>
+					<AmountTaxable>0.0</AmountTaxable>
+					<TaxAmount>0.0</TaxAmount>
+				</Tax>
+				<ChargeAmount>0.0</ChargeAmount>
+				<CurrencyCode>USD</CurrencyCode>
+				<CountryCode>US</CountryCode>
+			</InvoiceAdditionalCharge>
+			<InvoiceAdditionalAllowance>
+				<AllowanceTypeCode>GiftCertificate</AllowanceTypeCode>
+				<AllowanceTypeDescription>AllowanceTypeDescription</AllowanceTypeDescription>
+				<!-- Since related to consumer direct fulfilment (CDF) commented <ReferenceCoded> 
+					<ReferenceTypeCode>BOLReference</ReferenceTypeCode> <ReferenceNumber>dadd</ReferenceNumber> 
+					</ReferenceCoded> -->
+				<AllowanceCalculation>
+					<AllowanceQuantity>0</AllowanceQuantity>
+					<AmountPerUnit>0.0</AmountPerUnit>
+				</AllowanceCalculation>
+				<AllowanceAmountExcludingTax>0.0</AllowanceAmountExcludingTax>
+				<Tax>
+					<TaxTypeCode>GST</TaxTypeCode>
+					<TaxRateCode>TaxRateCode</TaxRateCode>
+					<Percent>0.0</Percent>
+					<AmountTaxable>0.0</AmountTaxable>
+					<TaxAmount>0.0</TaxAmount>
+				</Tax>
+				<AllowanceAmount>0.0</AllowanceAmount>
+				<CurrencyCode>USD</CurrencyCode>
+				<CountryCode>US</CountryCode>
+			</InvoiceAdditionalAllowance>
+			<PackageDetail>
+				<PackageTypeCoded>
+					<PackageTypeCodeType>EDItEUR</PackageTypeCodeType>
+					<PackageTypeCode>PackageTypeCode</PackageTypeCode>
+				</PackageTypeCoded>
+				<NumberOfPackages>0</NumberOfPackages>
+				<Package>
+					<PackageNumber>0</PackageNumber>
+					<PackageMark>
+						<PackageMarkTypeCode>SSCC-18</PackageMarkTypeCode>
+						<PackageMarkValue>PackageMarkValue</PackageMarkValue>
+					</PackageMark>
+					<Measure>
+						<MeasureTypeCode>Height</MeasureTypeCode>
+						<MeasurementValue>0.0</MeasurementValue>
+						<MeasureUnitCode>Centimetre</MeasureUnitCode>
+					</Measure>
+				</Package>
+			</PackageDetail>
+			<Summary>
+				<NumberOfLines>0</NumberOfLines>
+				<UnitsInvoiced>0</UnitsInvoiced>
+				<TotalExcludingTax>0.0</TotalExcludingTax>
+				<TotalTax>0.0</TotalTax>
+				<TotalPayable>0.0</TotalPayable>
+				<Tax>
+					<TaxTypeCode>GST</TaxTypeCode>
+					<TaxRateCode>TaxRateCode</TaxRateCode>
+					<Percent>0.0</Percent>
+					<AmountTaxable>0.0</AmountTaxable>
+					<TaxAmount>0.0</TaxAmount>
+				</Tax>
+			</Summary>
+		</Invoice>
+	</EDItXMessagePayload>
+</EDItXMessage>

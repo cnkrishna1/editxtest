@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="EDItX_Listener_config" doc:name="HTTP Listener config" doc:id="323ecb09-db5a-48fc-a14e-60cdec8fb2e4" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="editxtestFlow" doc:id="d9a12b33-9709-457c-81a1-76dfc945dae0" >
+		<http:listener doc:name="EDItXRequestListener" doc:id="eb18a9b1-0473-4eeb-86bd-a4263d60b13e" config-ref="EDItX_Listener_config" path="/EDItXReq"/>
+		<ee:transform doc:name="Transform Message" doc:id="f22f5a24-8bf2-405c-85b5-b69612fa0abf" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	orderType: "SALES",
+	orderedItem: (payload.SalesReport.*ItemDetail map( itemDetail , indexOfItemDetail ) -> {
+		currency: itemDetail.*PricingDetail.UnitAmountDueToPublisher.CurrencyCode default "",
+		orderedQuantity: itemDetail.Quantity default 0,
+		price: itemDetail.*PricingDetail.UnitAmountDueToPublisher.MonetaryAmount default 0,
+		productId: itemDetail.*ProductIdentifier.IDValue,
+		quantity: itemDetail.Quantity default 0
+	}),
+	orderDate: payload.SalesReport.Header.IssueDateTime
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>

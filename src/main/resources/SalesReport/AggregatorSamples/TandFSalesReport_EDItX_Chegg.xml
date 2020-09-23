@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SalesReport version="1.1"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
+	xs:noNamespaceSchemaLocation="TandFSalesReport_EDItX.xsd">
+	<Header>
+		<SalesReportNumber>012345678</SalesReportNumber>   <!-- didnt find details wrt this.. -->
+		<IssueDateTime>20200104</IssueDateTime>  <!-- how to know what will be the issue date time here for the scenario 
+		SalesPeriodEnd and in other cases too -->
+		<!--  before comment  ::  Assuming this is report generation date particular to the reseller which will have no relevance here-->
+		<ReferenceCoded>
+			<ReferenceTypeCode>InvoiceLineReference</ReferenceTypeCode>  <!-- since it has number of line items , changed to InvoiceLineReference type-->
+			<!-- before comment ::  In case of negative order, CreditNoteReference will be used (considering Ingram negative invoices) -->
+			<ReferenceNumber>12345672890</ReferenceNumber>  <!-- need to know about this -->
+		</ReferenceCoded>
+		<PurposeCode>Test</PurposeCode> <!-- since transactonType is rental   -->
+		<SalesReportTypeCode>ByTransaction</SalesReportTypeCode>  <!-- since different transactions involved , changed to  "ByTransaction" type -->
+		<ReportPriceType>SRPExcludingTax</ReportPriceType> <!-- The amount is excluding tax as we are calculating tax using SAP when applicable -->
+		<DateCoded> <!-- This is order date sent by the aggregator, applies to whole request. -->
+			<Date>20200101</Date>      <!--  since all transactions happend in 2019 , made Date to 2020 Jan 1st, and also with relevance to qualifiercode :: SalesPeriodEnd  -->
+			<DateQualifierCode>SalesPeriodEnd</DateQualifierCode>
+		</DateCoded>
+		<ClassOfSaleCode>03</ClassOfSaleCode>  <!--  need to understand better on this-->
+		<Territory>
+			<CountriesIncluded>US</CountriesIncluded>
+			<RegionsIncluded>US-NY US-OH</RegionsIncluded>
+		</Territory>
+		<SellerParty>
+			<PartyIdentifier>
+				<PartyIDType>Proprietary</PartyIDType>   <!-- need to know significance of this -->
+				<IDTypeName>Chegg</IDTypeName>  <!-- party name eg: amazon -->
+				<IDValue>XXXX</IDValue> <!-- need to enter PQ_Central id  -->
+			</PartyIdentifier>
+		</SellerParty>
+	</Header>
+	<ItemDetail>
+		<LineNumber>1</LineNumber>
+		<ProductIdentifier>
+			<ProductIDType>ISBN</ProductIDType>
+			<IDTypeName>Digital ISBN</IDTypeName>
+			<IDValue>1351795686</IDValue> <!-- This is digital isbn -->
+		</ProductIdentifier>
+		<ProductIdentifier>
+			<ProductIDType>ISBN</ProductIDType>
+			<IDTypeName>Physical ISBN</IDTypeName>
+			<IDValue>1138636444</IDValue> <!-- This is physical isbn -->
+		</ProductIdentifier>
+		<FormatCode>openEbook</FormatCode> <!-- format of the book which is sold, change to softBook from openEbook-->
+		<Quantity>01</Quantity>
+		<PricingDetail>
+			<CurrencyConversionRate>1.0</CurrencyConversionRate>
+			<UnitAmountDueToPublisher>
+				<MonetaryAmount>48.75</MonetaryAmount>   <!--  columun name :Publisher Fee-->
+				<CurrencyCode>USD</CurrencyCode>     
+				<CountryCode>US</CountryCode>
+			</UnitAmountDueToPublisher>
+		</PricingDetail>
+		<PriceCondition>
+			<PriceConditionType>00</PriceConditionType>
+			<PriceConditionQuantity>
+				<PriceConditionQuantityType>01</PriceConditionQuantityType>
+				<Quantity>0</Quantity>
+				<QuantityUnit>00</QuantityUnit>
+			</PriceConditionQuantity>
+		</PriceCondition>
+		<DateCoded>    
+		<!-- Since order date is sent at header level, Is it required? -->
+			<Date>20191206</Date>   <!-- transactionDate  -->
+			<DateQualifierCode>TransactionDate</DateQualifierCode>
+		</DateCoded>		
+	</ItemDetail>
+	<ItemDetail>
+		<LineNumber>2</LineNumber>
+		<ProductIdentifier>
+			<ProductIDType>ISBN</ProductIDType>
+			<IDTypeName>Digital ISBN</IDTypeName>
+			<IDValue>1466583339</IDValue> <!-- This is digital isbn  -->
+		</ProductIdentifier>
+		<ProductIdentifier>
+			<ProductIDType>ISBN</ProductIDType>
+			<IDTypeName>Physical ISBN</IDTypeName>
+			<IDValue>1466583282</IDValue> <!-- This is physical isbn  -->
+		</ProductIdentifier>
+		<FormatCode>Softbook</FormatCode> <!-- put it as SoftBook...format of the book which is sold-->
+		<Quantity>1</Quantity>
+		<PricingDetail>
+			<CurrencyConversionRate>1.0</CurrencyConversionRate>     
+			<UnitAmountDueToPublisher>
+				<MonetaryAmount>24.00</MonetaryAmount> <!-- By having negative monetory amount, we are differentiating sales and returns here -->
+				<CurrencyCode>USD</CurrencyCode>
+				<CountryCode>US</CountryCode>
+			</UnitAmountDueToPublisher>
+		</PricingDetail>
+		<PriceCondition>
+			<PriceConditionType>00</PriceConditionType>
+			<PriceConditionQuantity>
+				<PriceConditionQuantityType>01</PriceConditionQuantityType>
+				<Quantity>0</Quantity>
+				<QuantityUnit>00</QuantityUnit>
+			</PriceConditionQuantity>
+		</PriceCondition>
+		<DateCoded>
+			<Date>20191207</Date>
+			<DateQualifierCode>TransactionDate</DateQualifierCode>
+		</DateCoded>
+	</ItemDetail>
+	<ItemDetail>
+		<LineNumber>3</LineNumber>
+		<ProductIdentifier>
+			<ProductIDType>ISBN</ProductIDType>
+			<IDTypeName>Digital ISBN</IDTypeName>
+			<IDValue>1439815895</IDValue> <!-- This is digital isbn -->
+		</ProductIdentifier>
+		<ProductIdentifier>
+			<ProductIDType>ISBN</ProductIDType>
+			<IDTypeName>Physical ISBN</IDTypeName>
+			<IDValue>1439815879</IDValue> <!-- This is physical isbn -->
+		</ProductIdentifier>
+		<FormatCode>OpenEbook</FormatCode> <!-- format of the book which is sold-->
+		<Quantity>01</Quantity>
+		<PricingDetail>
+			<CurrencyConversionRate>1.0</CurrencyConversionRate>
+			<UnitAmountDueToPublisher>
+				<MonetaryAmount>21.75</MonetaryAmount>
+				<CurrencyCode>USD</CurrencyCode>
+				<CountryCode>US</CountryCode>
+			</UnitAmountDueToPublisher>
+		</PricingDetail>
+		<PriceCondition>
+			<PriceConditionType>00</PriceConditionType>
+			<PriceConditionQuantity>
+				<PriceConditionQuantityType>01</PriceConditionQuantityType>
+				<Quantity>0</Quantity>
+				<QuantityUnit>00</QuantityUnit>
+			</PriceConditionQuantity>
+		</PriceCondition>
+		<DateCoded>
+			<Date>20191214</Date>
+			<DateQualifierCode>TransactionDate</DateQualifierCode>
+		</DateCoded>
+	</ItemDetail>
+	<ItemDetail>
+		<LineNumber>4</LineNumber>
+		<ProductIdentifier>
+			<ProductIDType>ISBN</ProductIDType>
+			<IDTypeName>Digital ISBN</IDTypeName>
+			<IDValue>1315389010</IDValue> <!-- This is digital isbn  refer to eBookIsbn columun in xls-->
+		</ProductIdentifier>
+		<ProductIdentifier>
+			<ProductIDType>ISBN</ProductIDType>
+			<IDTypeName>Physical ISBN</IDTypeName>
+			<IDValue>013238034X</IDValue> <!-- This is physical isbn  refers to PrintIsbn columum in xls-->
+		</ProductIdentifier>
+		<FormatCode>OpenEbook</FormatCode> <!-- format of the book which is sold-->
+		<Quantity>01</Quantity>
+		<PricingDetail>
+			<CurrencyConversionRate>1.0</CurrencyConversionRate>
+			<UnitAmountDueToPublisher>
+				<MonetaryAmount>28.75</MonetaryAmount>
+				<CurrencyCode>USD</CurrencyCode>
+				<CountryCode>US</CountryCode>
+			</UnitAmountDueToPublisher>
+		</PricingDetail>
+		<PriceCondition>
+			<PriceConditionType>00</PriceConditionType>
+			<PriceConditionQuantity>
+				<PriceConditionQuantityType>01</PriceConditionQuantityType>
+				<Quantity>0</Quantity>
+				<QuantityUnit>00</QuantityUnit>
+			</PriceConditionQuantity>
+		</PriceCondition>
+		<DateCoded>
+			<Date>20191221</Date>  <!--  trx date of 4th item-->
+			<DateQualifierCode>TransactionDate</DateQualifierCode>
+		</DateCoded>
+	</ItemDetail>
+	<Summary>
+		<NumberOfLines>4</NumberOfLines>
+		<NumberOfUnits>00</NumberOfUnits>   <!--need to know about all units  , asp per my understanding presented like below -->
+		<NumberOfGrossSalesUnits>4</NumberOfGrossSalesUnits>
+		<NumberOfRefundedUnits>00</NumberOfRefundedUnits>
+		<NumberOfNetSalesUnits>4</NumberOfNetSalesUnits>
+		<NumberOfNonSaleUnits>00</NumberOfNonSaleUnits>
+		<TotalSalesAmounts>
+			<TotalGrossSalesAmount>375.85</TotalGrossSalesAmount>   <!--  calculated from  list price , but is this the intended columun we should refer ?-->
+			<TotalRefundedSalesAmount>0.00</TotalRefundedSalesAmount>    <!--  no info about this-->  
+			<TotalNetSalesAmount>375.85</TotalNetSalesAmount>     <!--since didnt mention any currency code , cosidered all in USD only -->
+			<TotalSellerChargeAmount>0.0</TotalSellerChargeAmount> <!-- need to understand what is this too -->
+			<CurrencyCode>USD</CurrencyCode>
+			<CountryCode>US</CountryCode>
+		</TotalSalesAmounts>
+		<TotalDueToPublisher>
+			<MonetaryAmount>129.25</MonetaryAmount>   <!--since didnt mention any currency code , cosidered all in USD only -->
+			<CurrencyCode>USD</CurrencyCode>
+			<CountryCode>US</CountryCode>
+		</TotalDueToPublisher>
+		
+	</Summary>
+</SalesReport>

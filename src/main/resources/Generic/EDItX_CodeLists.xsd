@@ -1,0 +1,1657 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	***********************
+	EDItX MESSAGE SCHEMA
+	CODE LIST MODULE
+	ISSUE 5
+
+	Status: RELEASED
+	Release date: 2018-10-XX
+	Filename: EDItX_CodeLists.XSD
+	Author: Francis Cave
+
+	(c) 2012-2018 EDItEUR
+	http://www.editeur.org/
+	***********************
+
+
+	N.B. PRIMARILY DESIGNED FOR USE WITH EDItX MESSAGE SCHEMAS
+
+	TERMS AND CONDITIONS OF USE OF THE EDItX MESSAGE SCHEMAS
+
+	All EDItX standards and documentation – including this document – are copyright 
+	materials, made available free of charge for general use. A full license agreement 
+	(DOI: 10.4400/nwgj) that governs their use is available on the EDItEUR website. In 
+	particular, if you use any of the EDItX schemas, you will be deemed to have accepted 
+	these terms and conditions:
+
+	1. You agree that you will not add to, delete from, amend or copy for use outside of 
+	the schemas any part thereof except for strictly internal use in your own organization.
+
+	2. You agree that if your business would benefit from future additions or amendments 
+	to or extracts of the schemas for any purpose that is not strictly internal to your own 
+	organisation, you will in the first instance notify EDItEUR and allow EDItEUR to review 
+	and comment on your proposed use, in the interest of securing an orderly 
+	development of the Schema for the benefit of other users.
+
+	If you do not accept these terms, you must not use any version of the EDItX SALES REPORT
+	MESSAGE Schemas.
+
+	Full copies of all published versions of the latest release of this Schema and all 
+	associated documentation are available from the EDItEUR web site, where may also be 
+	found details of how to contact EDItEUR for advice on the use of this Schema. The URL 
+	for the EDItEUR web site is:
+
+	http://www.editeur.org/
+
+	August 2018: issue 5
+	    included various references to ONIX codelists
+	May 2012: issue 4c
+	    added codelist for <CDFReturnsReasonCode>
+	    added codelist for <CDFReturnsReportItemReferenceTypeCode>
+	    added codelist for <CDFReturnsReportReferenceTypeCode>
+	    updated <CountryCode> and <CurrencyCode>
+	Feb 2012: issue 4b
+	    added codelist for <ProximityCode>
+	    added codelist for <StockQuantityCodeTypeCode>
+	    added MeanDailySale to <VelocityCode>
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"  elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="ONIX_CodeLists.xsd"/>
+	<xs:simpleType name="AcknowledgementStatusCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Accepted"/>
+			<xs:enumeration value="AcceptedDelayed"/>
+			<xs:enumeration value="XMLErrors"/>
+			<xs:enumeration value="SchemaErrors"/>
+			<xs:enumeration value="PayloadErrors"/>
+			<xs:enumeration value="InvalidDocument"/>
+			<xs:enumeration value="OutOfSequence"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ASNDateQualifierCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="DeliveryDateLatest"/>
+			<xs:enumeration value="Shipped"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ASNItemReferenceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BuyersOrderReference"/>
+			<xs:enumeration value="BuyersOrderLineReference"/>
+			<xs:enumeration value="CustomerOrderReference"/>
+			<xs:enumeration value="ContractReference"/>
+			<xs:enumeration value="PromotionOrDealReference"/>
+			<xs:enumeration value="RepOrderReference"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ASNMeasureTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Height"/>
+			<xs:enumeration value="Width"/>
+			<xs:enumeration value="Depth"/>
+			<xs:enumeration value="TotalGrossWeight"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ASNMeasureTypeCodeLinear">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Height"/>
+			<xs:enumeration value="Width"/>
+			<xs:enumeration value="Depth"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ASNMeasureTypeCodeWeight">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="TotalGrossWeight"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AvailabilityCodeTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Seller"/>
+			<xs:enumeration value="EDItEURAlpha"/>
+			<xs:enumeration value="EDItEURNumeric"/>
+			<xs:enumeration value="MNR"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BatchBonusTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="3"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CarrierNameCodeTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="EDItEUR"/>
+			<xs:enumeration value="Seller"/>
+			<xs:enumeration value="Buyer"/>
+			<xs:enumeration value="DE"/>
+			<xs:enumeration value="GB"/>
+			<xs:enumeration value="NO"/>
+			<xs:enumeration value="SE"/>
+			<xs:enumeration value="US"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CDFInvoicePartyIDAgencyCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="GLN"/>
+			<xs:enumeration value="SAN"/>
+			<xs:enumeration value="VKNR"/>
+			<xs:enumeration value="NBSN"/>
+			<xs:enumeration value="SellersAccountNumber"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CDFOrderItemReferenceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ContractReference"/>
+			<xs:enumeration value="PromotionOrDealReference"/>
+			<xs:enumeration value="BuyersOrderLineReference"/>
+			<xs:enumeration value="CustomerOrderReference"/>
+			<xs:enumeration value="BuyersReservationReference"/>
+			<xs:enumeration value="OrderSourceLocationReference"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CDFOrderPriceQualifierCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="FixedRPIncludingTax"/>
+			<xs:enumeration value="FixedRPExcludingTax"/>
+			<xs:enumeration value="SRPIncludingTax"/>
+			<xs:enumeration value="SRPExcludingTax"/>
+			<xs:enumeration value="UnitCostIncludingTax"/>
+			<xs:enumeration value="UnitCostExcludingTax"/>
+			<xs:enumeration value="SpecifiedPriceIncludingTax"/>
+			<xs:enumeration value="SpecifiedPriceExcludingTax"/>
+			<xs:enumeration value="TradePriceIncludingTax"/>
+			<xs:enumeration value="TradePriceExcludingTax"/>
+			<xs:enumeration value="SoldPriceIncludingTax"/>
+			<xs:enumeration value="SoldPriceExcludingTax"/>
+			<xs:enumeration value="PublisherRPIncludingTax"/>
+			<xs:enumeration value="PublisherRPExcludingTax"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CDFOrderReferenceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ContractReference"/>
+			<xs:enumeration value="PromotionOrDealReference"/>
+			<xs:enumeration value="RepOrderReference"/>
+			<xs:enumeration value="CDFInvoiceReference"/>
+			<xs:enumeration value="OrderSourceLocationReference"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CDFOrderResponseItemReferenceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ContractReference"/>
+			<xs:enumeration value="PromotionOrDealReference"/>
+			<xs:enumeration value="BuyersOrderLineReference"/>
+			<xs:enumeration value="CustomerOrderReference"/>
+			<xs:enumeration value="BuyersReservationReference"/>
+			<xs:enumeration value="OrderSourceLocationReference"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CDFOrderResponsePriceQualifierCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="FixedRPIncludingTax"/>
+			<xs:enumeration value="FixedRPExcludingTax"/>
+			<xs:enumeration value="SRPIncludingTax"/>
+			<xs:enumeration value="SRPExcludingTax"/>
+			<xs:enumeration value="UnitCostIncludingTax"/>
+			<xs:enumeration value="UnitCostExcludingTax"/>
+			<xs:enumeration value="SpecifiedPriceIncludingTax"/>
+			<xs:enumeration value="SpecifiedPriceExcludingTax"/>
+			<xs:enumeration value="TradePriceIncludingTax"/>
+			<xs:enumeration value="TradePriceExcludingTax"/>
+			<xs:enumeration value="SoldPriceIncludingTax"/>
+			<xs:enumeration value="SoldPriceExcludingTax"/>
+			<xs:enumeration value="PublisherRPIncludingTax"/>
+			<xs:enumeration value="PublisherRPExcludingTax"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CDFOrderResponseReferenceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BuyersOrderReference"/>
+			<xs:enumeration value="ContractReference"/>
+			<xs:enumeration value="PromotionOrDealReference"/>
+			<xs:enumeration value="RepOrderReference"/>
+			<xs:enumeration value="CDFInvoiceReference"/>
+			<xs:enumeration value="OrderSourceLocationReference"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CDFReturnsReasonCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="B11"/>
+			<xs:enumeration value="B20"/>
+			<xs:enumeration value="B21"/>
+			<xs:enumeration value="B22"/>
+			<xs:enumeration value="B30"/>
+			<xs:enumeration value="B31"/>
+			<xs:enumeration value="B90"/>
+			<xs:enumeration value="B91"/>
+			<xs:enumeration value="E01"/>
+			<xs:enumeration value="E02"/>
+			<xs:enumeration value="E03"/>
+			<xs:enumeration value="E04"/>
+			<xs:enumeration value="E05"/>
+			<xs:enumeration value="E10"/>
+			<xs:enumeration value="E11"/>
+			<xs:enumeration value="E20"/>
+			<xs:enumeration value="E21"/>
+			<xs:enumeration value="E22"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CDFReturnsReportItemReferenceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BuyersOrderReference"/>
+			<xs:enumeration value="BuyersOrderLineReference"/>
+			<xs:enumeration value="CustomerOrderReference"/>
+			<xs:enumeration value="ContractReference"/>
+			<xs:enumeration value="PromotionOrDealReference"/>
+			<xs:enumeration value="SuppliersOrderReference"/>
+			<xs:enumeration value="RepOrderReference"/>
+			<xs:enumeration value="CDFShipmentReportReference"/>
+			<xs:enumeration value="CDFShipmentReportLineReference"/>
+			<xs:enumeration value="ConsumerInvoiceReference"/>
+			<xs:enumeration value="ConsumerInvoiceLineReference"/>
+			<xs:enumeration value="RecallReference"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CDFReturnsReportReferenceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BuyersOrderReference"/>
+			<xs:enumeration value="BuyersReturnsReference"/>
+			<xs:enumeration value="CDFShipmentReportReference"/>
+			<xs:enumeration value="ConsumerInvoiceReference"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CDFShipmentReportItemReferenceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BuyersOrderReference"/>
+			<xs:enumeration value="BuyersOrderLineReference"/>
+			<xs:enumeration value="CustomerOrderReference"/>
+			<xs:enumeration value="CustomerReservationReference"/>
+			<xs:enumeration value="ContractReference"/>
+			<xs:enumeration value="PromotionOrDealReference"/>
+			<xs:enumeration value="SuppliersOrderReference"/>
+			<xs:enumeration value="RepOrderReference"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CDFShipmentReportReferenceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BOLReference"/>
+			<xs:enumeration value="BuyersOrderReference"/>
+			<xs:enumeration value="CarrierTrackingReference"/>
+			<xs:enumeration value="ASNReference"/>
+			<xs:enumeration value="SSCC-18"/>
+			<xs:enumeration value="ConsumerInvoiceReference"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ClassOfSaleCode">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9][1-9]"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CommunicationTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="FixedPhone"/>
+			<xs:enumeration value="MobilePhone"/>
+			<xs:enumeration value="Fax"/>
+			<xs:enumeration value="Email"/>
+			<xs:enumeration value="URL"/>
+			<xs:enumeration value="Phone"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ContactRoleCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="SellerRepresentative"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CorporateIDAgencyCode">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="CorporateNameIDAgencyCode">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="CorporateNameTypeCode">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="CouponType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(0[1-9])|([1-9][0-9])"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CountryCode">
+		<xs:annotation>
+			<xs:documentation>Identical to ONIX Codelist 91</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="List91" />
+	</xs:simpleType>
+	<xs:simpleType name="CountrySubEntityCode">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="CreditNoteDocumentTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="CreditNote"/>
+			<xs:enumeration value="CopyCreditNote"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CreditNoteItemReferenceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="InvoiceReference"/>
+			<xs:enumeration value="InvoiceTaxPointReference"/>
+			<xs:enumeration value="InvoiceOrderLineReference"/>
+			<xs:enumeration value="InvoiceLineReference"/>
+			<xs:enumeration value="BuyersOrderReference"/>
+			<xs:enumeration value="BuyersOrderLineReference"/>
+			<xs:enumeration value="SellersOrderReference"/>
+			<xs:enumeration value="CustomerOrderReference"/>
+			<xs:enumeration value="RepOrderReference"/>
+			<xs:enumeration value="ASNReference"/>
+			<xs:enumeration value="ReturnsAuthorizationReference"/>
+			<xs:enumeration value="ContractReference"/>
+			<xs:enumeration value="PromotionOrDealReference"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CreditNoteReferenceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="InvoiceReference"/>
+			<xs:enumeration value="InvoiceTaxPointReference"/>
+			<xs:enumeration value="BuyersOrderReference"/>
+			<xs:enumeration value="SuppliersOrderReference"/>
+			<xs:enumeration value="ASNReference"/>
+			<xs:enumeration value="ReturnsAuthorizationReference"/>
+			<xs:enumeration value="ContractReference"/>
+			<xs:enumeration value="PromotionOrDealReference"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CreditReasonCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="OrderDuplicatedByBuyer"/>
+			<xs:enumeration value="OrderDuplicatedBySupplier"/>
+			<xs:enumeration value="IncorrectISBNQuotedBySupplier"/>
+			<xs:enumeration value="RepOrderError"/>
+			<xs:enumeration value="SubstituteNotAccepted"/>
+			<xs:enumeration value="DamagedInTransit"/>
+			<xs:enumeration value="LostInTransit"/>
+			<xs:enumeration value="DiscountAdjustment"/>
+			<xs:enumeration value="PriceAdjustment"/>
+			<xs:enumeration value="InspectionCopyRetainedFreeOfCharge"/>
+			<xs:enumeration value="DiscountAppliedRetrospectively"/>
+			<xs:enumeration value="PromotionalCouponsReturned"/>
+			<xs:enumeration value="ReturnableContainers"/>
+			<xs:enumeration value="ChargedInError"/>
+			<xs:enumeration value="ShortDelivery"/>
+			<xs:enumeration value="SuppliedInError"/>
+			<xs:enumeration value="NotDelivered"/>
+			<xs:enumeration value="OrderCancelledByBuyer"/>
+			<xs:enumeration value="CreditForDeliveryCharge"/>
+			<xs:enumeration value="CreditForImperfectCopies"/>
+			<xs:enumeration value="RecalledByPublisher"/>
+			<xs:enumeration value="OrderCanceledDueToCardPaymentCheck"/>
+			<xs:enumeration value="StockUnavailable"/>
+			<xs:enumeration value="AuthorizedReturn"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CurrencyCode">
+		<xs:annotation>
+			<xs:documentation>Superset of ONIX codelist 96</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="List96 AdditionalCurrencyCode" />
+	</xs:simpleType>
+	<xs:simpleType name="AdditionalCurrencyCode">
+		<xs:annotation>
+			<xs:documentation>Historical additions to ONIX codelist 96</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ADF"/><!-- deprecated, use EUR -->
+			<xs:enumeration value="ADP"/><!-- deprecated, use EUR -->
+			<xs:enumeration value="AON"/><!-- deprecated, use AOA -->
+			<xs:enumeration value="AOR"/><!-- deprecated, use AOA -->
+			<xs:enumeration value="ARA"/><!-- deprecated, use ARS -->
+			<xs:enumeration value="ARP"/><!-- deprecated, use ARS -->
+			<xs:enumeration value="AWF"/><!-- deprecated, ??? -->
+			<xs:enumeration value="AZM"/><!-- deprecated, use AZN -->
+			<xs:enumeration value="BAD"/><!-- deprecated, use BAM -->
+			<xs:enumeration value="BAK"/><!-- deprecated, ??? -->
+			<xs:enumeration value="BOV"/><!-- deprecated, use BOB -->
+			<xs:enumeration value="BYB"/><!-- deprecated, use BYR -->
+			<xs:enumeration value="CLF"/><!-- deprecated, use CLP-->
+			<xs:enumeration value="ECS"/><!-- deprecated, use USD -->
+			<xs:enumeration value="ECV"/><!-- deprecated, use USD -->
+			<xs:enumeration value="IRA"/><!-- deprecated, ??? -->
+			<xs:enumeration value="MZM"/><!-- deprecated, use MZN -->
+			<xs:enumeration value="PLZ"/><!-- deprecated, use PLN -->
+			<xs:enumeration value="SBL"/><!-- deprecated, ??? -->
+			<xs:enumeration value="SDA"/><!-- deprecated, ??? -->
+			<xs:enumeration value="TJR"/><!-- deprecated, use TJS -->
+			<xs:enumeration value="USN"/><!-- deprecated, use USD -->
+			<xs:enumeration value="XAU"/><!-- deprecated, ??? -->
+			<xs:enumeration value="XEU"/><!-- deprecated, ??? -->
+			<xs:enumeration value="YUN"/><!-- deprecated, use CSD -->
+			<xs:enumeration value="ZAL"/><!-- deprecated, use ZAR -->
+			<xs:enumeration value="ZRN"/><!-- deprecated, use CDF -->
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CurrencyQualifierCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="PricingCurrency"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DeliveryTimeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="NextDay"/>
+			<xs:enumeration value="NextDayBy10am"/>
+			<xs:enumeration value="2Day"/>
+			<xs:enumeration value="2DayByNoon"/>
+			<xs:enumeration value="3Day"/>
+			<xs:enumeration value="3To5Day"/>
+			<xs:enumeration value="3To7Day"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DimensionCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Height"/>
+			<xs:enumeration value="Width"/>
+			<xs:enumeration value="Depth"/>
+			<xs:enumeration value="TotalGrossWeight"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DiscountCodeTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Seller"/>
+			<xs:enumeration value="Buyer"/>
+			<xs:enumeration value="AU"/>
+			<xs:enumeration value="DE"/>
+			<xs:enumeration value="GB"/>
+			<xs:enumeration value="NO"/>
+			<xs:enumeration value="SE"/>
+			<xs:enumeration value="US"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DocumentTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Order"/>
+			<xs:enumeration value="OrderCancelation"/>
+			<xs:enumeration value="OrderResponse"/>
+			<xs:enumeration value="OrderStatusEnquiry"/>
+			<xs:enumeration value="OrderStatusReport"/>
+			<xs:enumeration value="StockEnquiry"/>
+			<xs:enumeration value="StockReport"/>
+			<xs:enumeration value="AdvanceShipNotice"/>
+			<xs:enumeration value="Invoice"/>
+			<xs:enumeration value="ReturnsRequest"/>
+			<xs:enumeration value="ReturnsResponse"/>
+			<xs:enumeration value="CDFOrder"/>
+			<xs:enumeration value="CDFOrderResponse"/>
+			<xs:enumeration value="LibraryOrder"/>
+			<xs:enumeration value="LibraryShipNotice"/>
+			<xs:enumeration value="CreditNote"/>
+			<xs:enumeration value="SalesReport"/>
+			<xs:enumeration value="CDFShipmentReport"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EnquiryStatusCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Successful"/>
+			<xs:enumeration value="RequestInvalid"/>
+			<xs:enumeration value="SystemUnavailable"/>
+			<xs:enumeration value="AccountInvalid"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FillTermsCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="FillAllOrKillAll"/>
+			<xs:enumeration value="FillAllOrBackorderAll"/>
+			<xs:enumeration value="FillPartKillRemainder"/>
+			<xs:enumeration value="FillPartKillRemainderUnlessNYP"/>
+			<xs:enumeration value="FillPartBackorderRemainder"/>
+			<xs:enumeration value="FillPartBackorderRemainderShipAsAvailable"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="GenderCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Male"/>
+			<xs:enumeration value="Female"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="GiftWrapType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(0[1-9])|([1-9][0-9])"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="IncludeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Biblio"/>
+			<xs:enumeration value="Price"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="InsertType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(0[1-9])|([1-9][0-9])"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="InvoiceAdditionalAllowanceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="GiftCertificate"/>
+			<xs:enumeration value="Coupon"/>
+			<xs:enumeration value="Other"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="InvoiceAdditionalAllowanceReferenceTypeCode">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="InvoiceAdditionalChargeTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Shipping"/>
+			<xs:enumeration value="GiftWrapping"/>
+			<xs:enumeration value="Handling"/>
+			<xs:enumeration value="Other"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="InvoiceAdditionalChargeReferenceTypeCode">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="InvoiceDateQualifierCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="MeterDate"/>
+			<xs:enumeration value="TaxPointDate"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="InvoiceDocumentTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Invoice"/>
+			<xs:enumeration value="CopyInvoice"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="InvoiceInstructionsCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="InvoiceSeparately"/>
+			<xs:enumeration value="InvoiceCombined"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="InvoiceItemAdditionalAllowanceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="GiftCertificate"/>
+			<xs:enumeration value="Coupon"/>
+			<xs:enumeration value="Other"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="InvoiceItemAdditionalAllowanceReferenceTypeCode">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="InvoiceItemAdditionalChargeTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Shipping"/>
+			<xs:enumeration value="GiftWrapping"/>
+			<xs:enumeration value="Handling"/>
+			<xs:enumeration value="Other"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="InvoiceItemAdditionalChargeReferenceTypeCode">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="InvoiceItemReferenceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BuyersOrderReference"/>
+			<xs:enumeration value="BuyersOrderLineReference"/>
+			<xs:enumeration value="CustomerOrderReference"/>
+			<xs:enumeration value="CustomerReservationReference"/>
+			<xs:enumeration value="ContractReference"/>
+			<xs:enumeration value="PromotionOrDealReference"/>
+			<xs:enumeration value="SuppliersOrderReference"/>
+			<xs:enumeration value="RepOrderReference"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="InvoiceOrderAdditionalAllowanceTypeCode">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="InvoiceOrderAdditionalAllowanceReferenceTypeCode">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="InvoiceOrderAdditionalChargeTypeCode">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="InvoiceOrderAdditionalChargeReferenceTypeCode">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="InvoiceOrderReferenceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BuyersOrderReference"/>
+			<xs:enumeration value="CustomerOrderReference"/>
+			<xs:enumeration value="ContractReference"/>
+			<xs:enumeration value="PromotionOrDealReference"/>
+			<xs:enumeration value="RepOrderReference"/>
+			<xs:enumeration value="SuppliersOrderReference"/>
+			<xs:enumeration value="SellersOrderReference"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="InvoiceReferenceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BOLReference"/>
+			<xs:enumeration value="BuyersOrderReference"/>
+			<xs:enumeration value="CarrierTrackingReference"/>
+			<xs:enumeration value="ASNReference"/>
+			<xs:enumeration value="SSCC-18"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ItemAllowanceBasisCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="OffListPrice"/>
+			<xs:enumeration value="OffSoldPrice"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ItemCharacteristicCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="PromotionalOrPOSItem"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ItemFillTermsCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="FillAllOrKillAll"/>
+			<xs:enumeration value="FillAllOrBackorderAll"/>
+			<xs:enumeration value="FillPartKillRemainder"/>
+			<xs:enumeration value="FillPartBackorderRemainder"/>
+			<xs:enumeration value="FillPartBackorderRemainderShipAsAvailable"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ItemRelatedLocationRoleCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ActivationURI"/>
+			<xs:enumeration value="DownloadURI"/>
+			<xs:enumeration value="ReadingURI"/>
+			<xs:enumeration value="ACS4FulfilmentURI"/>
+			<xs:enumeration value="MetadataURI"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LibraryBuyerPartyIDAgencyCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="GLN"/>
+			<xs:enumeration value="SAN"/>
+			<xs:enumeration value="VKNR"/>
+			<xs:enumeration value="VendorAssignedID"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LibraryCataloguingFormatCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="MARC21ISO2709"/>
+			<xs:enumeration value="MARC21XML"/>
+			<xs:enumeration value="NORMARCISO2709"/>
+			<xs:enumeration value="NORMARCXML"/>
+			<xs:enumeration value="danMARCISO2709"/>
+			<xs:enumeration value="danMARCXML"/>
+			<xs:enumeration value="MODS"/>
+			<xs:enumeration value="DublinCore"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LibraryCataloguingSupplyCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="WithOrderResponse"/>
+			<xs:enumeration value="WithASN"/>
+			<xs:enumeration value="WithInvoice"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LibraryFillTermsCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="FillAllOrKillAll"/>
+			<xs:enumeration value="FillAllOrBackorderAll"/>
+			<xs:enumeration value="FillPartKillRemainder"/>
+			<xs:enumeration value="FillPartKillRemainderUnlessNYP"/>
+			<xs:enumeration value="FillPartBackorderRemainder"/>
+			<xs:enumeration value="FillPartBackorderRemainderShipAsAvailable"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LibraryInvoiceCopyDetailReferenceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BuyersOrderLineCopyReference"/>
+			<xs:enumeration value="VendorsOrderLineCopyReference"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LibraryInvoiceInstructionsCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="InvoiceSeparately"/>
+			<xs:enumeration value="InvoiceCombined"/>
+			<xs:enumeration value="InvoiceByFund"/>
+			<xs:enumeration value="InvoiceProcessingSeparately"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LibraryInvoiceItemReferenceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BuyersOrderReference"/>
+			<xs:enumeration value="BuyersOrderLineReference"/>
+			<xs:enumeration value="VendorsOrderReference"/>
+			<xs:enumeration value="VendorsOrderLineReference"/>
+			<xs:enumeration value="VendorsQuotationReference"/>
+			<xs:enumeration value="VendorsQuotationLineReference"/>
+			<xs:enumeration value="LibraryShipNoticeReference"/>
+			<xs:enumeration value="LibraryShipNoticeLineReference"/>
+			<xs:enumeration value="CatalogItemReference"/>
+			<xs:enumeration value="AuthorizationForExpenseReference"/>
+			<xs:enumeration value="BuyersInternalVendorReference"/>
+			<xs:enumeration value="LibraryNewTitleListReference"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LibraryInvoiceOrderReferenceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="VendorsOrderReference"/>
+			<xs:enumeration value="VendorsQuotationReference"/>
+			<xs:enumeration value="VendorsQuotationLineReference"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LibraryInvoiceProcessingPriceQualifierCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="UnitCostIncludingTax"/>
+			<xs:enumeration value="UnitCostExcludingTax"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LibraryInvoiceReferenceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BOLReference"/>
+			<xs:enumeration value="BuyersOrderReference"/>
+			<xs:enumeration value="VendorsOrderReference"/>
+			<xs:enumeration value="VendorsQuotationReference"/>
+			<xs:enumeration value="CarrierTrackingReference"/>
+			<xs:enumeration value="LibraryShipNoticeReference"/>
+			<xs:enumeration value="SSCC-18"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LibraryInvoiceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="GoodsAndProcessing"/>
+			<xs:enumeration value="GoodsOnly"/>
+			<xs:enumeration value="ProcessingOnly"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LibraryItemFillTermsCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="FillAllOrKillAll"/>
+			<xs:enumeration value="FillAllOrBackorderAll"/>
+			<xs:enumeration value="FillPartKillRemainder"/>
+			<xs:enumeration value="FillPartBackorderRemainder"/>
+			<xs:enumeration value="FillPartBackorderRemainderShipAsAvailable"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LibraryItemInvoiceInstructionsCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="InvoiceSeparately"/>
+			<xs:enumeration value="InvoiceProcessingSeparately"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LibraryOrderDateQualifierCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="DoNotShipBefore"/>
+			<xs:enumeration value="CancelIfNotShippedBy"/>
+			<xs:enumeration value="CancelIfNotShippedByUnlessNYP"/>
+			<xs:enumeration value="FillAllAvailableBy"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LibraryOrderItemReferenceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BuyersOrderLineReference"/>
+			<xs:enumeration value="VendorsOrderLineReference"/>
+			<xs:enumeration value="VendorsQuotationLineReference"/>
+			<xs:enumeration value="CatalogItemReference"/>
+			<xs:enumeration value="AuthorizationForExpenseReference"/>
+			<xs:enumeration value="BuyersInternalVendorReference"/>
+			<xs:enumeration value="LibraryNewTitleListReference"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LibraryOrderMessageTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="0[1-9]|[1-9][0-9]"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LibraryOrderPredefinedMessageCode">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d\d"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LibraryOrderPriceQualifierCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="FixedRPIncludingTax"/>
+			<xs:enumeration value="FixedRPExcludingTax"/>
+			<xs:enumeration value="SRPIncludingTax"/>
+			<xs:enumeration value="SRPExcludingTax"/>
+			<xs:enumeration value="UnitCostIncludingTax"/>
+			<xs:enumeration value="UnitCostExcludingTax"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LibraryOrderProcessingInstructionCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="NoProcessing"/>
+			<xs:enumeration value="AppliedCopyNumber"/>
+			<xs:enumeration value="AppliedCopyNumberFrom"/>
+			<xs:enumeration value="AppliedCopyNumberTo"/>
+			<xs:enumeration value="NoAppliedCopyNumber"/>
+			<xs:enumeration value="BarcodeNumber"/>
+			<xs:enumeration value="BarcodeNumberFrom"/>
+			<xs:enumeration value="BarcodeNumberTo"/>
+			<xs:enumeration value="NoBarcode"/>
+			<xs:enumeration value="SecurityDevice"/>
+			<xs:enumeration value="NoSecurityDevice"/>
+			<xs:enumeration value="Jacket"/>
+			<xs:enumeration value="NoJacket"/>
+			<xs:enumeration value="SpineLabel"/>
+			<xs:enumeration value="NoSpineLabel"/>
+			<xs:enumeration value="SpineLabelString"/>
+			<xs:enumeration value="Pocket"/>
+			<xs:enumeration value="NoPocket"/>
+			<xs:enumeration value="CirculationCard"/>
+			<xs:enumeration value="NoCirculationCard"/>
+			<xs:enumeration value="DateDueSlip"/>
+			<xs:enumeration value="NoDateDueSlip"/>
+			<xs:enumeration value="Binding"/>
+			<xs:enumeration value="NoBinding"/>
+			<xs:enumeration value="Stamp"/>
+			<xs:enumeration value="NoStamp"/>
+			<xs:enumeration value="Embossing"/>
+			<xs:enumeration value="NoEmbossing"/>
+			<xs:enumeration value="RFIDChip"/>
+			<xs:enumeration value="NoRFIDChip"/>
+			<xs:enumeration value="AudioPackaging"/>
+			<xs:enumeration value="NoAudioPackaging"/>
+			<xs:enumeration value="Classification"/>
+			<xs:enumeration value="NoClassification"/>
+			<xs:enumeration value="Catalog"/>
+			<xs:enumeration value="NoCatalog"/>
+			<xs:enumeration value="Laminate"/>
+			<xs:enumeration value="NoLaminate"/>
+			<xs:enumeration value="SewnFlexi"/>
+			<xs:enumeration value="NoSewnFlexi"/>
+			<xs:enumeration value="CaseBind"/>
+			<xs:enumeration value="NoCaseBind"/>
+			<xs:enumeration value="BindingAsSupplied"/>
+			<xs:enumeration value="SeparateInstructions"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LibraryOrderReferenceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="VendorsQuotationReference"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LibraryOrderResponseItemReferenceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BuyersOrderLineReference"/>
+			<xs:enumeration value="VendorsOrderLineReference"/>
+			<xs:enumeration value="VendorsQuotationReference"/>
+			<xs:enumeration value="VendorsQuotationLineReference"/>
+			<xs:enumeration value="CatalogItemReference"/>
+			<xs:enumeration value="AuthorizationForExpenseReference"/>
+			<xs:enumeration value="BuyersInternalVendorReference"/>
+			<xs:enumeration value="LibraryNewTitleListReference"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LibraryOrderResponseReferenceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BuyersOrderReference"/>
+			<xs:enumeration value="VendorsOrderReference"/>
+			<xs:enumeration value="VendorsQuotationReference"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LibraryOrderStatusEnquiryItemReferenceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BuyersOrderReference"/>
+			<xs:enumeration value="BuyersOrderLineReference"/>
+			<xs:enumeration value="VendorsOrderReference"/>
+			<xs:enumeration value="VendorsOrderLineReference"/>
+			<xs:enumeration value="VendorsQuotationReference"/>
+			<xs:enumeration value="VendorsQuotationLineReference"/>
+			<xs:enumeration value="CatalogItemReference"/>
+			<xs:enumeration value="AuthorizationForExpenseReference"/>
+			<xs:enumeration value="BuyersInternalVendorReference"/>
+			<xs:enumeration value="LibraryNewTitleListReference"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LibraryOrderStatusEnquiryReferenceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BuyersOrderReference"/>
+			<xs:enumeration value="VendorsOrderReference"/>
+			<xs:enumeration value="VendorsQuotationReference"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LibraryOrderStatusReportItemReferenceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BuyersOrderReference"/>
+			<xs:enumeration value="BuyersOrderLineReference"/>
+			<xs:enumeration value="VendorsOrderLineReference"/>
+			<xs:enumeration value="VendorsQuotationReference"/>
+			<xs:enumeration value="VendorsQuotationLineReference"/>
+			<xs:enumeration value="CatalogItemReference"/>
+			<xs:enumeration value="AuthorizationForExpenseReference"/>
+			<xs:enumeration value="BuyersInternalVendorReference"/>
+			<xs:enumeration value="LibraryNewTitleListReference"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LibraryOrderStatusReportReferenceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="OrderStatusEnquiryReference"/>
+			<xs:enumeration value="BuyersOrderReference"/>
+			<xs:enumeration value="VendorsOrderReference"/>
+			<xs:enumeration value="VendorsQuotationReference"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LibraryOrderTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Order"/>
+			<xs:enumeration value="ApprovalOrder"/>
+			<xs:enumeration value="ConfirmationOrder"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LibraryOtherBuyerPartyIDAgencyCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="GLN"/>
+			<xs:enumeration value="SAN"/>
+			<xs:enumeration value="VKNR"/>
+			<xs:enumeration value="TaxRegistrationNumber"/>
+			<xs:enumeration value="VATRegistrationNumber"/>
+			<xs:enumeration value="BAGNR"/>
+			<xs:enumeration value="BuyerAssignedID"/>
+			<xs:enumeration value="SANSuffix"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LibraryOtherSellerPartyIDAgencyCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="GLN"/>
+			<xs:enumeration value="SAN"/>
+			<xs:enumeration value="VKNR"/>
+			<xs:enumeration value="TaxRegistrationNumber"/>
+			<xs:enumeration value="VATRegistrationNumber"/>
+			<xs:enumeration value="BAGNR"/>
+			<xs:enumeration value="VendorAssignedID"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LibraryQuotationDateQualifierCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="DoNotShipBefore"/>
+			<xs:enumeration value="CancelIfNotShippedBy"/>
+			<xs:enumeration value="CancelIfNotShippedByUnlessNYP"/>
+			<xs:enumeration value="ExpiresOn"/>
+			<xs:enumeration value="FillAllAvailableBy"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LibraryQuotationItemReferenceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BuyersOrderLineReference"/>
+			<xs:enumeration value="VendorsOrderLineReference"/>
+			<xs:enumeration value="VendorsQuotationLineReference"/>
+			<xs:enumeration value="CatalogItemReference"/>
+			<xs:enumeration value="AuthorizationForExpenseReference"/>
+			<xs:enumeration value="BuyersInternalVendorReference"/>
+			<xs:enumeration value="LibraryNewTitleListReference"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LibraryQuotationReferenceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BuyersOrderReference"/>
+			<xs:enumeration value="AuthorizationForExpenseReference"/>
+			<xs:enumeration value="VendorsOrderReference"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LibraryQuotationTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="CustomerFirmOrder"/>
+			<xs:enumeration value="CustomerProposedOrder"/>
+			<xs:enumeration value="Quotation"/>
+			<xs:enumeration value="SupplierFirmOrder"/>
+			<xs:enumeration value="SupplierProposedOrder"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LibrarySellerPartyIDAgencyCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="GLN"/>
+			<xs:enumeration value="SAN"/>
+			<xs:enumeration value="VKNR"/>
+			<xs:enumeration value="BuyerAssignedID"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LibraryShippingInstructionsCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ShipSeparately"/>
+			<xs:enumeration value="ShipCombined"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LibrarySNItemReferenceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BuyersOrderReference"/>
+			<xs:enumeration value="BuyersOrderLineReference"/>
+			<xs:enumeration value="VendorsOrderReference"/>
+			<xs:enumeration value="VendorsOrderLineReference"/>
+			<xs:enumeration value="VendorsQuotationReference"/>
+			<xs:enumeration value="VendorsQuotationLineReference"/>
+			<xs:enumeration value="CatalogItemReference"/>
+			<xs:enumeration value="AuthorizationForExpenseReference"/>
+			<xs:enumeration value="BuyersInternalVendorReference"/>
+			<xs:enumeration value="LibraryNewTitleListReference"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LibrarySubjectSchemeIdentifierCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="DDC"/>
+			<xs:enumeration value="AbridgedDDC"/>
+			<xs:enumeration value="DDK"/>
+			<xs:enumeration value="DK5"/>
+			<xs:enumeration value="LCClassNumber"/>
+			<xs:enumeration value="UDC"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LocationIDAgencyCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Proprietary"/>
+			<xs:enumeration value="GLN"/>
+			<xs:enumeration value="SAN"/>
+			<xs:enumeration value="URI"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LocationResourceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="PDF"/>
+			<xs:enumeration value="EPUB"/>
+			<xs:enumeration value="HTML"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LocationTypeCode">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="MessageTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(0[1-9])|([1-9][0-9])"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OrderDateQualifierCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="CancelIfNotShippedBy"/>
+			<xs:enumeration value="CancelIfNotShippedByUnlessNYP"/>
+			<xs:enumeration value="FillAllAvailableBy"/>
+			<xs:enumeration value="DoNotShipBefore"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OrderItemQualifierCodeTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Seller"/>
+			<xs:enumeration value="Buyer"/>
+			<xs:enumeration value="AU"/>
+			<xs:enumeration value="DE"/>
+			<xs:enumeration value="GB"/>
+			<xs:enumeration value="NO"/>
+			<xs:enumeration value="SE"/>
+			<xs:enumeration value="US"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OrderItemReferenceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ContractReference"/>
+			<xs:enumeration value="PromotionOrDealReference"/>
+			<xs:enumeration value="BuyersOrderLineReference"/>
+			<xs:enumeration value="CustomerOrderReference"/>
+			<xs:enumeration value="OrderSourceLocationReference"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OrderItemSellerPartyIDAgencyCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="TeleOrdering"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OrderLineStatusCodeTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Sender"/>
+			<xs:enumeration value="EDItEUR"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OrderPriceQualifierCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="FixedRPIncludingTax"/>
+			<xs:enumeration value="FixedRPExcludingTax"/>
+			<xs:enumeration value="SRPIncludingTax"/>
+			<xs:enumeration value="SRPExcludingTax"/>
+			<xs:enumeration value="UnitCostIncludingTax"/>
+			<xs:enumeration value="UnitCostExcludingTax"/>
+			<xs:enumeration value="TradePriceIncludingTax"/>
+			<xs:enumeration value="TradePriceExcludingTax"/>
+			<xs:enumeration value="SoldPriceIncludingTax"/>
+			<xs:enumeration value="SoldPriceExcludingTax"/>
+			<xs:enumeration value="PublisherRPIncludingTax"/>
+			<xs:enumeration value="PublisherRPExcludingTax"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OrderQualifierCodeTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Seller"/>
+			<xs:enumeration value="Buyer"/>
+			<xs:enumeration value="AU"/>
+			<xs:enumeration value="DE"/>
+			<xs:enumeration value="GB"/>
+			<xs:enumeration value="NO"/>
+			<xs:enumeration value="SE"/>
+			<xs:enumeration value="US"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OrderReferenceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ContractReference"/>
+			<xs:enumeration value="PromotionOrDealReference"/>
+			<xs:enumeration value="RepOrderReference"/>
+			<xs:enumeration value="OrderSourceLocationReference"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OrderResponseItemReferenceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ContractReference"/>
+			<xs:enumeration value="PromotionOrDealReference"/>
+			<xs:enumeration value="BuyersOrderLineReference"/>
+			<xs:enumeration value="CustomerOrderReference"/>
+			<xs:enumeration value="OrderSourceLocationReference"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OrderResponsePriceQualifierCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="FixedRPIncludingTax"/>
+			<xs:enumeration value="FixedRPExcludingTax"/>
+			<xs:enumeration value="SRPIncludingTax"/>
+			<xs:enumeration value="SRPExcludingTax"/>
+			<xs:enumeration value="UnitCostIncludingTax"/>
+			<xs:enumeration value="UnitCostExcludingTax"/>
+			<xs:enumeration value="TradePriceIncludingTax"/>
+			<xs:enumeration value="TradePriceExcludingTax"/>
+			<xs:enumeration value="SoldPriceIncludingTax"/>
+			<xs:enumeration value="SoldPriceExcludingTax"/>
+			<xs:enumeration value="PublisherRPIncludingTax"/>
+			<xs:enumeration value="PublisherRPExcludingTax"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OrderResponseReferenceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BuyersOrderReference"/>
+			<xs:enumeration value="ContractReference"/>
+			<xs:enumeration value="PromotionOrDealReference"/>
+			<xs:enumeration value="RepOrderReference"/>
+			<xs:enumeration value="OrderSourceLocationReference"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OrderResponseTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="NoDetail"/>
+			<xs:enumeration value="AllLines"/>
+			<xs:enumeration value="ExceptionsOnly"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OrderStatusCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="AcceptedShipping"/>
+			<xs:enumeration value="AcceptedBackordered"/>
+			<xs:enumeration value="AcceptedSeeDetail"/>
+			<xs:enumeration value="CanceledSeeDetail"/>
+			<xs:enumeration value="AcceptedSeeMessage"/>
+			<xs:enumeration value="CanceledSeeMessage"/>
+			<xs:enumeration value="CanceledAccountStopped"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OrderStatusEnquiryItemReferenceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BuyersOrderReference"/>
+			<xs:enumeration value="BuyersOrderLineReference"/>
+			<xs:enumeration value="RepOrderReference"/>
+			<xs:enumeration value="SuppliersOrderReference"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OrderStatusEnquiryReferenceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BuyersOrderReference"/>
+			<xs:enumeration value="RepOrderReference"/>
+			<xs:enumeration value="SuppliersOrderReference"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OrderStatusEnquiryRequestTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="WholeOrder"/>
+			<xs:enumeration value="ListedItems"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OrderStatusReportItemReferenceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BuyersOrderReference"/>
+			<xs:enumeration value="BuyersOrderLineReference"/>
+			<xs:enumeration value="ContractReference"/>
+			<xs:enumeration value="PromotionOrDealReference"/>
+			<xs:enumeration value="CustomerOrderReference"/>
+			<xs:enumeration value="RepOrderReference"/>
+			<xs:enumeration value="OrderSourceLocationReference"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OrderStatusReportReferenceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BuyersOrderReference"/>
+			<xs:enumeration value="OrderStatusEnquiryReference"/>
+			<xs:enumeration value="ContractReference"/>
+			<xs:enumeration value="PromotionOrDealReference"/>
+			<xs:enumeration value="RepOrderReference"/>
+			<xs:enumeration value="OrderSourceLocationReference"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OtherPartyIDAgencyCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="TaxRegistrationNumber"/>
+			<xs:enumeration value="VATRegistrationNumber"/>
+			<xs:enumeration value="SellersAccountNumber"/>
+			<xs:enumeration value="GLN"/>
+			<xs:enumeration value="SAN"/>
+			<xs:enumeration value="VKNR"/>
+			<xs:enumeration value="NBSN"/>
+			<xs:enumeration value="BAGNR"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PackageMarkTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="SSCC-18"/>
+			<xs:enumeration value="CarrierTrackingNumber"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PackageTypeCodeTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="EDItEUR"/>
+			<xs:enumeration value="DE"/>
+			<xs:enumeration value="GB"/>
+			<xs:enumeration value="NO"/>
+			<xs:enumeration value="SE"/>
+			<xs:enumeration value="US"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PackingSlipType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(0[1-9])|([1-9][0-9])"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PartyIDAgencyCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="GLN"/>
+			<xs:enumeration value="SAN"/>
+			<xs:enumeration value="VKNR"/>
+			<xs:enumeration value="NBSN"/>
+			<xs:enumeration value="SellersAccountNumber"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PaymentTermsCodeTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Seller"/>
+			<xs:enumeration value="Buyer"/>
+			<xs:enumeration value="AU"/>
+			<xs:enumeration value="DE"/>
+			<xs:enumeration value="GB"/>
+			<xs:enumeration value="NO"/>
+			<xs:enumeration value="SE"/>
+			<xs:enumeration value="US"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PersonAssociationTypeCode">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="PersonIDAgencyCode">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="PersonNameIDAgencyCode">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="PersonNameTypeCode">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="ProductFormCode">
+		<xs:annotation>
+			<xs:documentation>Equivalent to ONIX Codelist 7</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="00"/>
+			<xs:enumeration value="AA"/>
+			<xs:enumeration value="AB"/>
+			<xs:enumeration value="AC"/>
+			<xs:enumeration value="AD"/>
+			<xs:enumeration value="AE"/>
+			<xs:enumeration value="AF"/>
+			<xs:enumeration value="AG"/>
+			<xs:enumeration value="AH"/>
+			<xs:enumeration value="AI"/>
+			<xs:enumeration value="AJ"/>
+			<xs:enumeration value="AK"/>
+			<xs:enumeration value="AL"/>
+			<xs:enumeration value="AZ"/>
+			<xs:enumeration value="BA"/>
+			<xs:enumeration value="BB"/>
+			<xs:enumeration value="BC"/>
+			<xs:enumeration value="BD"/>
+			<xs:enumeration value="BE"/>
+			<xs:enumeration value="BF"/>
+			<xs:enumeration value="BG"/>
+			<xs:enumeration value="BH"/>
+			<xs:enumeration value="BI"/>
+			<xs:enumeration value="BJ"/>
+			<xs:enumeration value="BK"/>
+			<xs:enumeration value="BL"/>
+			<xs:enumeration value="BM"/>
+			<xs:enumeration value="BN"/>
+			<xs:enumeration value="BO"/>
+			<xs:enumeration value="BP"/>
+			<xs:enumeration value="BZ"/>
+			<xs:enumeration value="CA"/>
+			<xs:enumeration value="CB"/>
+			<xs:enumeration value="CC"/>
+			<xs:enumeration value="CD"/>
+			<xs:enumeration value="CE"/>
+			<xs:enumeration value="CZ"/>
+			<xs:enumeration value="DA"/>
+			<xs:enumeration value="DB"/>
+			<xs:enumeration value="DC"/>
+			<xs:enumeration value="DD"/>
+			<xs:enumeration value="DE"/>
+			<xs:enumeration value="DF"/>
+			<xs:enumeration value="DG"/>
+			<xs:enumeration value="DH"/>
+			<xs:enumeration value="DI"/>
+			<xs:enumeration value="DJ"/>
+			<xs:enumeration value="DK"/>
+			<xs:enumeration value="DL"/>
+			<xs:enumeration value="DM"/>
+			<xs:enumeration value="DN"/>
+			<xs:enumeration value="DZ"/>
+			<xs:enumeration value="FA"/>
+			<xs:enumeration value="FB"/>
+			<xs:enumeration value="FC"/>
+			<xs:enumeration value="FD"/>
+			<xs:enumeration value="FE"/>
+			<xs:enumeration value="FF"/>
+			<xs:enumeration value="FZ"/>
+			<xs:enumeration value="MA"/>
+			<xs:enumeration value="MB"/>
+			<xs:enumeration value="MC"/>
+			<xs:enumeration value="MZ"/>
+			<xs:enumeration value="PA"/>
+			<xs:enumeration value="PB"/>
+			<xs:enumeration value="PC"/>
+			<xs:enumeration value="PD"/>
+			<xs:enumeration value="PE"/>
+			<xs:enumeration value="PF"/>
+			<xs:enumeration value="PG"/>
+			<xs:enumeration value="PH"/>
+			<xs:enumeration value="PI"/>
+			<xs:enumeration value="PJ"/>
+			<xs:enumeration value="PK"/>
+			<xs:enumeration value="PL"/>
+			<xs:enumeration value="PM"/>
+			<xs:enumeration value="PN"/>
+			<xs:enumeration value="PO"/>
+			<xs:enumeration value="PP"/>
+			<xs:enumeration value="PQ"/>
+			<xs:enumeration value="PR"/>
+			<xs:enumeration value="PS"/>
+			<xs:enumeration value="PT"/>
+			<xs:enumeration value="PZ"/>
+			<xs:enumeration value="VA"/>
+			<xs:enumeration value="VB"/>
+			<xs:enumeration value="VC"/>
+			<xs:enumeration value="VD"/>
+			<xs:enumeration value="VE"/>
+			<xs:enumeration value="VF"/>
+			<xs:enumeration value="VG"/>
+			<xs:enumeration value="VH"/>
+			<xs:enumeration value="VI"/>
+			<xs:enumeration value="VJ"/>
+			<xs:enumeration value="VK"/>
+			<xs:enumeration value="VL"/>
+			<xs:enumeration value="VM"/>
+			<xs:enumeration value="VN"/>
+			<xs:enumeration value="VO"/>
+			<xs:enumeration value="VP"/>
+			<xs:enumeration value="VZ"/>
+			<xs:enumeration value="WW"/>
+			<xs:enumeration value="WX"/>
+			<xs:enumeration value="XA"/>
+			<xs:enumeration value="XB"/>
+			<xs:enumeration value="XC"/>
+			<xs:enumeration value="XD"/>
+			<xs:enumeration value="XE"/>
+			<xs:enumeration value="XF"/>
+			<xs:enumeration value="XG"/>
+			<xs:enumeration value="XH"/>
+			<xs:enumeration value="XI"/>
+			<xs:enumeration value="XJ"/>
+			<xs:enumeration value="XK"/>
+			<xs:enumeration value="XL"/>
+			<xs:enumeration value="XZ"/>
+			<xs:enumeration value="ZA"/>
+			<xs:enumeration value="ZB"/>
+			<xs:enumeration value="ZC"/>
+			<xs:enumeration value="ZD"/>
+			<xs:enumeration value="ZE"/>
+			<xs:enumeration value="ZF"/>
+			<xs:enumeration value="ZZ"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ProductIDAgencyCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Proprietary"/> <!-- = 01 -->
+			<xs:enumeration value="ISBN"/>        <!-- = 02 -->
+			<xs:enumeration value="EAN13"/>       <!-- = 03, 15 or 25 -->
+			<xs:enumeration value="UPC"/>         <!-- = 04 or 30-->
+			<xs:enumeration value="ISMN"/>        <!-- = 05 -->
+			<xs:enumeration value="GTIN14"/>      <!-- = 14 -->
+			<xs:enumeration value="SKU"/>
+			<xs:enumeration value="Seller"/>
+			<xs:enumeration value="Buyer"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ProximityCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="LessThan"/>
+			<xs:enumeration value="NotMoreThan"/>
+			<xs:enumeration value="Exactly"/>
+			<xs:enumeration value="About"/>
+			<xs:enumeration value="NotLessThan"/>
+			<xs:enumeration value="MoreThan"/>
+			<!-- = greater than -->
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PurposeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Duplicate"/>
+			<xs:enumeration value="Original"/>
+			<xs:enumeration value="Test"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ReturnsConditionCodeTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Seller"/>
+			<xs:enumeration value="Buyer"/>
+			<xs:enumeration value="AU"/>
+			<xs:enumeration value="DE"/>
+			<xs:enumeration value="GB"/>
+			<xs:enumeration value="NO"/>
+			<xs:enumeration value="SE"/>
+			<xs:enumeration value="US"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ReturnsInstructionCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="A01"/>
+			<xs:enumeration value="A02"/>
+			<xs:enumeration value="A03"/>
+			<xs:enumeration value="A10"/>
+			<xs:enumeration value="A11"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ReturnsInstructionCodeTypeCode">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="ReturnsReasonCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="B00"/>
+			<xs:enumeration value="B10"/>
+			<xs:enumeration value="B11"/>
+			<xs:enumeration value="B20"/>
+			<xs:enumeration value="B21"/>
+			<xs:enumeration value="B30"/>
+			<xs:enumeration value="B31"/>
+			<xs:enumeration value="B90"/>
+			<xs:enumeration value="B91"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ReturnsReasonCodeTypeCode">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="ReturnsRefusalCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="R01"/>
+			<xs:enumeration value="R02"/>
+			<xs:enumeration value="R03"/>
+			<xs:enumeration value="R04"/>
+			<xs:enumeration value="R05"/>
+			<xs:enumeration value="R06"/>
+			<xs:enumeration value="R07"/>
+			<xs:enumeration value="R08"/>
+			<xs:enumeration value="R09"/>
+			<xs:enumeration value="R10"/>
+			<xs:enumeration value="R11"/>
+			<xs:enumeration value="R12"/>
+			<xs:enumeration value="R13"/>
+			<xs:enumeration value="R99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ReturnsRefusalCodeTypeCode">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="ReturnsRequestDamageCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="C01"/>
+			<xs:enumeration value="C02"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ReturnsRequestDefectCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="D01"/>
+			<xs:enumeration value="D02"/>
+			<xs:enumeration value="D03"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ReturnsRequestItemReferenceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ASNReference"/>
+			<xs:enumeration value="InvoiceReference"/>
+			<xs:enumeration value="PreAuthorizationReference"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ReturnsRequestReferenceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BuyerReturnsReference"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ReturnsResponseReferenceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="CustomerReference"/>
+			<xs:enumeration value="ReturnsRequestReference"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ReturnsTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Overstock"/>
+			<xs:enumeration value="NonConformance"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ServiceDescriptionCodeTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Seller"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ServicePriceQualifierCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="TotalPriceIncludingTax"/>
+			<xs:enumeration value="TotalPriceExcludingTax"/>
+			<xs:enumeration value="UnitCostIncludingTax"/>
+			<xs:enumeration value="UnitCostExcludingTax"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ServiceReferenceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ContractReference"/>
+			<xs:enumeration value="PromotionOrDealReference"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ShippingInstructionsCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ShipSeparately"/>
+			<xs:enumeration value="DoNotShipSeparately"/>
+			<xs:enumeration value="ShipCombined"/>
+			<xs:enumeration value="ShipCombinedPackSeparately"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ShipQuantityQualifierCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Ordered"/>
+			<xs:enumeration value="ShippedToDate"/>
+			<xs:enumeration value="StillBackordered"/>
+			<xs:enumeration value="Cancelled"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="StockQuantityCodeTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Seller"/>
+			<xs:enumeration value="EDItEURAlpha"/>
+			<xs:enumeration value="EDItEURNumeric"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="StockQuantityTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="OnHand"/>
+			<xs:enumeration value="OnOrder"/>
+			<xs:enumeration value="CBO"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="StockReportReferenceTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="StockEnquiryReference"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="StockReportResponseLineStatusCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="NoDataAvailable"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="StockReportResponseStatusCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Successful"/>
+			<xs:enumeration value="RequestInvalid"/>
+			<xs:enumeration value="SystemUnavailable"/>
+			<xs:enumeration value="AccountInvalid"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TaxTypeCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="GST"/>
+			<xs:enumeration value="VAT"/>
+			<xs:enumeration value="Proprietary"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="UOMCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Centimetre"/>
+			<xs:enumeration value="Millimetre"/>
+			<xs:enumeration value="Inch"/>
+			<xs:enumeration value="Gram"/>
+			<xs:enumeration value="Kilogram"/>
+			<xs:enumeration value="Ounce"/>
+			<xs:enumeration value="Pound"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="UOMCodeLinear">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Centimetre"/>
+			<xs:enumeration value="Millimetre"/>
+			<xs:enumeration value="Inch"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="UOMCodeWeight">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Gram"/>
+			<xs:enumeration value="Kilogram"/>
+			<xs:enumeration value="Ounce"/>
+			<xs:enumeration value="Pound"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="VelocityCode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="MaximumDailySale"/>
+			<xs:enumeration value="MeanDailySale"/>
+			<xs:enumeration value="SellerRating"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

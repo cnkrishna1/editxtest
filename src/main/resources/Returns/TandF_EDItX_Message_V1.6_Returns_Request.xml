@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ReturnsRequest version="1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="EDItX_Message_V1.6.xsd">
+  <Header>
+    <ReturnsRequestNumber>RR-00001</ReturnsRequestNumber>
+    <IssueDateTime>20200501</IssueDateTime>
+    <ReferenceCoded>
+      <ReferenceTypeCode>BuyerReturnsReference</ReferenceTypeCode>
+      <ReferenceDate>20200407</ReferenceDate> <!-- this fields corresponds to order requestDate assumption -->
+    </ReferenceCoded>
+    <PurposeCode>Original</PurposeCode>
+    <BuyerParty>
+      <PartyID>
+        <PartyIDType>GLN</PartyIDType>
+        <Identifier>Amazon</Identifier> <!-- order req rasied by Amazon say , so Buyerparty is amazon or its subsidary  -->
+      </PartyID>
+      <PartyName>
+        <NameLine>Amazon susidary</NameLine> <!--  party also will be amazon-->
+      </PartyName>
+      <PostalAddress>
+        <AddressLine>32 avenue</AddressLine>
+        <PostalTownCity>london</PostalTownCity>   <!-- postal address of amazon which is a optional one here -->
+        <PostalCode>1110882</PostalCode>
+        <Country>london</Country>
+        <CountryCode>GB</CountryCode>
+      </PostalAddress>
+      <CommunicationDetails>
+        <CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+        <CommunicationLocator>CommunicationLocator</CommunicationLocator>
+      </CommunicationDetails>
+    </BuyerParty>
+    <SellerParty>
+      <PartyID>
+        <PartyIDType>GLN</PartyIDType>
+        <Identifier>T and F Identifier </Identifier> <!--  it will be a number generally.-->
+      </PartyID>
+      <PartyName>
+        <NameLine>T and F</NameLine>
+      </PartyName>
+      <PostalAddress>
+        <AddressLine>Avenue 24th</AddressLine>
+        <PostalTownCity>London</PostalTownCity>
+        <PostalCode>129776</PostalCode>
+        <Country>UK</Country>
+        <CountryCode>GB</CountryCode>
+      </PostalAddress>
+      <CommunicationDetails>
+        <CommunicationTypeCode>FixedPhone</CommunicationTypeCode>
+        <CommunicationLocator>CommunicationLocator</CommunicationLocator>
+      </CommunicationDetails>
+    </SellerParty>
+  </Header>
+  <ItemDetail>
+    <LineNumber>1</LineNumber>
+    <ProductID>
+      <ProductIDType>ISBN</ProductIDType>
+      <IDTypeName>PhysicalISBN</IDTypeName>
+      <Identifier>98438549857</Identifier>   
+    </ProductID>
+    <ItemDescription>
+      <TitleDetail>the real soul of life</TitleDetail>
+    </ItemDescription> 
+    <ReturnsQuantity>3</ReturnsQuantity>
+    <ReturnsReasonCode>B00</ReturnsReasonCode>   <!-- 1 B00 Overstock returns: no references required -->
+  </ItemDetail>
+  <Summary>
+    <NumberOfLines>1</NumberOfLines>
+    <TotalUnits>3</TotalUnits>
+  </Summary>
+</ReturnsRequest>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EDItXMessageAcknowledgement version="1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="EDItX_Message_V1.6.xsd">
+   <InterchangeReference>InventoryReference</InterchangeReference>   <!--need to know what should be the appropriate value in each report here  -->
+     <!--  combination of interchange reference and
+message number gives the message an identifier that is unique within the trading relationship. -->
+    <MessageNumber>00001</MessageNumber>
+    <DocumentType>SalesReport</DocumentType>  <!-- mentioned as salesReport  only since it doesn't have any specific to Inventory report-->
+    <VersionNumber>v1</VersionNumber>
+    <NumberOfDocuments>2</NumberOfDocuments>
+<Sender>
+      <PartyID>
+        <PartyIDType>GLN</PartyIDType>   
+        <!-- here the request sender is the seller/Retailer/Distributor eg: consider as PQ Central (say)  
+        which will be the 7th element of order request xml as per standard of Editx-->
+        <Identifier> Unique Identifier</Identifier>
+      </PartyID>
+    </Sender>
+    <Receiver>   <!--  publisher's details-->
+      <PartyID>
+        <PartyIDType>GLN</PartyIDType>
+        <Identifier> T and F Unique Value</Identifier>     
+         <!-- 8th element of order request in main header as per acknowledgement standard of editX-->
+      </PartyID>
+    </Receiver>
+    <PurposeCode>Original</PurposeCode>  <!--9th element of order header request  as per acknowledgement standard of editX- -->
+  <ReceivedDateTime>20200504T0255Z</ReceivedDateTime>
+  <AcknowledgedDateTime>20200504T0256Z</AcknowledgedDateTime>
+  <AcknowledgementStatusCode>Accepted</AcknowledgementStatusCode>
+  <AcknowledgementStatusMessage>Received and passed on for processing</AcknowledgementStatusMessage>   
+  <!--  this message is dependent on "AcknowledgementStatusCode"-->
+  <LastMessageNumber>IV-000001 (say)</LastMessageNumber> 
+    <!-- Assumption :: this element corresponds to "MessageNumber" of the immediate  previous one of the last Request  -->
+</EDItXMessageAcknowledgement>
