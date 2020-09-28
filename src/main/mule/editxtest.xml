@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
-	xmlns="http://www.mulesoft.org/schema/mule/core"
-	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+<mule xmlns:edifact="http://www.mulesoft.org/schema/mule/edifact" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
-http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/edifact http://www.mulesoft.org/schema/mule/edifact/current/mule-edifact.xsd">
 	<http:listener-config name="EDItX_Listener_config" doc:name="HTTP Listener config" doc:id="323ecb09-db5a-48fc-a14e-60cdec8fb2e4" >
 		<http:listener-connection host="0.0.0.0" port="8081" />
 	</http:listener-config>
@@ -28,5 +29,8 @@ output application/json
 }]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
+	</flow>
+	<flow name="editxtestFlow1" doc:id="4dc54333-4d81-4558-8eda-16ec7bc91f3d" >
+		<edifact:read doc:name="Read" doc:id="43e8bb68-ee50-4f6f-8fd4-6bd6b30936ca" />
 	</flow>
 </mule>
