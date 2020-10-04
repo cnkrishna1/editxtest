@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
-                mvn -B -U -e -V clean -DskipTests package
+                mvn clean -DskipTests package
             }
         }
         stage('Test') { 
